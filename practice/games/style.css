@@ -1,0 +1,477 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.main-container {
+  background-color: #FAFAF9;
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  float: right;
+}
+
+.profile-data-container {
+  width: 100%;
+  height: max-content;
+  position: inherit;
+  top: 5%;
+  left: -5%;
+  display: flex;
+  flex-direction: row;
+  align-items: cemter;
+  justify-content: center;
+}
+
+.container-data-profile {
+  width: 50%;
+  height: min-content;
+  display: flex;
+  flex-direction: row;
+  align-items: cemter;
+  justify-content: center;
+}
+
+.sidebar {
+  background-color: #5849FF;
+  width: 20%;
+  height: 95%;
+
+  position: relative;
+  left: 11.5%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+  float: left;
+
+  border-radius: 17px;
+}
+
+.sidebar-buttons-container {
+  width: 100%;
+  height: 75%;
+  position: absolute;
+  top: 15%;
+}
+
+.sidebar-bottom {
+  background-color: #6473FF;
+  border-radius: 10px;
+
+  width: 80%;
+  height: 30%;
+
+  position: absolute;
+  top: 94%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.25s linear;
+}
+
+button > i {
+  position: relative;
+  left: -10px;
+}
+
+/* Sidebar Buttons Style */
+.sidebar-button {
+  background: white;
+  color: black;
+
+  border: none;
+  padding: 14px 28px;
+  font-size: 2.2vh;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+
+  margin: 10px;
+  border-radius: 10px;
+
+  width: 80%;
+  height: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: all 0.25s linear;
+}
+
+.sidebar-button:hover {
+  box-shadow: 0 0 25px 1px rgba(228, 228, 228, .6);
+}
+
+.br {
+  background-color: white;
+  height: 2px;
+  width: 75%;
+
+  position: inherit;
+  top: 62.5%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  border: none;
+  border-radius: 50px;
+}
+
+.sidebar-bottom > h4 {
+  color: white;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: 0.9vw;
+  text-align: center;
+
+  position: relative;
+  width: 80%;
+  left: 50%;
+  top: 20%;
+
+  transform: translate(-50%, -50%);
+}
+
+.sidebar-bottom > button {
+  background-color: #691DF5;
+  color: white;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 10px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  font-size: 1.5vw;
+
+  position: inherit;
+  width: 80%;
+  height: 3.5vw;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%);
+
+  transition: all 0.25s linear;
+}
+
+.sidebar-bottom > button:hover {
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.6);
+}
+
+/* Sidebar Styles */
+
+.profile-icon {
+  cursor: pointer;
+  width: 5vh;
+  border-radius: 50%;
+}
+
+.profile-text {
+  color: white;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.5vh;
+  text-align: center;
+  font-weight: 500;
+
+  z-index: 1;
+}
+
+.profile-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 25px;
+}
+
+.profile-icon-container {
+  width: max-content;
+  height: max-content;
+}
+
+.profile-icon-status__ {
+  cursor: pointer;
+  width: 2vh;
+  height: 2vh;
+  position: absolute;
+  left: 20%;
+  top: 7%;
+  background-color: #00FF00;
+  border-radius: 50%;
+  z-index: 3;
+
+  transition: all 0.25s linear;
+}
+
+.profile-icon-status-outline__ {
+  cursor: pointer;
+  width: 2.5vh;
+  height: 2.5vh;
+  position: absolute;
+  left: 19.5%;
+  top: 6.75%;
+  background-color: #5849FF;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.crown-container {
+  width: max-content;
+  height: max-content;
+  padding-left: 25px;
+}
+
+.profile-icon-secondary {
+  width: 2vw;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  aspect-ratio: 1/1;
+}
+
+/* Cards */
+
+:root {
+  --bg-color: rgb(20, 20, 20);
+  --card-color: rgb(255, 255, 255);
+}
+
+#cards {
+  position: inherit;
+  top: 60%;
+  left: 60%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;  
+  max-width: 916px;
+  width: calc(100% - 20px);
+}
+
+#cards:hover > .card::after {
+  opacity: 1;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: 260px;
+  flex-direction: column;
+  position: relative;
+  width: 300px;  
+
+  transition: transform 0.2s linear;
+  box-shadow: 0 0 25px 1px rgba(228, 228, 228, 1);
+}
+
+.card:hover {
+  transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg);
+  box-shadow: -2px -2px #18181888;
+  box-shadow: 0 0 25px 1px rgba(150, 150, 150, 0.5);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:active {
+  transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg) scale(0.95);
+}
+
+.card::before,
+.card::after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.card::after {  
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.4),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.card-overlay {
+  position: relative;
+  background-color: rgb(255, 255, 255, 0.6);
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 100;
+}
+
+.card-overlay > i {
+  color: rgb(88, 73, 255);
+  font-size: 6vw;
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card > .card-content {
+  background-color: var(--card-color);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 2;
+}
+
+/* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+
+.title, .description {
+  color: #444444;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.practice-games-title {
+  color: #353535;
+
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 4.5vw;
+  text-shadow: 1px 1px 2px rgb(200, 200, 200), 0 0 1em rgb(200, 200, 200), 0 0 0.2em rgb(200, 200, 200);
+
+  position: inherit;
+  left: 60%;
+  top: 6.5%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.card-image > i, .card-info > i {  
+  color: rgb(88, 73, 255);
+}
+
+.card-image {
+  align-items: center;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image > i {
+  font-size: 6em;
+}
+
+.card-info-wrapper {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+
+.card-info {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.card-info > i {  
+  font-size: 1em;
+  height: 20px;
+  line-height: 20px;
+}
+
+.card-info-title > h3 {
+  font-size: 1.1em;
+  line-height: 20px;
+}
+
+.card-info-title > h4 {
+  color: #666666;
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+
+/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+
+@media(max-width: 1000px) {
+  body {
+    align-items: flex-start;  
+    overflow: auto;
+  }
+
+  #cards {    
+    max-width: 1000px;
+    padding: 10px 0px;
+  }
+
+  .card {
+    flex-shrink: 1;
+    width: calc(50% - 4px);
+  }
+}
+
+@media(max-width: 500px) {
+  .card {
+    height: 180px;
+  }
+
+  .card-image {
+    height: 80px;  
+  }
+
+  .card-image > i {
+    font-size: 3em;
+  }
+
+  .card-info-wrapper {
+    padding: 0px 10px;
+  }
+
+  .card-info > i { 
+    font-size: 0.8em; 
+  }
+
+  .card-info-title > h3 {
+    font-size: 0.9em;
+  }
+
+  .card-info-title > h4 {
+    font-size: 0.8em;
+    margin-top: 4px;
+  }
+}
+
+@media(max-width: 320px) {
+  .card {
+    width: 100%;
+  }
+}
