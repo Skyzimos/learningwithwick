@@ -175,6 +175,104 @@ let quizData = {
         '15'
       ]
     }
+  },
+  'The GDL passenger limitation is not exempt when accompanied by a parent or guardian.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2
+      ]
+    }
+  },
+  'For the first six months of licensure, only two non-immediate family members under 20 years of age are allowed as passengers.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2
+      ]
+    }
+  },
+  'You must be at least 16 years old and have had your permit at least __________with a clean driver record before being eligible for a provisional license.': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '3 Months',
+        '6 Months',
+        '9 Months',
+        '12 Days'
+      ],
+      answers: [
+        '6 Months'
+      ]
+    }
+  },
+  'GDL restrictions prohibit night time driving for the first six months between the hours of:': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '11:00pm to 6:00am',
+        'Midnight (12:00am) to 5:00am',
+        '10:00pm to 5:00am'
+      ],
+      answers: [
+        'Midnight (12:00am) to 5:00am'
+      ]
+    }
+  },
+  'For the second six months of licensure, only ____ non-immediate family members that are passengers under 20 years old are allowed.': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '5',
+        '4',
+        '3',
+        '2'
+      ],
+      answers: [
+        '3'
+      ]
+    }
+  },
+  'If under 18, you need approval from your parent or legal guardian to take the road test.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1
+      ]
+    }
+  },
+  'Proof of insurance is necessary for the vehicle used for the road test.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1
+      ]
+    }
+  },
+  'You provide your own vehicle for your road test.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1
+      ]
+    }
+  },
+  'To qualify for a full class D license, you must be 18 or maintain a good driving record for ______consecutive months.': {
+    type: 'multiple_choice',
+    data: {
+      questions: [
+        '18',
+        '12',
+        '6',
+        '3'
+      ],
+      answers: [
+        '12'
+      ]
+    }
   }
 }
 
