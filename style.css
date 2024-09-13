@@ -116,6 +116,16 @@ button > i {
   width: 150px;
 }
 
+@keyframes gradient-animation_2 {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Sidebar Buttons Style */
 .sidebar-button {
   background: white;
