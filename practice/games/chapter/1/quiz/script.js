@@ -1,3 +1,4 @@
+let chapterNumber = 1;
 let quizData = {
   'Which of the following can be used as a primary I.D. (Select the 4 correct answers.)': {
     type: 'multiple_choice',
@@ -188,6 +189,8 @@ let quizData = {
 const uid = () => {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
+
+localStorage.setItem('last-played', chapterNumber);
 
 function adjustQuestionPosition() {
   const questionText = document.getElementById('question-text');
