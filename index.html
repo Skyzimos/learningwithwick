@@ -154,7 +154,7 @@
         if (localStorage.getItem('last-played')) {
             lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
         } else {
-            document.getElementById('last-played').textContent = 'We Recommend:';
+            document.querySelector('.last-played > h1').textContent = 'We Recommend:';
             lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
         }
         
