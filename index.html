@@ -151,7 +151,7 @@
     <script>
         let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety'];
         let lastPlayed = localStorage.getItem('last-played');
-        let icon = lastPlayed !== null & dataset[(lastPlayed - 1)] : dataset[0];
+        let icon = (lastPlayed !== null) & dataset[(lastPlayed - 1)] : dataset[0];
         document.getElementById('ico').className = icon;
         if (localStorage.getItem('last-played')) {
             document.querySelector('.last-played > h2').textContent = `Chapter ${lastPlayed} Quiz`;
