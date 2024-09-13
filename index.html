@@ -151,9 +151,9 @@
     <script>
         let lastPlayed = localStorage.getItem('last-played');
         if (lastPlayed) {
+            document.getElementById('last-played').textContent = 'We Recommend:'
             lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`
         } else {
-            document.getElementById('last-played').textContent = 'We Recommend:'
             lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/'
         }
         
