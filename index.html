@@ -150,11 +150,12 @@
 
     <script>
         let lastPlayed = localStorage.getItem('last-played');
-        console.log(lastPlayed)
         if (localStorage.getItem('last-played')) {
+            document.querySelector('.last-played > h2').textContent = `Chapter ${lastPlayed} Quiz`;
             lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
         } else {
             document.querySelector('.last-played > h1').textContent = 'We Recommend:';
+            document.querySelector('.last-played > h2').textContent = `Chapter ${1} Quiz`;
             lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
         }
         
