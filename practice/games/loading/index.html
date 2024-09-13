@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading - Learning with Wick</title>
+  <link rel='icon' type='image/x-icon' href='/media/logo.png'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader">
+    <div class="loaderMiniContainer">
+      <div class="barContainer">
+        <span class="bar"></span>
+        <span class="bar bar2"></span>
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 101 114"
+        class="svgIcon"
+      >
+        <circle
+          stroke-width="7"
+          stroke="black"
+          transform="rotate(36.0692 46.1726 46.1727)"
+          r="29.5497"
+          cy="46.1727"
+          cx="46.1726"
+        ></circle>
+        <line
+          stroke-width="7"
+          stroke="black"
+          y2="111.784"
+          x2="97.7088"
+          y1="67.7837"
+          x1="61.7089"
+        ></line>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    let quizData = {
+      'Which of the following can be used as a primary I.D. (Select the 4 correct answers.)': {
+        type: 'multiple_choice',
+        data: {
+            answers: [
+              // Select any amount of the correct answers.
+              'Certified Birth Certificate',
+              'State I.D. Card',
+              'U.S. Citizenship Documents',
+              'Unexpired U.S. Passport',
+            ]
+        }
+      },
+      'Hospital-issued certificates of birth or any copies are acceptable forms of identification.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            // 1 = true, 2 = false
+            2
+          ]
+        }
+      },
+      'Students of parents or legal guardian who did not attend the supplemental parent class must complete and log a minimum of ____ hours, 15 of which must be at night.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            '50'
+          ]
+        }
+      },
+      'Students of parents or legal guardian that attended the supplemental parent class must complete and log a minimum of ____ hours, 15 of which must be at night.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            '40'
+          ]
+        }
+      },
+      'There is a fee to obtain your permit at the DVS.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            1
+          ]
+        }
+      },
+      'The most commonly used document for a primary identification is _______.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            'Certified Birth Certificate'
+          ]
+        }
+      },
+      'A social security card, school ID, and school transcripts are all primary forms of identification.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            2
+          ]
+        }
+      },
+      'When applying for your permit, you will be asked to give your social security number.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            1
+          ]
+        }
+      },
+      'How long is your permit valid for?': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            '2 Years'
+          ]
+        }
+      },
+      'Your vision will be tested when you apply for, or renew your drivers license.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            1
+          ]
+        }
+      },
+      ' If you are under 18, you must have a certificate of enrollment, also known as a __________, to take the permit test.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            'Blue Card'
+          ]
+        }
+      },
+      'If under 18, you must complete the classroom phase of driver education. However, financial enrollment in behind-the-wheel is optional to be eligible to take the permit test.': {
+        type: 'true_false',
+        data: {
+          answers: [
+            2
+          ]
+        }
+      },
+      'If under 18, you must have a certificate of completion, also known as a __________, to take the road test.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            'White Card'
+          ]
+        }
+      },
+      'In Minnesota you must be at least ______ years of age to obtain a regular Class D permit.': {
+        type: 'multiple_choice',
+        data: {
+          answers: [
+            '15'
+          ]
+        }
+      }
+    }
+    
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    const newData = JSON.parse(sessionStorage.getItem('item')); // User's answers from sessionStorage
+
+    // Helper function to calculate success rate
+    function calculateSuccessRate(correct, total) {
+      return (correct / total) * 100;
+    }
+
+    function checkAnswers(quizData, newData) {
+      let correctAnswersCount = 0;
+      let totalQuestions = 0;
+
+      Object.keys(newData).forEach((questionKey, index) => {
+        const userAnswers = newData[questionKey];
+        const questionText = Object.keys(quizData)[index];
+        const quizQuestion = quizData[questionText];
+
+        if (!quizQuestion) return;
+
+        const correctAnswers = quizQuestion.data.answers;
+
+        if (quizQuestion.type === 'multiple_choice') {
+          totalQuestions++;
+          const isCorrect = correctAnswers.every(answer => userAnswers.includes(answer)) && correctAnswers.length === userAnswers.length;
+          if (isCorrect) correctAnswersCount++;
+        } else if (quizQuestion.type === 'true_false') {
+          totalQuestions++;
+          if (userAnswers.length > 0 && userAnswers[0] == correctAnswers[0]) {
+            correctAnswersCount++;
+          }
+        }
+      });
+
+      return { correctAnswersCount, totalQuestions };
+    }
+
+    function processNewQuizData(quizData, newData) {
+      const existingData = JSON.parse(localStorage.getItem('quizData')) || { quizzes: [] };
+
+      const { correctAnswersCount, totalQuestions } = checkAnswers(quizData, newData);
+      const successRate = calculateSuccessRate(correctAnswersCount, totalQuestions);
+      const timeTaken = Math.random() * 200 + 50;
+
+      const newAttempt = {
+        attemptId: Date.now(),
+        correct: correctAnswersCount,
+        total: totalQuestions,
+        successRate: successRate,
+        timeTaken: timeTaken
+      };
+
+      const today = new Date().toISOString().split('T')[0];
+      let quiz = existingData.quizzes.find(q => q.date === today);
+
+      if (quiz) {
+        quiz.attempts.push(newAttempt);
+      } else {
+        quiz = {
+          id: existingData.quizzes.length + 1,
+          date: today,
+          attempts: [newAttempt]
+        };
+        existingData.quizzes.push(quiz);
+      }
+
+      localStorage.setItem('quizData', JSON.stringify(existingData));
+
+      return existingData;
+    }
+
+    function calculateStatistics(quizData) {
+      const totalQuizzes = quizData.quizzes.length;
+      let totalAttempts = 0;
+      let totalCorrect = 0;
+      let totalQuestions = 0;
+      let totalSuccessRates = 0;
+
+      quizData.quizzes.forEach(quiz => {
+        quiz.attempts.forEach(attempt => {
+          totalAttempts++;
+          totalCorrect += attempt.correct;
+          totalQuestions += attempt.total;
+          totalSuccessRates += attempt.successRate;
+        });
+      });
+
+      const averageSuccessRate = (totalSuccessRates / totalAttempts).toFixed(2);
+      const averageCorrect = (totalCorrect / totalAttempts).toFixed(2);
+      const averageQuestions = (totalQuestions / totalAttempts).toFixed(2);
+
+      return {
+        totalQuizzes,
+        totalAttempts,
+        averageSuccessRate,
+        averageCorrect,
+        averageQuestions
+      };
+    }
+
+    async function main() {
+      await delay(3000);
+
+      const updatedData = processNewQuizData(quizData, newData);
+
+      const statistics = calculateStatistics(updatedData);
+
+      console.log('Statistics:', statistics);
+
+      sessionStorage.setItem('statistics', JSON.stringify(statistics));
+
+      window.location.href = '/';
+    }
+
+    main();
+  </script>
+</body>
+</html>
