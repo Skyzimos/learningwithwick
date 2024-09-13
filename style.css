@@ -489,7 +489,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.last-played > h1 {
+.loader > .last-played > h1 {
   color: #353535;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -499,7 +499,7 @@ button > i {
   left: 5%;
 }
 
-.last-played > h2 {
+.loader > .last-played > h2 {
   color: #666666;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -510,7 +510,7 @@ button > i {
   top: -5%;
 }
 
-.last-played > i {
+.loader > .last-played > i {
   color: #5849FF;
 
   font-size: 12.5vw;
@@ -523,7 +523,7 @@ button > i {
   opacity: 0.85;
 }
 
-.last-played > button {
+.loader > .last-played > button {
   background-color: transparent;
   color: #5849FF;
   cursor: pointer;
@@ -545,21 +545,21 @@ button > i {
   transition: all 0.25s linear;
 }
 
-.last-played > button:hover {
+.loader > .last-played > button:hover {
   color: white;
   border: none;
   background-color: #5849FF;
   box-shadow: 0 0 25px 1px rgba(175, 175, 175);
 }
 
-.last-played > button:hover::before {
+.loader > .last-played > button:hover::before {
   color: #5849FF;
   border-color: #5849FF;
   background-color: transparent;
   transition: all 0.1 fade-out;
 }
 
-.last-played > button:active {
+.loader > .last-played > button:active {
   letter-spacing: 1px;
 }
 
