@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dashboard - Wick Learning</title>
+  <link rel='icon' type='image/x-icon' href='/media/logo.png'>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
+</head>
+    
+<body>
+      <div class='main-container'>
+
+        <h4 class='welcome-back-text'>
+          Welcome Back,
+        </h4>
+
+        <h1 class='welcome-back-name' id='welcome-back-name'>
+            OnlyTwentyOneCharacters
+        </h1>
+
+        <div class='last-played' id='last-played'>
+          <h1>
+            Recently Played:
+          </h2>
+
+          <h2>
+            Chapter 1 Quiz
+          </h2>
+
+          <button class='last-played-button' id='/practice/games/capitals-quiz/'>
+            <i class='fas fa-play'></i>
+            Play Now
+          </button>
+
+        <i class='fa-solid fa-id-card'></i>
+        </div>
+
+        <div class='quick-games'>
+          <h2>
+            Last Played
+          </h2>
+
+          <div class='correct-statistics'>
+            <i class='fas fa-thumbs-up'></i>
+
+            <h1>
+              Correct:
+            </h1>
+
+            <h2 id='correct-new'>
+              No data
+            </h2>
+
+            <h3 id='correct-old'>
+              Insufficient Data
+            </h1>
+          </div>
+
+           <div class='incorrect-statistics'>
+            <i class='fas fa-thumbs-down'></i>
+
+            <h1>
+              Incorrect:
+            </h1>
+
+            <h2 id='incorrect-new'>
+              No data
+            </h2>
+
+            <h3 id='incorrect-old'>
+              Insufficient Data
+            </h1>
+          </div>
+
+          <div class='other-statistics'>
+            <h2>
+              All Time Best:
+            </h2>
+
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class='sidebar'>
+
+        <div class='profile-data-container'>
+          <div class='container-data-profile'>
+              <div class='profile-icon-container'>
+                     <span class='profile-icon-status' id='profile-icon-status'></span>
+                     <span class='profile-icon-status-outline' id='profile-icon-status-outline'></span>
+                     <img class='profile-icon' id='profile-icon' src='/media/Sheep.jpeg'>
+                 </div>
+
+                  <div class='profile-text-container'>
+                      <h1 class='profile-text' id='profile-text'>
+                          Jesse
+                      </h1>
+                  </div>
+
+                  <div class='crown-container'>
+                      <img class='profile-icon-secondary' src='/media/crown-solid.png'>
+                  </div>
+          </div>
+        </div>
+
+        <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
+
+          <button class='sidebar-button' id='/' style='color: #2B2577; box-shadow: 0 0 25px 1px rgba(228, 228, 228, .6);' onclick='location.href="/"'>
+            <i class='fas fa-compass'></i>
+            Home
+          </button>
+
+          <button class='sidebar-button' id='/practice/games' style='background-color: transparent; color: white;' onclick='location.href="/practice/games/"'>
+            <i class='fas fa-dice-d6'></i>
+            Practice
+          </button>
+
+          <button class='sidebar-button' style='background-color: transparent; color: white;'>
+            <i class='fas fa-chart-simple'></i>
+            Statistics
+          </button>
+
+          <button class='sidebar-button' style='background-color: transparent; color: white;'>
+            <i class='fa-classic fa-calendar'></i>
+            Schedule
+          </button>
+
+          <button class='sidebar-button' style='background-color: transparent; color: white;'>
+            <i class='fas fa-gear'></i>
+            Settings
+          </button>
+
+          <div class='sidebar-bottom'>
+            <h4>
+              Have any problems with Learning with Wick? Contact our customer support!
+            </h4>
+
+            <button id='support-button'>
+              Contact Us
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+</body>
+</html>
