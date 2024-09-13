@@ -150,7 +150,8 @@
 
     <script>
         let lastPlayed = localStorage.getItem('last-played');
-        if (lastPlayed) {
+        console.log(lastPlayed)
+        if (localStorage.getItem('last-played')) {
             lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
         } else {
             document.getElementById('last-played').textContent = 'We Recommend:';
