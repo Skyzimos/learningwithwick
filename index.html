@@ -151,17 +151,17 @@
     <script>
         let lastPlayed = localStorage.getItem('last-played');
         if (lastPlayed) {
-            document.getElementById('last-played').textContent = 'We Recommend:'
-            lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`
+            lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
         } else {
-            lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/'
+            document.getElementById('last-played').textContent = 'We Recommend:';
+            lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
         }
         
         for (let child of document.getElementById('last-played').children) {
             if (child.className === 'last-played-button') {
                 child.onclick = function() {
                     setTimeout(() => {
-                        location.href = child.id;
+                        location.href = lastPlayed;
                     }, 250);
                 }
             }
