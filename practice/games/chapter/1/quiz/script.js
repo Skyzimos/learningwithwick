@@ -397,8 +397,7 @@ document.getElementById('previous-button').addEventListener('click', function ()
 document.getElementById('submit-button').addEventListener('click', function () {
   console.log('Selected Answers:', selectedAnswers);
   sessionStorage.setItem('item', JSON.stringify(selectedAnswers))
-  location.href = '/practice/games/loading/'
-  alert('Quiz submitted! Check console for selected answers.');
+  location.href = '/learningwithwick/practice/games/loading/'
 });
 
 displayQuestion(quizData, currentQuestionIndex);
