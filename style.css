@@ -299,7 +299,7 @@ button > i {
   left: 24%;
 }
 
-.last-played {
+.loader > .last-played {
   background-color: white;
   box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.6);
   border-radius: 17px;
