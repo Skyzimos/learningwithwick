@@ -1,67 +1,51 @@
 let chapterNumber = 2;
 let quizData = {
-  'Which of the following can be used as a primary I.D. (Select the 4 correct answers.)': {
-    type: 'multiple_choice',
+  'You should read your operator’s manual and know how to use all the equipment.': {
+    type: 'true_false',
     data: {
-      limit_selection: 4,
-      questions: [
-          'Social Security Card',
-          'Hospital Birth Certificate',
-          'Certified Birth Certificate',
-          'State I.D. Card',
-          'U.S. Citizenship Documents',
-          'School I.D.',
-          'Unexpired U.S. Passport',
-        ],
         answers: [
-          // Select any amount of the correct answers.
-          'Certified Birth Certificate',
-          'State I.D. Card',
-          'U.S. Citizenship Documents',
-          'Unexpired U.S. Passport',
+          1
         ]
     }
   },
-  'Hospital-issued certificates of birth or any copies are acceptable forms of identification.': {
+  'What is the minimum tread depth allowed by law?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '1/4 inch',
+        '1/32 inch',
+        '1/2 inch',
+        '1/16 inch'
+      ]
+      answers: [
+        '1/16 inch'
+      ]
+    }
+  },
+  'It is not necessary to understand all indicators and gauges.': {
     type: 'true_false',
     data: {
       answers: [
-        // 1 = true, 2 = false
-        2
+        2'
       ]
     }
   },
-  'Students of parents or legal guardian who did not attend the supplemental parent class must complete and log a minimum of ____ hours, 15 of which must be at night.': {
+  'PSI stands for:': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        '40',
-        '50',
-        '60',
-        '120',
+        'Pounds Source Inside',
+        'Pressure Source Inside',
+        'Pounds Per Square Inch',
       ],
       answers: [
-        '50'
+        'Pounds Per Square Inch'
       ]
     }
   },
-  'Students of parents or legal guardian that attended the supplemental parent class must complete and log a minimum of ____ hours, 15 of which must be at night.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        '40',
-        '60',
-        '90',
-        '120',
-      ],
-      answers: [
-        '40'
-      ]
-    }
-  },
-  'There is a fee to obtain your permit at the DVS.': {
+  'Dirty headlights can reduce light output.': {
     type: 'true_false',
     data: {
       answers: [
@@ -69,30 +53,33 @@ let quizData = {
       ]
     }
   },
-  'The most commonly used document for a primary identification is _______.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Official Transcript',
-        'School I.D.',
-        'Social Security Card',
-        'Certified Birth Certificate',
-      ],
-      answers: [
-        'Certified Birth Certificate'
-      ]
-    }
-  },
-  'A social security card, school ID, and school transcripts are all primary forms of identification.': {
+  'Tire pressure has been known to change with time and temperature changes.': {
     type: 'true_false',
     data: {
       answers: [
-        2
+        1
       ]
     }
   },
-  'When applying for your permit, you will be asked to give your social security number.': {
+  'Which of the following would help keep your car in good operating condition: (mark each correct answer)': {
+    type: 'multiple_choice',
+    data: {
+      questions: [
+        'Keep a properly tuned engine.',
+        'Keep properly inflated tires.',
+        'Keep your eyes moving.',
+        'Aim high steering.',
+        'Use the recommended grade of oil.',
+        'Get the big picture.'
+      ],
+      answers: [
+        'Keep a properly tuned engine.',
+        'Keep properly inflated tires.',
+        'Use the recommended grade of oil.'
+      ]
+    }
+  },
+  '': {
     type: 'true_false',
     data: {
       answers: [
