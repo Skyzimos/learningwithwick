@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" id='chapter-2-quiz'">
     <div class='card-overlay'>
       <i class='fas fa-lock'></i>
     </div>
@@ -215,6 +215,16 @@
       setTimeout(() => {
         location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
       }, 250);
+    }
+
+    let counter = 0;
+    document.getElementById('chapter-2-quiz').onclick = function() {
+      counter = counter + 1;
+      if (counter >== 2) {
+         setTimeout(() => {
+        location.href = '/learningwithwick/practice/games/chapter/2/quiz/';
+      }, 250);
+      }
     }
   </script>
 
