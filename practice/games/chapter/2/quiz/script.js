@@ -87,22 +87,15 @@ let quizData = {
       ]
     }
   },
-  'How long is your permit valid for?': {
-    type: 'multiple_choice',
+  'Before starting a car that is "new" to you, the first thing you should adjust is your mirrors.': {
+    type: 'true_false',
     data: {
-      limit_selection: 1,
-      questions: [
-        '1 Year',
-        '2 Years',
-        '3 Years',
-        '5 Years',
-      ],
       answers: [
-        '2 Years'
+        2
       ]
     }
   },
-  'Your vision will be tested when you apply for, or renew your drivers license.': {
+  'Your car is required to have 2 separate brake systems.': {
     type: 'true_false',
     data: {
       answers: [
@@ -110,22 +103,7 @@ let quizData = {
       ]
     }
   },
-  ' If you are under 18, you must have a certificate of enrollment, also known as a __________, to take the permit test.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Pink Card',
-        'Blue Card',
-        'Yellow Card',
-        'White Card',
-      ],
-      answers: [
-        'Blue Card'
-      ]
-    }
-  },
-  'If under 18, you must complete the classroom phase of driver education. However, financial enrollment in behind-the-wheel is optional to be eligible to take the permit test.': {
+  'GPS devices are illegal in Minnesota.': {
     type: 'true_false',
     data: {
       answers: [
@@ -133,64 +111,73 @@ let quizData = {
       ]
     }
   },
-  'If under 18, you must have a certificate of completion, also known as a __________, to take the road test.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Pink Card',
-        'Blue Card',
-        'Yellow Card',
-        'White Card',
-      ],
-      answers: [
-        'White Card'
-      ]
-    }
-  },
-  'In Minnesota you must be at least ______ years of age to obtain a regular Class D permit.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        '14',
-        '15',
-        '16',
-        '17'
-      ],
-      answers: [
-        '15'
-      ]
-    }
-  },
-  'The GDL passenger limitation is not exempt when accompanied by a parent or guardian.': {
+  'It is illegal to have a "For Sale" sign on any window of a moving car.': {
     type: 'true_false',
     data: {
       answers: [
-        2
+        1
       ]
     }
   },
-  'For the first six months of licensure, only two non-immediate family members under 20 years of age are allowed as passengers.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        2
-      ]
-    }
-  },
-  'You must be at least 16 years old and have had your permit at least __________with a clean driver record before being eligible for a provisional license.': {
+  'What gear should an automatic transmission be in before starting your car?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        '3 Months',
-        '6 Months',
-        '9 Months',
-        '12 Days'
+        'Neutral',
+        'Park',
+        'Reverse',
+        'Overdrive',
       ],
       answers: [
-        '6 Months'
+        'Park'
+      ]
+    }
+  },
+  'Where should your right foot be when starting a vehicle?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Brake',
+        'Accelerator',
+        'Clutch',
+        'Floor'
+      ],
+      answers: [
+        'Brake'
+      ]
+    }
+  },
+  'You\'re required to have a working horn on your vehicle when taking the road test.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1
+      ]
+    }
+  },
+  'Which of the following can be used in place of your horn if it does not work?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Whistle',
+        'Siren',
+        'Bell',
+        'All of these.',
+        'None of these.'
+      ]
+      answers: [
+        'None of these.'
+      ]
+    }
+  },
+  ' A white light is required for the rear license plate.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1
       ]
     }
   },
