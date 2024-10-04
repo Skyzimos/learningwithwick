@@ -181,70 +181,78 @@ let quizData = {
       ]
     }
   },
-  'GDL restrictions prohibit night time driving for the first six months between the hours of:': {
+  'It is legal for your car to make sudden, or prolonged loud popping or cracking sounds.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2
+      ]
+    }
+  },
+  'What is required of your vehicle if your view from the rearview mirror is blocked?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        '11:00pm to 6:00am',
-        'Midnight (12:00am) to 5:00am',
-        '10:00pm to 5:00am'
+        'You must have a rear bumper camera.',
+        'You must have a warning signal while in reverse.',
+        'You must have larger or additional side mirrors.',
+        'All of the above.'
       ],
       answers: [
-        'Midnight (12:00am) to 5:00am'
+        'You must have larger or additional side mirrors.'
       ]
     }
   },
-  'For the second six months of licensure, only ____ non-immediate family members that are passengers under 20 years old are allowed.': {
+  'Is there a significant difference in the rate of injuries when a seat belt is worn versus when one is not worn?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        '5',
-        '4',
-        '3',
-        '2'
-      ],
+        'Yes',
+        'No'
+      ]
       answers: [
-        '3'
+        'Yes'
       ]
     }
   },
-  'If under 18, you need approval from your parent or legal guardian to take the road test.': {
+  'If you have airbags, seat belts are not necessary.': {
     type: 'true_false',
     data: {
       answers: [
-        1
+        2
       ]
     }
   },
-  'Proof of insurance is necessary for the vehicle used for the road test.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1
-      ]
-    }
-  },
-  'You provide your own vehicle for your road test.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1
-      ]
-    }
-  },
-  'To qualify for a full class D license, you must be 18 or maintain a good driving record for ______consecutive months.': {
+  '_______ is the property of matter that causes it to resist any change in its motion.': {
     type: 'multiple_choice',
     data: {
+      limit_selection: 1,
       questions: [
-        '18',
-        '12',
-        '6',
-        '3'
-      ],
+        'Interia',
+        'Constant',
+        'Vector',
+        'Motion'
+      ]
       answers: [
-        '12'
+        'Inertia'
+      ]
+    }
+  },
+  'Newton\'s 3rd law states - A body at rest remains at rest and a body in motion remains in motion unless acted upon by an external force.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2
+      ]
+    }
+  },
+  'The formula for force is mass divided by acceleration.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2
       ]
     }
   }
