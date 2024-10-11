@@ -257,7 +257,7 @@ let quizData = {
         'They must yield to oncoming traffic/pedestrians as they have the right of way.',
       ],
       answers: [
-        'They ust yield to oncoming traffic/pedestrians as they have the right of way.',
+        'They must yield to oncoming traffic/pedestrians as they have the right of way.',
       ]
     }
   },
