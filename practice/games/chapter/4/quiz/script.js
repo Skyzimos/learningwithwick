@@ -277,74 +277,68 @@ let quizData = {
         'When making turns or lane changes.',
       ]
     }
-  }, // STOPPED HERE
-  'Which of the following is treated the same as a stop sign?': {
+  },
+  'List some important steps for making lane changes (SMOG):': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Solid Red Light',
-        'Flashing Red Light',
-        'Solid Yellow Light',
-        'Flashing Yellow Light',
+        'Signal, mirror check, over the shoulder, gun it.',
+        'Signal, mimic the other driver, over the shoulder, go.',
+        'Signal, mirror check, over the shoulder, go when safe.',
+        'Smoke the tires, mirror check, over the shoulder, go.',
       ],
       answers: [
-        'Flashing Red Light',
+        'Signal, mirror check, over the shoulder, go when safe.',
       ]
     }
   },
-  'A left turn on a red light is allowed when:': {
-    type: 'multiple_choice',
-    data: {
-      questions: [
-        'The light is about to turn green.',
-        'Turning from a one way to another one way.',
-        'It’s clear and safe.',
-        'No pedestrians are present.',
-      ],
-      answers: [
-        'Turning from a one way to another one way.',
-      ]
-    }
-  },
-  'Which of the following statements is true:': {
+  'When making a right turn from a 4-lane or divided highway, you must enter the _________lane well in advance of the turn and make a tight turn into the   ____________lane of the cross street.': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'I may proceed in the direction of the green arrow, and other drivers should yield to me.',
-        'I must always stop for a green arrow.',
-        'I may proceed in the direction of the red arrow.',
-        'At a red arrow I must stop behind the crosswalk before proceeding.',
+        'Right and Right',
+        'Right and Any',
+        'Any and Right',
+        'Any and Any',
       ],
       answers: [
-        'I may proceed in the direction of the green arrow, and other drivers should yield to me.',
+        'Right and Right',
       ]
     }
   },
-  'Which of the following indicates \‘proceed with caution\’?': {
+  'When making a left turn from a four-lane or divided highway, move to the lane _______ to the centerline of traffic divide and enter the crossroad just to the  _____________ of the centerline.': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Flashing Red Light',
-        'Solid Yellow Light',
-        'Flashing Green Light',
-        'Flashing Yellow Light',
+        'Closest and Right',
+        'Furthest and Right',
+        'Closest and Left',
+        'Furthest and Left',
       ],
       answers: [
-        'Flashing Yellow Light',
+        'Closest and Right',
       ]
     }
   },
-  'A green light indicates  right-of way for a left turning vehicle.': {
+  'You can use a bike lane to prepare for a right turn.': {
     type: 'true_false',
     data: {
       answers: [
-        2,
+        1,
       ]
     }
   },
+  'Improper turns cause traffic crashes.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  }, // STOPPED HERE
   'When the hand is raised or the \'don’t walk\' is flashing, a pedestrian can cross as long as they look both ways and hurry across.': {
     type: 'true_false',
     data: {
