@@ -8,7 +8,7 @@ let quizData = {
         'Informational, Regulatory, Prohibition, Interchange',
         'Recreational, Command, Warning, Construction',
         'Informational, Regulatory, Warning, Construction',
-        'Recreational, Command, Prohibition, Interchange'
+        'Recreational, Command, Prohibition, Interchange',
       ],
       answers: [
           'Informational, Regulatory, Warning, Construction'
@@ -23,7 +23,7 @@ let quizData = {
         '1/4 inch',
         '1/32 inch',
         '1/2 inch',
-        '1/16 inch'
+        '1/16 inch',
       ],
       answers: [
         '1/16 inch'
@@ -34,7 +34,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2'
+        '2',
       ]
     }
   },
@@ -48,7 +48,7 @@ let quizData = {
         'Pounds Per Square Inch',
       ],
       answers: [
-        'Pounds Per Square Inch'
+        'Pounds Per Square Inch',
       ]
     }
   },
@@ -56,7 +56,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -64,7 +64,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -77,12 +77,12 @@ let quizData = {
         'Keep your eyes moving.',
         'Aim high steering.',
         'Use the recommended grade of oil.',
-        'Get the big picture.'
+        'Get the big picture.',
       ],
       answers: [
         'Keep a properly tuned engine.',
         'Keep properly inflated tires.',
-        'Use the recommended grade of oil.'
+        'Use the recommended grade of oil.',
       ]
     }
   },
@@ -90,7 +90,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -98,7 +98,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   },
@@ -106,7 +106,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -114,7 +114,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   },
@@ -122,7 +122,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -137,7 +137,7 @@ let quizData = {
         'Overdrive',
       ],
       answers: [
-        'Park'
+        'Park',
       ]
     }
   },
@@ -152,7 +152,7 @@ let quizData = {
         'Floor'
       ],
       answers: [
-        'Brake'
+        'Brake',
       ]
     }
   },
@@ -160,7 +160,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -173,10 +173,10 @@ let quizData = {
         'Siren',
         'Bell',
         'All of these.',
-        'None of these.'
+        'None of these.',
       ],
       answers: [
-        'None of these.'
+        'None of these.',
       ]
     }
   },
@@ -184,7 +184,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        1
+        1,
       ]
     }
   },
@@ -192,7 +192,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   },
@@ -204,10 +204,10 @@ let quizData = {
         'You must have a rear bumper camera.',
         'You must have a warning signal while in reverse.',
         'You must have larger or additional side mirrors.',
-        'All of the above.'
+        'All of the above.',
       ],
       answers: [
-        'You must have larger or additional side mirrors.'
+        'You must have larger or additional side mirrors.',
       ]
     }
   },
@@ -217,10 +217,10 @@ let quizData = {
       limit_selection: 1,
       questions: [
         'Yes',
-        'No'
+        'No',
       ],
       answers: [
-        'Yes'
+        'Yes',
       ]
     }
   },
@@ -228,7 +228,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   },
@@ -240,10 +240,10 @@ let quizData = {
         'Interia',
         'Constant',
         'Vector',
-        'Motion'
+        'Motion',
       ],
       answers: [
-        'Inertia'
+        'Inertia',
       ]
     }
   },
@@ -251,7 +251,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   },
@@ -259,7 +259,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2
+        2,
       ]
     }
   }
