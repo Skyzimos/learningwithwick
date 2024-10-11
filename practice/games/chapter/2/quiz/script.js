@@ -27,7 +27,7 @@ let quizData = {
     type: 'true_false',
     data: {
       answers: [
-        2'
+        '2'
       ]
     }
   },
