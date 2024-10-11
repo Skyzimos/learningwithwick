@@ -338,8 +338,92 @@ let quizData = {
         1,
       ]
     }
-  }, // STOPPED HERE
-  'When the hand is raised or the \'don’t walk\' is flashing, a pedestrian can cross as long as they look both ways and hurry across.': {
+  },
+  'Roundabouts are designed to?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Increase the speed of right turns and save time.',
+        'Increase traffic flow and provide a safer intersection.',
+        'Help large trucks avoid left turns.',
+        'Help pedestrians cross safely.',
+      ],
+      answers: [
+        'Increase traffic flow and provide a safer intersection.',
+      ]
+    }
+  },
+  'Use extra caution when passing:': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'At night.',
+        'When visibility is poor.',
+        'When the road is slippery.',
+        'A large truck.',
+        'All of the above.',
+      ],
+      answers: [
+        'All of the above.',
+      ]
+    }
+  },
+  'When is it legal for you to drive faster than the posted limit?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Never',
+        'When you are passing a vehicle on a 2-way roadway at least 55 mph.',
+        'Occasionally',
+        'Often',
+      ],
+      answers: {
+        'When you are passing a vehicle on a 2-way roadway at least 55 mph.,
+      }
+    }
+  },
+  'On a 2 lane, 2-way roadway, it is illegal to pass a left-turning vehicle on the shoulder?': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'When backing-up, your eyes should be looking out what part of the vehicle?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Rearview Mirror',
+        'Rear Window',
+        'Side Mirrors',
+        'Close your eyes and hope you don\'t hit anything.',
+      ],
+      answers: [
+        'Rear Window',
+      ]
+    }
+  },
+  'When a vehicle is properly parallel parked, its wheels should be no more than_______ inches from the curb.': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '6',
+        '8',
+        '10',
+        '12',
+      ],
+      answers: [
+        '12',
+      ]
+    }
+  },
+  'It is not necessary to turn the front wheels when parking on a hill?': {
     type: 'true_false',
     data: {
       answers: [
@@ -347,82 +431,18 @@ let quizData = {
       ]
     }
   },
-  'This sign is used with freeway ramp meters at on-ramps.': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/one car per green/',
-      answers: [
-        1
-      ]
-    }
-  },
-  'A white strobe light at a signalized intersection indicates that an emergency vehicle is approaching.': {
-    type: 'true_false',
-    data: {
-      answers: {
-        1,
-      }
-    }
-  },
-  'What color lines indicate traffic traveling in opposite directions?': {
+  'It is illegal to park:': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Blue',
-        'Red',
-        'Yellow',
-        'White',
+        'Within 10 feet of a fire hydrant.',
+        'In front of a mailbox.',
+        'Next to a yellow curb.',
+        'All of the above.',
       ],
       answers: [
-        'Yellow',
-      ]
-    }
-  },
-  'What color lines indicate traffic traveling in the same direction?': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Yellow',
-        'White',
-        'Red',
-        'Blue',
-      ],
-      answers: [
-        'White',
-      ]
-    }
-  },
-  'A double white line prohibits lane changes.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Double yellow lines indicate no passing zones.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1
-      ]
-    }
-  },
-  'A Which car is not allowed to pass?': {
-    type: 'multiple_choice',
-    data: {
-      image: '/media/quiz/images/3/car pass/',
-      limit_selection: 1,
-      questions: [
-        'The green car, on the right side.',
-        'The yellow car, on the left side.',
-        'Both cars.',
-        'Neither cars.',
-      ],
-      answers: [
-        'The green car, on the right side.',
+        'All of the above.',
       ]
     }
   }
