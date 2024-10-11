@@ -1,224 +1,232 @@
 let chapterNumber = 4;
 let quizData = {
-  'The four categories of signs are:': {
+  'Explain the “Law” with regards to speed limits and conditions (Basic Speed Law):': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Informational, Regulatory, Prohibition, Interchange',
-        'Recreational, Command, Warning, Construction',
-        'Informational, Regulatory, Warning, Construction',
-        'Recreational, Command, Prohibition, Interchange',
+        'You can always drive the speed limit.',
+        'You are fine going 5 mph over the speed limit.',
+        'Weather conditions are the only factor to determine speed.',
+        'You can only drive as fast as the conditions warrant.',
       ],
       answers: [
-          'Informational, Regulatory, Warning, Construction'
+          'You can only drive as fast as the conditions warrant.',
         ]
     }
   },
-  'This sign prohibits U-turns.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'What word is in the middle of this sign?': {
+  ' What is/are the danger(s) of driving too fast?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/yield/',
       limit_selection: 1,
       questions: [
-        'Stop',
-        'Yield',
-        'Look Right',
-        'Railroad Crossing',
+        'Serious injury or death is more likely.',
+        'Your field of vision decreases.',
+        'Easily lose control of the vehicle.',
+        'All of the above.',
       ],
       answers: [
-        'Yield',
+        'All of the above.',
       ]
     }
   },
-  'This multiple direction sign means:': {
+  'Your peripheral vision decreases the faster you drive.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'What happens to a driver that approaches an intersection at an unlawful speed?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/turns/',
       limit_selection: 1,
       questions: [
-        'You may go straight through the intersection from either lane.',
-        'You may only go left.',
-        'You may go straight or left from either lane.',
-        'You may turn left from either lane.',
+        'Must be drunk.',
+        'Lose your right of way privileges.',
+        'Accelerator must be stuck.',
+        'You can\'t collect $200.',
       ],
       answers: [
-        'You may turn left from either lane.',
+        'Lose your right of way privileges.',
       ]
     }
   },
-  'Yellow is the background color used for warning signs.': {
-    type: 'true_false',
+  'What is the maximum speed limit for an urban neighborhood?': {
+    type: 'multiple_choice',
     data: {
+      limit_selection: 1,
+      questions: [
+        '20 mph',
+        '25 mph',
+        '30 mph',
+        '35 mph',
+      ],
       answers: [
-        1,
+        '30 mph',
       ]
     }
   },
-  'This sign means left turns only?': {
-    type: 'true_false',
+  'Additional fines will be charged if you are caught driving _____ mph or more over the posted speed limit.': {
+    type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/center lane/',
+      questions: [
+        '10',
+        '20',
+        '30',
+        '40',
+      ].
       answers: [
-        1,
+        '20',
       ]
     }
   },
-  'You may park here if you have an injured passenger in the vehicle.': {
+  'Drivers, who have passengers under what age are responsible to make sure they are buckled properly?': {
+    type: 'multiple_choice',
+    data: {
+      questions: [
+        '18',
+        '17',
+        '16',
+        '15',
+      ],
+      answers: [
+        '15',
+      ]
+    }
+  },
+  'Registering your vehicle in Minnesota is optional as long as you carry the proper insurance.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/handicap/',
       answers: [
         2,
       ]
     }
   },
-  'This sign indicates a school zone; you must always approach slowly and carefully.': {
+  'Valid proof of insurance must be carried in the vehicle at all times.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/school zone/',
       answers: [
         1,
       ]
     }
   },
-  'Which of the following signs indicate a slow moving vehicle (max speed 30mph)?': {
+  'Owners of motor vehicles in Minnesota must carry ____________ and ______________       insurance.': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/road signs warning/',
-      limit_selection: 4,
-      questions: [
-        'A',
-        'B',
-        'C',
-        'D',
-      ],
-      answers: [
-        'C',
-      ]
-    }
-  },
-  'This sign shows a road with a gradual curve to the right, then to the left?': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/windy road/',
-      answers: [
-        2,
-      ]
-    }
-  },
-  'Which sign indicates that the road is slippery when wet?': {
-    type: 'multiple_choice',
-    data: {
-      image: '/media/quiz/images/3/slippery road/',
-      limit_selection: 3,
-      questions: [
-        'A',
-        'B',
-        'C'
-      ],
-      answers: [
-        'C',
-      ]
-    }
-  },
-  'Which of the following signs warn of an upcoming railroad crossing?': {
-    type: 'multiple_choice',
-    data: {
-      image: '/media/quiz/images/3/railroad crossing/',
-      limit_selection: 4,
-      questions: [
-        'A',
-        'B',
-        'C',
-        'D',
-      ],
-      answers: [
-        'A',
-      ]
-    }
-  },
-  'This sign indicates a pedestrian crossing?': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/pedestrian crossing/',
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Which of the following signs indicates a school zone?': {
-    type: 'multiple_choice',
-    data: {
-      image: '/media/quiz/images/3/school zone/',
-      limit_selection: 4,
-      questions: [
-        'A',
-        'B',
-        'C',
-        'D'
-      ],
-      answers: [
-        'B',
-      ]
-    }
-  },
-  'Which of the following shaped signs indicates a no-passing zone?': {
-    type: 'multiple_choice',
-    data: {
-      image: '/media/quiz/images/3/no passing zone/',
       limit_selection: 1,
       questions: [
-        'Circle',
-        'Pennant',
-        'Triangle',
-        'Pentagon',
+        'Liability and No-Fault',
+        'Liability and Vehicle',
+        'Collision and No-Fault',
+        'Car and Life',
       ],
       answers: [
-        'Pennant',
+        'Liability and No-Fault',
       ]
     }
   },
-  'This sign warns all vehicles of a steep decline ahead; check the brakes.': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/steep decline/',
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Which of these signs indicates that the divided highway is ending?': {
+  'Anyone who flees a police officer on official duty will be charged with a:': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/divided highway/',
       limit_selection: 1,
       questions: [
-        'A',
-        'B',
+        'Gross Felony',
+        'Felony',
+        'Gross Misdemeanor',
+        'Misdemeanor',
       ],
       answers: [
-        'B',
+        'Felony',
       ]
     }
   },
-  'This sign indicates a right lane ends, merge left.': {
+  'Airbags reduce the force of impact and are supplemental to your seat belt?': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/lane ends/',
       answers: [
         1,
       ]
     }
   },
+  'Because of airbags, we now hold our steering wheel at: ___ and ___ OR ___ and ___.': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 2,
+      questions: [
+        '11 & 1',
+        '9 & 3',
+        '8 & 4',
+        '10 & 2',
+        '7 & 5',
+      ],
+      answers: [
+        '9 & 3',
+        '8 & 4',
+      ]
+    }
+  },
+  'Which of the following statements are true in regard to seatbelts?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'A small child can wear an adult seatbelt.',
+        'A pregnant woman should not wear a seat belt.',
+        'There is no need for a lap belt when an automatic shoulder belt is used.',
+        'The chances of being killed or injured increases when a seatbelt is not worn.'
+      ],
+      answers: [
+        'The chances of being killed or injured increases when a seatbelt is not worn.',
+      ]
+    }
+  },
+  'If involved in a traffic crash, it is important to stop, call 911, and stay safe?': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'Drivers should be sitting at least 10 inches between yourself and the steering wheel?': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'When turning left, remember to keep your wheels _________ while waiting at an intersection.': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Straight',
+        'Left',
+        'Right',
+        'Backwards',
+      ],
+      answers: [
+        'Straight',
+      ]
+    }
+  },
+  'Reduced conflict intersections are designed to:': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Reduce broadside accidents.',
+        'Reduce rear end collisions.',
+        'Reduce head on collisions.',
+      ],
+      answers: [
+        'Reduce broadside accidents.',
+      ]
+    }
+  }, // STOPPED HEREE
   'This sign indicates an added lane, merging is necessary.': {
     type: 'true_false',
     data: {
