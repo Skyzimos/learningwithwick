@@ -24,7 +24,7 @@ let quizData = {
         '1/32 inch',
         '1/2 inch',
         '1/16 inch'
-      ]
+      ],
       answers: [
         '1/16 inch'
       ]
@@ -174,7 +174,7 @@ let quizData = {
         'Bell',
         'All of these.',
         'None of these.'
-      ]
+      ],
       answers: [
         'None of these.'
       ]
@@ -218,7 +218,7 @@ let quizData = {
       questions: [
         'Yes',
         'No'
-      ]
+      ],
       answers: [
         'Yes'
       ]
@@ -241,7 +241,7 @@ let quizData = {
         'Constant',
         'Vector',
         'Motion'
-      ]
+      ],
       answers: [
         'Inertia'
       ]
