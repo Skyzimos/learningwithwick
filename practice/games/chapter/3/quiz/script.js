@@ -348,9 +348,9 @@ let quizData = {
   'A white strobe light at a signalized intersection indicates that an emergency vehicle is approaching.': {
     type: 'true_false',
     data: {
-      answers: {
+      answers: [
         1,
-      }
+      ]
     }
   },
   'What color lines indicate traffic traveling in opposite directions?': {
