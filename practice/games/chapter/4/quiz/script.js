@@ -226,49 +226,58 @@ let quizData = {
         'Reduce broadside accidents.',
       ]
     }
-  }, // STOPPED HEREE
-  'This sign indicates an added lane, merging is necessary.': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/non added lane/',
-      answers: [
-        2,
-      ]
-    }
   },
-  'This signs indicates an added lane, merging is necessary.': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/added lane/',
-      answers: [
-        2,
-      ]
-    }
-  },
-  'This is an orange sign indicating a person with a flag ahead, no action necessary.': {
-    type: 'true_false',
-    data: {
-      image: '/media/quiz/images/3/flag man/',
-      answers: [
-        2,
-      ]
-    }
-  },
-  'What should drivers do when traveling through an intersection with a flashing yellow light?': {
+  '2 lanes traveling in the same direction (Freeway Travel), which lane should you travel most often?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Stop',
-        'Go - as they have the right of way.',
-        'Gunnit',
-        'They must yield to oncoming traffic/pedestrians as they have the right of way.',
+        'Right Lane',
+        'Left Lane',
       ],
       answers: [
-        'They ust yield to oncoming traffic/pedestrians as they have the right of way.',
+        'Right Lane',
       ]
     }
   },
+  'Turn signals give a driver the “right of way”.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2,
+      ]
+    }
+  },
+  'How far in advance are you supposed to put your signal on before the turn?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        '50 feet',
+        '100 feet',
+        '300 feet',
+        '500 feet',
+      ],
+      answers: [
+        '100 feet',
+      ]
+    }
+  },
+  'When do you use SMOG?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'When you can\'t see.',
+        'When you have too much carbon monoxide.',
+        'To determine following distance.',
+        'When making turns or lane changes.',
+      ],
+      answers: [
+        'When making turns or lane changes.',
+      ]
+    }
+  }, // STOPPED HERE
   'Which of the following is treated the same as a stop sign?': {
     type: 'multiple_choice',
     data: {
