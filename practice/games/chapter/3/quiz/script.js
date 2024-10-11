@@ -1,4 +1,4 @@
-let chapterNumber = 2;
+let chapterNumber = 3;
 let quizData = {
   'The four categories of signs are:': {
     type: 'multiple_choice',
