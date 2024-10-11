@@ -233,6 +233,69 @@ button > i {
   aspect-ratio: 1/1;
 }
 
+/* Tooltips */
+
+.tooltip-container {
+  position: relative;
+  transition: all 0.2s;
+  font-size: 17px;
+  padding: 1rem 0;
+  width: fit-content;
+  box-sizing: border-box;
+  background: transparent;
+  --bg: linear-gradient(135deg, #a940fd, #5b46e8);
+  --color: #fff;
+  --tooltip-bg: #303030;
+  --tooltip-color: #fff;
+  --margin: 0.5rem;
+}
+
+.text {
+  z-index: 9;
+  background: var(--bg);
+  color: var(--color);
+  padding: 0.7em 1.8em;
+  border-radius: 0.75rem;
+  height: fit-content;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip {
+  position: absolute;
+  top: calc(-1 * var(--margin));
+  left: 50%;
+  transform: translateX(-50%) translateY(0%) scale(0);
+  padding: 0.3em 0.6em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  border-radius: 0.5rem;
+  z-index: 99999;
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 0.6em;
+  width: 0.6em;
+  bottom: -0.2em;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  background: var(--tooltip-bg);
+  border-bottom-right-radius: 0.175rem;
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-100%) scale(1);
+}
+
 /* Cards */
 
 :root {
@@ -240,7 +303,7 @@ button > i {
   --card-color: rgb(255, 255, 255);
 }
 
-#cards {
+#cards, .ttcont {
   position: inherit;
   top: 60%;
   left: 60%;
@@ -254,11 +317,16 @@ button > i {
   width: calc(100% - 20px);
 }
 
+.ttcont {
+  z-index: 9;
+  position: inherit;
+}
+
 #cards:hover > .card::after {
   opacity: 1;
 }
 
-.card {
+.card, .tooltip-container {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   cursor: pointer;
