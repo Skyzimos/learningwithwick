@@ -261,6 +261,7 @@ button > i {
   cursor: pointer;
   font-weight: 600;
   box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.15);
+  display: none;
 }
 
 .tooltip {
