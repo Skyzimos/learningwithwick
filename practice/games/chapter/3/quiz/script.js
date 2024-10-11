@@ -15,86 +15,312 @@ let quizData = {
         ]
     }
   },
-  'What is the minimum tread depth allowed by law?': {
+  'This sign prohibits U-turns.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'What word is in the middle of this sign?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/yield/',
+      limit_selection: 1,
+      questions: [
+        'Stop',
+        'Yield',
+        'Look Right',
+        'Railroad Crossing',
+      ],
+      answers: [
+        'Yield',
+      ]
+    }
+  },
+  'This multiple direction sign means:': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/turns/',
+      limit_selection: 1,
+      questions: [
+        'You may go straight through the intersection from either lane.',
+        'You may only go left.',
+        'You may go straight or left from either lane.',
+        'You may turn left from either lane.',
+      ],
+      answers: [
+        'You may turn left from either lane.',
+      ]
+    }
+  },
+  'Yellow is the background color used for warning signs.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        1,
+      ]
+    }
+  },
+  'This sign means left turns only?': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/center lane/',
+      answers: [
+        1,
+      ]
+    }
+  },
+  'You may park here if you have an injured passenger in the vehicle.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/handicap/',
+      answers: [
+        2,
+      ]
+    }
+  },
+  'This sign indicates a school zone; you must always approach slowly and carefully.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/school zone/',
+      answers: [
+        1,
+      ]
+    }
+  },
+  'Which of the following signs indicate a slow moving vehicle (max speed 30mph)?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/road signs warning/',
+      limit_selection: 4,
+      questions: [
+        'A',
+        'B',
+        'C',
+        'D',
+      ],
+      answers: [
+        'C',
+      ]
+    }
+  },
+  'This sign shows a road with a gradual curve to the right, then to the left?': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/windy road/',
+      answers: [
+        2,
+      ]
+    }
+  },
+  'Which sign indicates that the road is slippery when wet?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/slippery road/',
+      limit_selection: 3,
+      questions: [
+        'A',
+        'B',
+        'C'
+      ],
+      answers: [
+        'C',
+      ]
+    }
+  },
+  'Which of the following signs warn of an upcoming railroad crossing?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/railroad crossing/',
+      limit_selection: 4,
+      questions: [
+        'A',
+        'B',
+        'C',
+        'D',
+      ],
+      answers: [
+        'A',
+      ]
+    }
+  },
+  'This sign indicates a pedestrian crossing?': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/pedestrian crossing/',
+      answers: [
+        1,
+      ]
+    }
+  },
+  'Which of the following signs indicates a school zone?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/school zone/',
+      limit_selection: 4,
+      questions: [
+        'A',
+        'B',
+        'C',
+        'D'
+      ],
+      answers: [
+        'B',
+      ]
+    }
+  },
+  'Which of the following shaped signs indicates a no-passing zone?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/no passing zone/',
+      limit_selection: 1,
+      questions: [
+        'Circle',
+        'Pennant',
+        'Triangle',
+        'Pentagon',
+      ],
+      answers: [
+        'Pennant',
+      ]
+    }
+  },
+  'This sign warns all vehicles of a steep decline ahead; check the brakes.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/steep decline/',
+      answers: [
+        1,
+      ]
+    }
+  },
+  'Which of these signs indicates that the divided highway is ending?': {
+    type: 'multiple_choice',
+    data: {
+      image: '/media/quiz/images/3/divided highway/',
+      limit_selection: 1,
+      questions: [
+        'A',
+        'B',
+      ],
+      answers: [
+        'B',
+      ]
+    }
+  },
+  'This sign indicates a right lane ends, merge left.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/lane ends/',
+      answers: [
+        1,
+      ]
+    }
+  },
+  'This sign indicates an added lane, merging is necessary.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/non added lane/',
+      answers: [
+        2,
+      ]
+    }
+  },
+  'This signs indicates an added lane, merging is necessary.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/added lane/',
+      answers: [
+        2,
+      ]
+    }
+  },
+  'This is an orange sign indicating a person with a flag ahead, no action necessary.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/flag man/',
+      answers: [
+        2,
+      ]
+    }
+  },
+  'What should drivers do when traveling through an intersection with a flashing yellow light?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        '1/4 inch',
-        '1/32 inch',
-        '1/2 inch',
-        '1/16 inch',
+        'Stop',
+        'Go - as they have the right of way.',
+        'Gunnit',
+        'They must yield to oncoming traffic/pedestrians as they have the right of way.',
       ],
       answers: [
-        '1/16 inch'
+        'They ust yield to oncoming traffic/pedestrians as they have the right of way.',
       ]
     }
   },
-  'It is not necessary to understand all indicators and gauges.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        '2',
-      ]
-    }
-  },
-  'PSI stands for:': {
+  'Which of the following is treated the same as a stop sign?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
       questions: [
-        'Pounds Source Inside',
-        'Pressure Source Inside',
-        'Pounds Per Square Inch',
+        'Solid Red Light',
+        'Flashing Red Light',
+        'Solid Yellow Light',
+        'Flashing Yellow Light',
       ],
       answers: [
-        'Pounds Per Square Inch',
+        'Flashing Red Light',
       ]
     }
   },
-  'Dirty headlights can reduce light output.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Tire pressure has been known to change with time and temperature changes.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Which of the following would help keep your car in good operating condition: (mark each correct answer)': {
+  'A left turn on a red light is allowed when:': {
     type: 'multiple_choice',
     data: {
       questions: [
-        'Keep a properly tuned engine.',
-        'Keep properly inflated tires.',
-        'Keep your eyes moving.',
-        'Aim high steering.',
-        'Use the recommended grade of oil.',
-        'Get the big picture.',
+        'The light is about to turn green.',
+        'Turning from a one way to another one way.',
+        'It’s clear and safe.',
+        'No pedestrians are present.',
       ],
       answers: [
-        'Keep a properly tuned engine.',
-        'Keep properly inflated tires.',
-        'Use the recommended grade of oil.',
+        'Turning from a one way to another one way.',
       ]
     }
   },
-  '': {
-    type: 'true_false',
+  'Which of the following statements is true:': {
+    type: 'multiple_choice',
     data: {
+      limit_selection: 1,
+      questions: [
+        'I may proceed in the direction of the green arrow, and other drivers should yield to me.',
+        'I must always stop for a green arrow.',
+        'I may proceed in the direction of the red arrow.',
+        'At a red arrow I must stop behind the crosswalk before proceeding.',
+      ],
       answers: [
-        1,
+        'I may proceed in the direction of the green arrow, and other drivers should yield to me.',
       ]
     }
   },
-  'Before starting a car that is "new" to you, the first thing you should adjust is your mirrors.': {
+  'Which of the following indicates \‘proceed with caution\’?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Flashing Red Light',
+        'Solid Yellow Light',
+        'Flashing Green Light',
+        'Flashing Yellow Light',
+      ],
+      answers: [
+        'Flashing Yellow Light',
+      ]
+    }
+  },
+  'A green light indicates  right-of way for a left turning vehicle.': {
     type: 'true_false',
     data: {
       answers: [
@@ -102,7 +328,62 @@ let quizData = {
       ]
     }
   },
-  'Your car is required to have 2 separate brake systems.': {
+  'When the hand is raised or the \'don’t walk\' is flashing, a pedestrian can cross as long as they look both ways and hurry across.': {
+    type: 'true_false',
+    data: {
+      answers: [
+        2,
+      ]
+    }
+  },
+  'This sign is used with freeway ramp meters at on-ramps.': {
+    type: 'true_false',
+    data: {
+      image: '/media/quiz/images/3/one car per green/',
+      answers: [
+        1
+      ]
+    }
+  },
+  'A white strobe light at a signalized intersection indicates that an emergency vehicle is approaching.': {
+    type: 'true_false',
+    data: {
+      answers: {
+        1,
+      }
+    }
+  },
+  'What color lines indicate traffic traveling in opposite directions?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Blue',
+        'Red',
+        'Yellow',
+        'White',
+      ],
+      answers: [
+        'Yellow',
+      ]
+    }
+  },
+  'What color lines indicate traffic traveling in the same direction?': {
+    type: 'multiple_choice',
+    data: {
+      limit_selection: 1,
+      questions: [
+        'Yellow',
+        'White',
+        'Red',
+        'Blue',
+      ],
+      answers: [
+        'White',
+      ]
+    }
+  },
+  'A double white line prohibits lane changes.': {
     type: 'true_false',
     data: {
       answers: [
@@ -110,156 +391,27 @@ let quizData = {
       ]
     }
   },
-  'GPS devices are illegal in Minnesota.': {
+  'Double yellow lines indicate no passing zones.': {
     type: 'true_false',
     data: {
       answers: [
-        2,
+        1
       ]
     }
   },
-  'It is illegal to have a "For Sale" sign on any window of a moving car.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'What gear should an automatic transmission be in before starting your car?': {
+  'A Which car is not allowed to pass?': {
     type: 'multiple_choice',
     data: {
+      image: '/media/quiz/images/3/car pass/',
       limit_selection: 1,
       questions: [
-        'Neutral',
-        'Park',
-        'Reverse',
-        'Overdrive',
+        'The green car, on the right side.',
+        'The yellow car, on the left side.',
+        'Both cars.',
+        'Neither cars.',
       ],
       answers: [
-        'Park',
-      ]
-    }
-  },
-  'Where should your right foot be when starting a vehicle?': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Brake',
-        'Accelerator',
-        'Clutch',
-        'Floor'
-      ],
-      answers: [
-        'Brake',
-      ]
-    }
-  },
-  'You\'re required to have a working horn on your vehicle when taking the road test.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'Which of the following can be used in place of your horn if it does not work?': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Whistle',
-        'Siren',
-        'Bell',
-        'All of these.',
-        'None of these.',
-      ],
-      answers: [
-        'None of these.',
-      ]
-    }
-  },
-  ' A white light is required for the rear license plate.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        1,
-      ]
-    }
-  },
-  'It is legal for your car to make sudden, or prolonged loud popping or cracking sounds.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        2,
-      ]
-    }
-  },
-  'What is required of your vehicle if your view from the rearview mirror is blocked?': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'You must have a rear bumper camera.',
-        'You must have a warning signal while in reverse.',
-        'You must have larger or additional side mirrors.',
-        'All of the above.',
-      ],
-      answers: [
-        'You must have larger or additional side mirrors.',
-      ]
-    }
-  },
-  'Is there a significant difference in the rate of injuries when a seat belt is worn versus when one is not worn?': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Yes',
-        'No',
-      ],
-      answers: [
-        'Yes',
-      ]
-    }
-  },
-  'If you have airbags, seat belts are not necessary.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        2,
-      ]
-    }
-  },
-  '_______ is the property of matter that causes it to resist any change in its motion.': {
-    type: 'multiple_choice',
-    data: {
-      limit_selection: 1,
-      questions: [
-        'Interia',
-        'Constant',
-        'Vector',
-        'Motion',
-      ],
-      answers: [
-        'Inertia',
-      ]
-    }
-  },
-  'Newton\'s 3rd law states - A body at rest remains at rest and a body in motion remains in motion unless acted upon by an external force.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        2,
-      ]
-    }
-  },
-  'The formula for force is mass divided by acceleration.': {
-    type: 'true_false',
-    data: {
-      answers: [
-        2,
+        'The green car, on the right side.',
       ]
     }
   }
