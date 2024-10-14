@@ -22,21 +22,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 250)
   }, 1000)
 });
-
-if (sessionStorage.getItem('loaded') === null) {
-  document.getElementById('loader-overlay').style.display = 'flex';
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => {
-      document.body.classList.add('loaded');
-
-      setTimeout(() => {
-        document.getElementById('loader-overlay').style.display = 'none';
-      }, 500);
-    }, 2500)
-  });
-
-  sessionStorage.setItem('loaded', true)
-} else {
-  document.getElementById('loader-overlay').style.display = 'none';
-}
