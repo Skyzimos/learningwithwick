@@ -85,68 +85,50 @@
 
       </div>
 
-      <div class='sidebar'>
+    <div class='sidebar'>
 
-        <div class='profile-data-container'>
-          <div class='container-data-profile'>
-              <div class='profile-icon-container'>
-                     <span class='profile-icon-status' id='profile-icon-status'></span>
-                     <span class='profile-icon-status-outline' id='profile-icon-status-outline'></span>
-                     <img class='profile-icon' id='profile-icon' src='/learningwithwick/media/Sheep.jpeg'>
-                 </div>
+    <div class='sidebar-logo'>
+      <img class='logo' src='/learningwithwick/media/Logo.png'>
+      <h1>Wick</h1>
+    </div>
 
-                  <div class='profile-text-container'>
-                      <h1 class='profile-text' id='profile-text'>
-                          Jesse
-                      </h1>
-                  </div>
+    <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
+      <button class='sidebar-button current' id='/'>
+        <i class="fa-regular fa-map"></i>
+        Home
+      </button>
 
-                  <div class='crown-container'>
-                      <img class='profile-icon-secondary' src='/learningwithwick/media/crown-solid.png'>
-                  </div>
-          </div>
-        </div>
+      <button class='sidebar-button' id='/learningwithwick/practice/games' style='background-color: transparent;'>
+        <i class="fa-regular fa-flag"></i>
+        Practice
+      </button>
 
-        <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
+      <button class='sidebar-button' style='background-color: transparent;'>
+        <i class="fa-regular fa-chart-bar"></i>
+        Statistics
+      </button>
 
-          <button class='sidebar-button' id='/learningwithwick/' style='color: #2B2577; box-shadow: 0 0 25px 1px rgba(228, 228, 228, .6);' onclick='location.href="/learningwithwick/"'>
-            <i class='fas fa-compass'></i>
-            Home
-          </button>
+      <button class='sidebar-button' style='background-color: transparent;'>
+        <i class='fa-classic fa-calendar'></i>
+        Schedule
+      </button>
 
-          <button class='sidebar-button' id='/learningwithwick/practice/games/' style='background-color: transparent; color: white;' onclick='location.href="/learningwithwick/practice/games/"'>
-            <i class='fas fa-dice-d6'></i>
-            Practice
-          </button>
+      <button class='sidebar-button' style='background-color: transparent;'>
+        <i class="fa-regular fa-pen-to-square"></i>
+        Settings
+      </button>
 
-          <button class='sidebar-button' style='background-color: transparent; color: white;'>
-            <i class='fas fa-chart-simple'></i>
-            Statistics
-          </button>
+      <div class='sidebar-bottom'>
+        <h4>
+          Have any problems with Learning with Wick? Contact our customer support!
+        </h4>
 
-          <button class='sidebar-button' style='background-color: transparent; color: white;'>
-            <i class='fa-classic fa-calendar'></i>
-            Schedule
-          </button>
-
-          <button class='sidebar-button' style='background-color: transparent; color: white;'>
-            <i class='fas fa-gear'></i>
-            Settings
-          </button>
-
-          <div class='sidebar-bottom'>
-            <h4>
-              Have any problems with Learning with Wick? Contact our customer support!
-            </h4>
-
-            <button id='support-button'>
-              Contact Us
-            </button>
-          </div>
-
-        </div>
-
+        <button id='support-button'>
+          Contact Us
+        </button>
       </div>
+    </div>
+  </div>
 
     <script>
         let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety'];
