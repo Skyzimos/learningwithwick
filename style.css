@@ -609,8 +609,7 @@ button > i {
 
   font-family: sans-serif;
 
-  transition: all 0.25s linear;
-  transition: transform 0.15s linear;
+  transition: all 0.15s linear;
 }
 
 .last-played > button:hover {
