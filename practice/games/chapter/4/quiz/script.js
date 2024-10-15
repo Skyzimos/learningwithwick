@@ -381,7 +381,7 @@ let quizData = {
         'Often',
       ],
       answers: {
-        'When you are passing a vehicle on a 2-way roadway at least 55 mph.,
+        'When you are passing a vehicle on a 2-way roadway at least 55 mph.',
       }
     }
   },
