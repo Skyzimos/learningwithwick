@@ -121,6 +121,7 @@ html, body {
 }
 
 .image {
+  background: red;
   width: 10vw;
 	
   position: absolute;
