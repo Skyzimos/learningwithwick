@@ -627,7 +627,7 @@ button > i {
 }
 
 .last-played > button:active {
-  letter-spacing: 1px;
+  transform: scale(1.05);
 }
 
 .search-bar > i {
