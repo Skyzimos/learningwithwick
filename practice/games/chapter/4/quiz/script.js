@@ -380,9 +380,9 @@ let quizData = {
         'Occasionally',
         'Often',
       ],
-      answers: {
+      answers: [
         'When you are passing a vehicle on a 2-way roadway at least 55 mph.',
-      }
+      ]
     }
   },
   'On a 2 lane, 2-way roadway, it is illegal to pass a left-turning vehicle on the shoulder?': {
