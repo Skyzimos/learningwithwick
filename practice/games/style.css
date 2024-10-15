@@ -120,7 +120,7 @@ html, body {
   border-bottom-right-radius: 0.175rem;
 }
 
-[data-unlocked="true"]:hover > .tooltip {
+[data-unlocked="false"]:hover > .tooltip {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
