@@ -115,7 +115,7 @@ html, body {
   border-bottom-right-radius: 0.175rem;
 }
 
-.:hover .tooltip {
+.tooltip-container:hover .tooltip {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
