@@ -77,6 +77,8 @@ html, body {
   padding: 1rem 0;
   width: fit-content;
   box-sizing: border-box;
+  z-index: 9999;
+  background: transparent;
   --bg: linear-gradient(135deg, #a940fd, #5b46e8);
   --color: #fff;
   --tooltip-bg: #010101;
