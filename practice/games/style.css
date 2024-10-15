@@ -79,11 +79,16 @@ html, body {
   box-sizing: border-box;
   z-index: 9999;
   background: transparent;
+  display: none;
   --bg: linear-gradient(135deg, #a940fd, #5b46e8);
   --color: #fff;
   --tooltip-bg: #010101;
   --tooltip-color: #fff;
   --margin: 2rem;
+}
+
+.card:has(.fa-lock) ~ .tooltip-container {
+  display: block;
 }
 
 .tooltip {
