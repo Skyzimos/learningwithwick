@@ -83,7 +83,7 @@ html, body {
   --color: #fff;
   --tooltip-bg: #010101;
   --tooltip-color: #fff;
-  --margin: 1.5rem;
+  --margin: 2rem;
 }
 
 .tooltip {
