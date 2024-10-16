@@ -122,6 +122,7 @@ html, body {
 
 .image {
   width: 17.5vw;
+  aspect-ratio: auto;
 	
   position: absolute;
   top: 5%;
