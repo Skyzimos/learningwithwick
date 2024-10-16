@@ -33,7 +33,7 @@ let quizData = {
         ]
     }
   },
-  ' What is/are the danger(s) of driving too fast?': {
+  'What is/are the danger(s) of driving too fast?': {
     type: 'multiple_choice',
     data: {
       limit_selection: 1,
