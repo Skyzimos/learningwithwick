@@ -661,7 +661,10 @@ function canProceed(quizData, index) {
     .filter(chk => chk.checked)
     .map(chk => chk.value);
 
-  if (questionObj.type === 'multiple_choice') {
+  if (questionObj.type === 'multiple_choice' && typeof questionObj.data.limit_selection == 'object') {
+    let min = questionObj.data.limit_selection;
+
+  } else if (questionObj.type == 'multiple_choice' && typeof questionObj.data.limit_selection !== 'object') {
     const limit = questionObj.data.limit_selection || null;
     const selected = selectedAnswers[`question-${index + 1}`]?.length || 0;
     console.log(selected, selectedAnswers, selectedAnswers[`question-${index + 1}`])
