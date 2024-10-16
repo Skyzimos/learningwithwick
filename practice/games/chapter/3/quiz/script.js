@@ -536,11 +536,15 @@ function displayQuestion(quizData, index) {
   if (questionObj.data.image) {
     document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
   } else {
-        document.querySelector('.image').src = '';
+    document.querySelector('.image').src = '';
   }
 
   if (questionObj.type === 'multiple_choice') {
-    const limit = questionObj.data.limit_selection || null;
+    const limitSelection = questionObj.data.limit_selection || {};
+    const limit = typeof limitSelection === 'number' ? limitSelection : limitSelection.maximum || null;
+    const minSelection = limitSelection.minimum || 1;
+    const requireMax = limitSelection.require_maximum || false;
+
     let selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
 
     questionObj.data.questions.forEach((option, i) => {
@@ -566,20 +570,23 @@ function displayQuestion(quizData, index) {
         let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
 
         if (limit === 1) {
+          // If limit is 1, allow only one option to be selected at a time
           checkboxes.forEach(chk => {
-            console.log(chk.dataset.uniqueId, checkbox.dataset.uniqueId)
             if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
           });
           selectedCount = 1;
         }
 
+        // Enforce maximum selection limit
         if (limit && selectedCount > limit) {
-          if (checkbox.checked == true) {
-            checkbox.checked = false;
-          } else {
-            checkbox.checked = false;
-            alert(`You can only select up to ${limit} options.`);
-          }
+          checkbox.checked = false;
+          alert(`You can only select up to ${limit} options.`);
+          return;
+        }
+
+        // Ensure minimum selections are met and alert if necessary
+        if (selectedCount < minSelection) {
+          alert(`You need to select at least ${minSelection} option(s).`);
           return;
         }
 
@@ -599,7 +606,6 @@ function displayQuestion(quizData, index) {
     questionElement.appendChild(optionsContainer);
   } else if (questionObj.type === 'true_false') {
     if (!selectedAnswers[`question-${index + 1}`]) {
-      console.log('NO ANSWER')
       selectedAnswers[`question-${index + 1}`] = 0;
     }
     
@@ -611,8 +617,8 @@ function displayQuestion(quizData, index) {
       const radio = document.createElement('input');
       radio.type = 'radio';
       radio.name = `question-${index}`;
+      radio.value = option;
 
-      console.log(selectedAnswers[`question-${index + 1}`], (i + 1))
       if (selectedAnswers[`question-${index + 1}`] === (i + 1)) {
         radio.checked = true;
       }
@@ -664,13 +670,32 @@ function canProceed(quizData, index) {
     .filter(chk => chk.checked)
     .map(chk => chk.value);
 
+  const selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
+
   if (questionObj.type === 'multiple_choice') {
-    const limit = questionObj.data.limit_selection || null;
-    const selected = selectedAnswers[`question-${index + 1}`]?.length || 0;
-    console.log(selected, selectedAnswers, selectedAnswers[`question-${index + 1}`])
-    return selected === limit;
+    const limitSelection = questionObj.data.limit_selection;
+
+    if (typeof limitSelection === 'object') {
+      const min = limitSelection.minimum || 1;
+      const max = limitSelection.maximum || questionObj.data.questions.length;
+      const requireMax = limitSelection.require_maximum || false; // Require maximum selections, default is false
+
+      // Check if the number of selected answers meets the criteria
+      if (selectedCount >= min && (selectedCount <= max || !requireMax)) {
+        return true; // Allowed to proceed if within limits
+      } else if (selectedCount === max && requireMax) {
+        return true; // If exactly at max and require_maximum is true
+      } else {
+        return false; // Cannot proceed if the selection is outside the limits
+      }
+
+    // If limit_selection is a number (shortcut for max selection)
+    } else if (typeof limitSelection === 'number') {
+      return selectedCount === limitSelection; // Proceed only if selected matches the limit
+    }
   }
-  
+
+  // Default to allowing progression for other question types
   return true;
 }
 
