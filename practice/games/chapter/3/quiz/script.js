@@ -489,6 +489,8 @@ function displayQuestion(quizData, index) {
 
   if (questionObj.data.image) {
     document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
+  } else {
+        document.querySelector('.image').src = '';
   }
 
   if (questionObj.type === 'multiple_choice') {
