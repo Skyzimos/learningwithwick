@@ -95,7 +95,10 @@ let quizData = {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/road signs warning/',
-      limit_selection: 4,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'A',
         'B',
@@ -116,11 +119,14 @@ let quizData = {
       ]
     }
   },
-  'Which sign indicates that the road is slippery when wet?': {
+  'Which sign(s) indicates that the road is slippery when wet?': {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/slippery road/',
-      limit_selection: 3,
+      limit_selection: {
+        minimum: 1,
+        maximum: 3,
+      },
       questions: [
         'A',
         'B',
@@ -131,11 +137,14 @@ let quizData = {
       ]
     }
   },
-  'Which of the following signs warn of an upcoming railroad crossing?': {
+  'Which of the following sign(s) warn of an upcoming railroad crossing?': {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/railroad crossing/',
-      limit_selection: 4,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'A',
         'B',
@@ -156,11 +165,14 @@ let quizData = {
       ]
     }
   },
-  'Which of the following signs indicates a school zone?': {
+  'Which of the following sign(s) indicates a school zone?': {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/school zone.jpg',
-      limit_selection: 4,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'A',
         'B',
@@ -172,11 +184,14 @@ let quizData = {
       ]
     }
   },
-  'Which of the following shaped signs indicates a no-passing zone?': {
+  'Which of the following shaped sign(s) indicates a no-passing zone?': {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/no passing zone.jpg',
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Circle',
         'Pennant',
@@ -197,11 +212,14 @@ let quizData = {
       ]
     }
   },
-  'Which of these signs indicates that the divided highway is ending?': {
+  'Which of these sign(s) indicates that the divided highway is ending?': {
     type: 'multiple_choice',
     data: {
       image: '/media/quiz/images/3/divided highway/',
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 2,
+      },
       questions: [
         'A',
         'B',
@@ -291,10 +309,13 @@ let quizData = {
       ]
     }
   },
-  'Which of the following statements is true:': {
+  'Which of the following statement(s) is true:': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'I may proceed in the direction of the green arrow, and other drivers should yield to me.',
         'I must always stop for a green arrow.',
@@ -357,7 +378,10 @@ let quizData = {
   'What color lines indicate traffic traveling in opposite directions?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Blue',
         'Red',
@@ -372,7 +396,10 @@ let quizData = {
   'What color lines indicate traffic traveling in the same direction?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Yellow',
         'White',
