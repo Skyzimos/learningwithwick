@@ -18,6 +18,7 @@ let quizData = {
   'This sign prohibits U-turns.': {
     type: 'true_false',
     data: {
+      image: '/media/quiz/images/3/no u turns.png',
       answers: [
         1,
       ]
