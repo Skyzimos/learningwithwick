@@ -121,11 +121,11 @@ html, body {
 }
 
 .image {
-  width: 10vw;
+  width: 20vw;
 	
   position: absolute;
-  top: 15%;
-  right: 15%;
+  top: 5%;
+  right: 5%;
 
   z-index: 99999;
 }
