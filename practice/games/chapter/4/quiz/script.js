@@ -4,7 +4,7 @@
 
     - limit_selection:
         Limits the number of selected answers to the specified numbers.
-        Type: table
+        Type: table OR number (When type is number, it defaults to minmax, with require_maximum true.)
         Defaults: no_limit
         Format: {
           limit_selection: {
