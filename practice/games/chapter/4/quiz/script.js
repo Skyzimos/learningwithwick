@@ -8,9 +8,9 @@
         Defaults: no_limit
         Format: {
           limit_selection: {
-            minimum,          <-- NUMBER: Minimum required selections. Optional
-            maximum,          <-- NUMBER: Maximum allowed selections. (Optional)
-            require_maximum   <-- BOOLEAN: Whether the user can continue without selecting the maximum selections or not.
+            minimum,          <-- NUMBER: Minimum required selections. (Optional, defualts to 1.)
+            maximum,          <-- NUMBER: Maximum allowed selections. (Optional, defaults to number of questions.)
+            require_maximum   <-- BOOLEAN: Whether the user can continue without selecting the maximum selections or not. (Optional, defualts to false.)
           }
         }
 
