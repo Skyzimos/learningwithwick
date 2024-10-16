@@ -26,7 +26,7 @@ let quizData = {
   'What word is in the middle of this sign?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/yield.png/',
+      image: '/media/quiz/images/3/yield.png',
       limit_selection: 1,
       questions: [
         'Stop',
@@ -42,7 +42,7 @@ let quizData = {
   'This multiple direction sign means:': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/turns.png/',
+      image: '/media/quiz/images/3/turns.png',
       limit_selection: 1,
       questions: [
         'You may go straight through the intersection from either lane.',
@@ -66,7 +66,7 @@ let quizData = {
   'This sign means left turns only?': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/center lane.png/',
+      image: '/media/quiz/images/3/center lane.png',
       answers: [
         1,
       ]
@@ -75,7 +75,7 @@ let quizData = {
   'You may park here if you have an injured passenger in the vehicle.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/handicap/',
+      image: '/media/quiz/images/3/handicap.png',
       answers: [
         2,
       ]
@@ -84,7 +84,7 @@ let quizData = {
   'This sign indicates a school zone; you must always approach slowly and carefully.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/school zone/',
+      image: '/media/quiz/images/3/school zone.jpg',
       answers: [
         1,
       ]
@@ -109,7 +109,7 @@ let quizData = {
   'This sign shows a road with a gradual curve to the right, then to the left?': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/windy road.png/',
+      image: '/media/quiz/images/3/windy road.png',
       answers: [
         2,
       ]
@@ -149,7 +149,7 @@ let quizData = {
   'This sign indicates a pedestrian crossing?': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/pedestrian crossing.jpg/',
+      image: '/media/quiz/images/3/pedestrian crossing.jpg',
       answers: [
         1,
       ]
@@ -158,7 +158,7 @@ let quizData = {
   'Which of the following signs indicates a school zone?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/school zone.jpg/',
+      image: '/media/quiz/images/3/school zone.jpg',
       limit_selection: 4,
       questions: [
         'A',
@@ -174,7 +174,7 @@ let quizData = {
   'Which of the following shaped signs indicates a no-passing zone?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/no passing zone.jpg/',
+      image: '/media/quiz/images/3/no passing zone.jpg',
       limit_selection: 1,
       questions: [
         'Circle',
@@ -190,7 +190,7 @@ let quizData = {
   'This sign warns all vehicles of a steep decline ahead; check the brakes.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/steep decline.png/',
+      image: '/media/quiz/images/3/steep decline.png',
       answers: [
         1,
       ]
@@ -213,7 +213,7 @@ let quizData = {
   'This sign indicates a right lane ends, merge left.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/lane ends.jpg/',
+      image: '/media/quiz/images/3/lane ends.jpg',
       answers: [
         1,
       ]
@@ -222,7 +222,7 @@ let quizData = {
   'This sign indicates an added lane, merging is necessary.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/non added lane.png/',
+      image: '/media/quiz/images/3/non added lane.png',
       answers: [
         2,
       ]
@@ -231,7 +231,7 @@ let quizData = {
   'This signs indicates an added lane, merging is necessary.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/added lane.png/',
+      image: '/media/quiz/images/3/added lane.png',
       answers: [
         2,
       ]
@@ -240,7 +240,7 @@ let quizData = {
   'This is an orange sign indicating a person with a flag ahead, no action necessary.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/flag man.jpg/',
+      image: '/media/quiz/images/3/flag man.jpg',
       answers: [
         2,
       ]
@@ -339,7 +339,7 @@ let quizData = {
   'This sign is used with freeway ramp meters at on-ramps.': {
     type: 'true_false',
     data: {
-      image: '/media/quiz/images/3/one car per green.PNG/',
+      image: '/media/quiz/images/3/one car per green.PNG',
       answers: [
         1
       ]
@@ -402,7 +402,7 @@ let quizData = {
   'A Which car is not allowed to pass?': {
     type: 'multiple_choice',
     data: {
-      image: '/media/quiz/images/3/car pass.png/',
+      image: '/media/quiz/images/3/car pass.png',
       limit_selection: 1,
       questions: [
         'The green car, on the right side.',
