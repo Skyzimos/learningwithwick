@@ -21,7 +21,10 @@ let quizData = {
   'Explain the “Law” with regards to speed limits and conditions (Basic Speed Law):': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 2,
+      },
       questions: [
         'You can always drive the speed limit.',
         'You are fine going 5 mph over the speed limit.',
