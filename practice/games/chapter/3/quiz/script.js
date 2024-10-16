@@ -784,7 +784,11 @@ function gradeQuiz(quizData) {
   };
 }
 
+let debounce = false;
+
 document.getElementById('next-button').addEventListener('click', function () {
+  if (debounce) return;
+  debounce = true;
   if (!canProceed(quizData, currentQuestionIndex)) {
     alert('Please select the required number of options.');
     return;
@@ -792,7 +796,6 @@ document.getElementById('next-button').addEventListener('click', function () {
 
   const result = gradeQuiz(quizData);
   console.log(`Score: ${result.score} out of ${result.totalQuestions}`);
-  
 
   switchImage(false);
 
@@ -805,6 +808,7 @@ document.getElementById('next-button').addEventListener('click', function () {
       const questionKey = Object.keys(quizData)[currentQuestionIndex];
       document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
       updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
+      debounce = false;
     }
   }, 250)
 });
