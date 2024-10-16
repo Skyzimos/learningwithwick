@@ -537,7 +537,11 @@ function displayQuestion(quizData, index) {
   optionsContainer.className = 'options';
 
   if (questionObj.type === 'multiple_choice') {
-    const limit = questionObj.data.limit_selection || null;
+    const limitSelection = questionObj.data.limit_selection || {};
+    const limit = typeof limitSelection === 'number' ? limitSelection : limitSelection.maximum || null;
+    const minSelection = limitSelection.minimum || 1;
+    const requireMax = limitSelection.require_maximum || false;
+
     let selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
 
     questionObj.data.questions.forEach((option, i) => {
@@ -563,20 +567,23 @@ function displayQuestion(quizData, index) {
         let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
 
         if (limit === 1) {
+          // If limit is 1, allow only one option to be selected at a time
           checkboxes.forEach(chk => {
-            console.log(chk.dataset.uniqueId, checkbox.dataset.uniqueId)
             if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
           });
           selectedCount = 1;
         }
 
+        // Enforce maximum selection limit
         if (limit && selectedCount > limit) {
-          if (checkbox.checked == true) {
-            checkbox.checked = false;
-          } else {
-            checkbox.checked = false;
-            alert(`You can only select up to ${limit} options.`);
-          }
+          checkbox.checked = false;
+          alert(`You can only select up to ${limit} options.`);
+          return;
+        }
+
+        // Ensure minimum selections are met and alert if necessary
+        if (selectedCount < minSelection) {
+          alert(`You need to select at least ${minSelection} option(s).`);
           return;
         }
 
@@ -596,7 +603,6 @@ function displayQuestion(quizData, index) {
     questionElement.appendChild(optionsContainer);
   } else if (questionObj.type === 'true_false') {
     if (!selectedAnswers[`question-${index + 1}`]) {
-      console.log('NO ANSWER')
       selectedAnswers[`question-${index + 1}`] = 0;
     }
     
@@ -608,8 +614,8 @@ function displayQuestion(quizData, index) {
       const radio = document.createElement('input');
       radio.type = 'radio';
       radio.name = `question-${index}`;
+      radio.value = option;
 
-      console.log(selectedAnswers[`question-${index + 1}`], (i + 1))
       if (selectedAnswers[`question-${index + 1}`] === (i + 1)) {
         radio.checked = true;
       }
