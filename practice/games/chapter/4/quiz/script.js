@@ -1,3 +1,19 @@
+/*
+
+  Flags:
+
+    - limit_selection:
+        Limits the number of selected answers to the specified numbers.
+        Type: table
+        Defaults: no_limit
+        Format: {
+          limit_selection: {
+            
+          }
+        }
+
+*/
+
 let chapterNumber = 4;
 let quizData = {
   'Explain the “Law” with regards to speed limits and conditions (Basic Speed Law):': {
