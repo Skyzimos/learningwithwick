@@ -661,18 +661,35 @@ function canProceed(quizData, index) {
     .filter(chk => chk.checked)
     .map(chk => chk.value);
 
-  if (questionObj.type === 'multiple_choice' && typeof questionObj.data.limit_selection == 'object') {
-    let min = questionObj.data.limit_selection;
+  const selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
 
-  } else if (questionObj.type == 'multiple_choice' && typeof questionObj.data.limit_selection !== 'object') {
-    const limit = questionObj.data.limit_selection || null;
-    const selected = selectedAnswers[`question-${index + 1}`]?.length || 0;
-    console.log(selected, selectedAnswers, selectedAnswers[`question-${index + 1}`])
-    return selected === limit;
+  if (questionObj.type === 'multiple_choice') {
+    const limitSelection = questionObj.data.limit_selection;
+
+    if (typeof limitSelection === 'object') {
+      const min = limitSelection.minimum || 1;
+      const max = limitSelection.maximum || questionObj.data.questions.length;
+      const requireMax = limitSelection.require_maximum || false; // Require maximum selections, default is false
+
+      // Check if the number of selected answers meets the criteria
+      if (selectedCount >= min && (selectedCount <= max || !requireMax)) {
+        return true; // Allowed to proceed if within limits
+      } else if (selectedCount === max && requireMax) {
+        return true; // If exactly at max and require_maximum is true
+      } else {
+        return false; // Cannot proceed if the selection is outside the limits
+      }
+
+    // If limit_selection is a number (shortcut for max selection)
+    } else if (typeof limitSelection === 'number') {
+      return selectedCount === limitSelection; // Proceed only if selected matches the limit
+    }
   }
-  
+
+  // Default to allowing progression for other question types
   return true;
 }
+
 
 document.getElementById('next-button').addEventListener('click', function () {
   if (!canProceed(quizData, currentQuestionIndex)) {
