@@ -1,3 +1,21 @@
+/*
+
+  Flags:
+
+    - limit_selection:
+        Limits the number of selected answers to the specified numbers.
+        Type: table OR number (When type is number, it defaults to minmax, with require_maximum true.)
+        Defaults: no_limit
+        Format: {
+          limit_selection: {
+            minimum,          <-- NUMBER: Minimum required selections. (Optional, defualts to 1.)
+            maximum,          <-- NUMBER: Maximum allowed selections. (Optional, defaults to number of questions.)
+            require_maximum   <-- BOOLEAN: Whether the user can continue without selecting the maximum selections or not. (Optional, defualts to false.)
+          }
+        }
+
+*/
+
 let chapterNumber = 3;
 let quizData = {
   'The four categories of signs are:': {
