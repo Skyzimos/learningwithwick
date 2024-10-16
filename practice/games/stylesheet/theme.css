@@ -121,13 +121,11 @@ html, body {
 }
 
 .image {
-  background: red;
   width: 10vw;
 	
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 15%;
+  right: 15%;
 
   z-index: 99999;
 }
