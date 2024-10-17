@@ -736,11 +736,62 @@ function canProceed(quizData, index) {
   return true;
 }
 
+
+
+
+
+function gradeQuiz(quizData) {
+  let correctAnswers = 0;
+  const totalQuestions = Object.keys(quizData).length;
+
+  Object.keys(quizData).forEach((questionKey, index) => {
+    const questionObj = quizData[questionKey];
+    const userAnswer = selectedAnswers[index]; // Get user answer for the question
+
+    if (questionObj.type === 'multiple_choice') {
+      const correctAnswersArray = questionObj.data.answers; // Get the correct answers
+
+      if (questionObj.data.limit_selection === 0) {
+        // If multiple answers allowed, check if user answers match the correct answers
+        const userAnswersSet = new Set(userAnswer.map((idx) => questionObj.data.questions[idx]));
+        const correctAnswersSet = new Set(correctAnswersArray);
+        
+        if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
+          correctAnswers++;
+        }
+      } else {
+        // Only one correct answer allowed, index match
+        const correctAnswerText = correctAnswersArray[0]; // Only one correct answer
+        const correctAnswerIndex = questionObj.data.questions.indexOf(correctAnswerText);
+
+        if (userAnswer.length === 1 && userAnswer[0] === correctAnswerIndex) {
+          correctAnswers++;
+        }
+      }
+    } else if (questionObj.type === 'true_false') {
+      const correctAnswer = questionObj.data.answers[0];
+
+      if (userAnswer === correctAnswer) {
+        correctAnswers++;
+      }
+    }
+  });
+
+  return {
+    score: correctAnswers,
+    totalQuestions: totalQuestions
+  };
+}
+
 document.getElementById('next-button').addEventListener('click', function () {
   if (!canProceed(quizData, currentQuestionIndex)) {
     alert('Please select the required number of options.');
     return;
   }
+
+  const result = gradeQuiz(quizData);
+  console.log(`Score: ${result.score} out of ${result.totalQuestions}`);
+  
 
   switchImage(false);
 
