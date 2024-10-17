@@ -747,6 +747,7 @@ function gradeQuiz(quizData) {
   Object.keys(quizData).forEach((questionKey, index) => {
     const questionObj = quizData[questionKey];
     const userAnswer = selectedAnswers[index]; // Get user answer for the question
+    if (!userAnswer) return;
     console.log(userAnswer, selectedAnswers, index, questionKey, questionObj);
 
     if (questionObj.type === 'multiple_choice') {
