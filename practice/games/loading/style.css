@@ -78,7 +78,7 @@ line {
 /* Loading Circle */
 
 /* From Uiverse.io by barisdogansutcu */ 
-svg {
+.loadercircle {
   position: absolute;
   left: 50%;
   top: 60%;
@@ -88,7 +88,7 @@ svg {
   animation: rotate4 2s linear infinite;
  }
  
- circle {
+ .loadercircle > circle {
   fill: none;
   stroke: rgb(162, 55, 255);
   stroke-width: 2;
