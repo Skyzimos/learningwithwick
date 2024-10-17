@@ -131,4 +131,4 @@ if (!performanceChanges.accuracyImprovement.includes('-')) {
 
 Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
 Box2_H3.innerHTML = performanceChanges.accuracyImprovement;
-Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / totalQuizzes)).comparisonString;
+Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / chapterStatistics.totalQuizzes)).comparisonString;
