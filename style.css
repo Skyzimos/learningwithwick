@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -24,49 +25,54 @@ html, body {
 /* Animations */
 
 .fade-in {
-	-webkit-animation: fade-in 0.3s ease-in both;
-	        animation: fade-in 0.3s ease-in both;
+  -webkit-animation: fade-in 0.3s ease-in both;
+  animation: fade-in 0.3s ease-in both;
 }
 
- @-webkit-keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
   }
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+
+  100% {
+    opacity: 1;
   }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 .fade-out {
-	-webkit-animation: fade-out 0.5s ease-out both;
-	        animation: fade-out 0.5s ease-out both;
+  -webkit-animation: fade-out 0.5s ease-out both;
+  animation: fade-out 0.5s ease-out both;
 }
 
- @-webkit-keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
   }
 
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+  100% {
+    opacity: 0;
   }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 /* MAIN STYLES */
 
@@ -104,7 +110,7 @@ html, body {
   background-color: white;
   width: 20%;
   height: 100%;
-  
+
   position: relative;
   left: 11.5%;
   top: 50%;
@@ -123,7 +129,7 @@ html, body {
 .sidebar-bottom {
   background-color: #FAFAF9;
   border-radius: 10px;
-  
+
   width: 80%;
   height: 30%;
 
@@ -134,7 +140,7 @@ html, body {
 
   transition: all 0.25s linear;
 
-  & > h4 {
+  &>h4 {
     color: #6473FF;
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -150,7 +156,7 @@ html, body {
     transform: translate(-50%, -50%);
   }
 
-  & > button {
+  &>button {
     background-color: #6473FF;
     color: white;
     cursor: pointer;
@@ -172,12 +178,12 @@ html, body {
     transition: all 0.25s linear;
   }
 
-  & > button:hover {
+  &>button:hover {
     box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.6);
   }
 }
 
-button > i {
+button>i {
   position: relative;
   left: -10px;
 }
@@ -193,7 +199,7 @@ button > i {
   align-items: center;
   gap: 5px;
 
-  & > h1 {
+  &>h1 {
     font-family: sans-serif;
     font-size: 2vw;
   }
@@ -206,7 +212,7 @@ button > i {
 .sidebar-button {
   background: transparent;
   color: lightgray;
-  
+
   border: none;
   padding: 14px 28px;
   font-size: 2.1vh;
@@ -231,7 +237,7 @@ button > i {
   transition: all 0.25s linear;
   color: black;
 
-  & > i {
+  &>i {
     color: #6473FF;
   }
 }
@@ -239,7 +245,7 @@ button > i {
 .sidebar-button:hover .current {
   color: lightgray;
 
-  & > i {
+  &>i {
     color: lightgray;
   }
 }
@@ -248,7 +254,7 @@ button > i {
   color: black;
   transform: translateX(3px);
 
-  & > i {
+  &>i {
     color: #6473FF;
   }
 }
@@ -282,7 +288,7 @@ button > i {
   font-size: 1.5vh;
   text-align: center;
   font-weight: 500;
-  
+
   z-index: 1;
 }
 
@@ -290,7 +296,7 @@ button > i {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   padding-left: 25px;
 }
 
@@ -393,7 +399,7 @@ button > i {
   top: 15%;
 }
 
-.quick-games > h2 {
+.quick-games>h2 {
   color: #353535;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -416,7 +422,7 @@ button > i {
   transform: translate(-50%);
 }
 
-.correct-statistics > h1 {
+.correct-statistics>h1 {
   color: #BBBBBB;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -428,7 +434,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.correct-statistics > h2 {
+.correct-statistics>h2 {
   color: #151515;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -440,7 +446,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.correct-statistics > h3 {
+.correct-statistics>h3 {
   color: #41FF6A;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -452,7 +458,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.correct-statistics > i {
+.correct-statistics>i {
   color: lime;
 
   font-size: 4.5vw;
@@ -479,7 +485,7 @@ button > i {
   transform: translate(-50%);
 }
 
-.incorrect-statistics > h1 {
+.incorrect-statistics>h1 {
   color: #BBBBBB;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -491,7 +497,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.incorrect-statistics > h2 {
+.incorrect-statistics>h2 {
   color: #151515;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -503,7 +509,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.incorrect-statistics > h3 {
+.incorrect-statistics>h3 {
   color: #41FF6A;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -515,7 +521,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.incorrect-statistics > i {
+.incorrect-statistics>i {
   color: red;
 
   font-size: 4.5vw;
@@ -544,7 +550,7 @@ button > i {
   width: 90%;
 }
 
-.other-statistics > h2 {
+.other-statistics>h2 {
   color: #151515;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -556,7 +562,7 @@ button > i {
   transform: translateY(-50%);
 }
 
-.last-played > h1 {
+.last-played>h1 {
   color: #353535;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -566,7 +572,7 @@ button > i {
   left: 5%;
 }
 
-.last-played > h2 {
+.last-played>h2 {
   color: #666666;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -577,7 +583,7 @@ button > i {
   top: -5%;
 }
 
-.last-played > i {
+.last-played>i {
   color: #5849FF;
 
   font-size: 12.5vw;
@@ -590,7 +596,7 @@ button > i {
   opacity: 0.85;
 }
 
-.last-played > button {
+.last-played>button {
   background-color: transparent;
   color: #5849FF;
   cursor: pointer;
@@ -612,25 +618,25 @@ button > i {
   transition: all 0.15s linear;
 }
 
-.last-played > button:hover {
+.last-played>button:hover {
   color: white;
   border: none;
   background-color: #5849FF;
   box-shadow: 0 0 25px 1px rgba(175, 175, 175);
 }
 
-.last-played > button:hover::before {
+.last-played>button:hover::before {
   color: #5849FF;
   border-color: #5849FF;
   background-color: transparent;
   transition: all 0.1 fade-out;
 }
 
-.last-played > button:active {
+.last-played>button:active {
   transform: scale(0.95);
 }
 
-.search-bar > i {
+.search-bar>i {
   position: relative;
   top: 0%;
   left: 0%;
@@ -711,11 +717,11 @@ button > i {
   transition: all 0.25s linear;
 }
 
-.search-bar:focus + .fa-magnifying-glass {
+.search-bar:focus+.fa-magnifying-glass {
   color: #5849FF;
 }
 
-.search-bar:active + .fa-magnifying-glass {
+.search-bar:active+.fa-magnifying-glass {
   color: #5849FF;
 }
 
@@ -731,7 +737,7 @@ button > i {
   color: #AAAAAA;
 }
 
-.username-bar:focus + .username-submit > i {
+.username-bar:focus+.username-submit>i {
   color: #5849FF;
 }
 
@@ -773,7 +779,7 @@ button > i {
   transition: all 0.25s linear;
 }
 
-.username-submit > i {
+.username-submit>i {
   color: #AAAAAA;
   font-size: 1.5vw;
 
@@ -795,7 +801,7 @@ button > i {
   width: 100%;
 }
 
-.pfps > img {
+.pfps>img {
   border-radius: 15px;
   cursor: pointer;
 
