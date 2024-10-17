@@ -595,7 +595,7 @@ function displayQuestion(quizData, index) {
       checkbox.dataset.uniqueId = uid();
 
       console.log(Object.values(getAnswer(index)), index, i)
-      if (Object.values(getAnswer(index))?.includes(i)) {
+      if (Object.values(getAnswer(index))?.includes(i.toString())) {
         checkbox.checked = true;
       }
 
