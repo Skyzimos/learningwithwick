@@ -557,7 +557,6 @@ function displayQuestion(quizData, index) {
   const questionsContainer = document.getElementById('questions-container');
   questionsContainer.innerHTML = '';
 
-  quizData = shuffleArray(quizData);
   const questionKey = Object.keys(quizData)[index];
   const questionObj = quizData[questionKey];
 
