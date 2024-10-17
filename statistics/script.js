@@ -122,11 +122,13 @@ let performanceChanges = calculatePerformanceImprovement();
 if (!performanceChanges.accuracyImprovement.includes('-')) {
     Box2_BoxImage.style.backgroundColor = '#E1FFD6';
     Box2_BoxImageIcon.style.color = '#67F135';
+    Box2_BoxImageIcon.className = 'fa-solid fa-up-long';
 } else {
     Box2_BoxImage.style.backgroundColor = '#FFC7C7';
     Box2_BoxImageIcon.style.color = '#FE3E3E';
+    Box2_BoxImage.className = 'fa-solid fa-down-long';
 }
 
 Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
 Box2_H3.innerHTML = performanceChanges.accuracyImprovement;
-Box3_H3.innerHTML = convertToRoundedMinutes().comparisonString;
+Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / totalQuizzes)).comparisonString;
