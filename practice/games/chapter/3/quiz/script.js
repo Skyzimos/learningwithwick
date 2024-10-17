@@ -526,8 +526,34 @@ function switchImage(inout) {
 }
 
 let currentQuestionIndex = 0;
-let selectedAnswers = {};
+const selectedAnswers = {};
 const totalQuestions = Object.keys(quizData).length;
+
+function saveAnswer(questionIndex, answer) {
+  const questionObj = quizData[Object.keys(quizData)[questionIndex]];
+
+  if (questionObj.type === 'multiple_choice') {
+    if (selectedAnswers[questionIndex]) {
+      if (typeof answer == 'object') {
+        answer.forEach(v => {
+          selectedAnswers[questionIndex].push(v);
+        })
+        return;
+      }
+      selectedAnswers[questionIndex].push(answer)
+    } else {
+      if (typeof answer == 'object') {
+        selectedAnswers[questionIndex] = answer;
+        return;
+      }
+      selectedAnswers[questionIndex] = [answer]
+    }
+  } else if (questionObj.type === 'true_false') {
+    selectedAnswers[questionIndex] = answer;
+  }
+
+  console.log(selectedAnswers)
+}
 
 function displayQuestion(quizData, index) {
   const questionsContainer = document.getElementById('questions-container');
@@ -544,9 +570,9 @@ function displayQuestion(quizData, index) {
   optionsContainer.className = 'options';
 
   if (questionObj.data.image) {
-    switchImage(true);
     document.querySelector('.image').style.display = 'block';
     document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
+    switchImage(true);
   } else {
     document.querySelector('.image').style.display = 'none';
   }
@@ -567,7 +593,7 @@ function displayQuestion(quizData, index) {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.name = `question-${index}`;
-      checkbox.value = option;
+      checkbox.value = i;
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
 
@@ -602,9 +628,10 @@ function displayQuestion(quizData, index) {
           return;
         }
 
-        selectedAnswers[`question-${index + 1}`] = Array.from(checkboxes)
+        let array = Array.from(checkboxes)
           .filter(chk => chk.checked)
           .map(chk => chk.value);
+          saveAnswer(index, array);
       });
 
       const label = document.createElement('label');
@@ -617,10 +644,6 @@ function displayQuestion(quizData, index) {
 
     questionElement.appendChild(optionsContainer);
   } else if (questionObj.type === 'true_false') {
-    if (!selectedAnswers[`question-${index + 1}`]) {
-      selectedAnswers[`question-${index + 1}`] = 0;
-    }
-    
     ['True', 'False'].forEach((option, i) => {
       const optionElement = document.createElement('div');
       optionElement.className = 'option';
@@ -637,7 +660,7 @@ function displayQuestion(quizData, index) {
 
       optionElement.addEventListener('click', function () {
         radio.checked = true;
-        selectedAnswers[`question-${index + 1}`] = (i + 1);
+        saveAnswer(index, (i + 1));
       });
 
       const label = document.createElement('label');
