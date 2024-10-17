@@ -555,6 +555,10 @@ function saveAnswer(questionIndex, answer) {
   console.log(selectedAnswers)
 }
 
+function getAnswer(questionIndex) {
+  return selectedAnswers[questionIndex];
+}
+
 function displayQuestion(quizData, index) {
   const questionsContainer = document.getElementById('questions-container');
   questionsContainer.innerHTML = '';
@@ -583,7 +587,7 @@ function displayQuestion(quizData, index) {
     const minSelection = limitSelection.minimum || 1;
     const requireMax = limitSelection.require_maximum || false;
 
-    let selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
+    let selectedCount = getAnswer(index)?.length || 0;
 
     questionObj.data.questions.forEach((option, i) => {
       const optionElement = document.createElement('div');
@@ -597,7 +601,7 @@ function displayQuestion(quizData, index) {
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
 
-      if (selectedAnswers[`question-${index + 1}`]?.includes(option)) {
+      if (getAnswer(index)?.includes(i)) {
         checkbox.checked = true;
       }
 
@@ -629,8 +633,10 @@ function displayQuestion(quizData, index) {
         }
 
         let array = Array.from(checkboxes)
-          .filter(chk => chk.checked)
+          .filter(chk => chk.checked == true)
           .map(chk => chk.value);
+
+          console.log(array);
           saveAnswer(index, array);
       });
 
@@ -654,7 +660,7 @@ function displayQuestion(quizData, index) {
       radio.name = `question-${index}`;
       radio.value = option;
 
-      if (selectedAnswers[`question-${index + 1}`] === (i + 1)) {
+      if (getAnswer(index) === (i + 1)) {
         radio.checked = true;
       }
 
