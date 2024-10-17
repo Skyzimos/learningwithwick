@@ -534,9 +534,10 @@ function displayQuestion(quizData, index) {
   optionsContainer.className = 'options';
 
   if (questionObj.data.image) {
+    document.querySelector('.image').style.display = 'block';
     document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
   } else {
-    document.querySelector('.image').src = '';
+    document.querySelector('.image').style.display = 'none';
   }
 
   if (questionObj.type === 'multiple_choice') {
