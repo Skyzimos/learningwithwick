@@ -538,15 +538,15 @@ function saveAnswer(questionIndex, answer) {
         answer.forEach(v => {
           selectedAnswers[questionIndex].push(v);
         })
-        return;
+      } else {
+        selectedAnswers[questionIndex].push(answer)
       }
-      selectedAnswers[questionIndex].push(answer)
     } else {
       if (typeof answer == 'object') {
         selectedAnswers[questionIndex] = answer;
-        return;
+      } else {
+        selectedAnswers[questionIndex] = [answer]
       }
-      selectedAnswers[questionIndex] = [answer]
     }
   } else if (questionObj.type === 'true_false') {
     selectedAnswers[questionIndex] = answer;
