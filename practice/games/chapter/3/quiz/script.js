@@ -580,6 +580,7 @@ function displayQuestion(quizData, index) {
     const minSelection = limitSelection.minimum || 1;
     const requireMax = limitSelection.require_maximum || false;
 
+    // Object.values is the only way to use functions of the table, and the arrray within.
     let selectedCount = Object.values(getAnswer(index))?.length || 0;
 
     questionObj.data.questions.forEach((option, i) => {
@@ -594,7 +595,7 @@ function displayQuestion(quizData, index) {
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
 
-      console.log(Object.values(getAnswer(index)), index, i)
+      // Turn i into a string, because that's the format it's saved as.
       if (Object.values(getAnswer(index))?.includes(i.toString())) {
         checkbox.checked = true;
       }
@@ -736,12 +737,9 @@ function canProceed(quizData, index) {
   return true;
 }
 
-
-
-
-
 function gradeQuiz(quizData) {
   let correctAnswers = 0;
+  let incorrectAnswers = [];
   const totalQuestions = Object.keys(quizData).length;
 
   Object.keys(quizData).forEach((key, index) => {
@@ -759,6 +757,8 @@ function gradeQuiz(quizData) {
       console.log(userAnswersSet, correctAnswersSet);
       if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
         correctAnswers++;
+      } else {
+        incorrectAnswers.push(index);
       }
     } else if (questionObj.type === 'true_false') {
       const correctAnswer = questionObj.data.answers[0];
@@ -766,13 +766,16 @@ function gradeQuiz(quizData) {
       console.log(userAnswer, correctAnswer);
       if (userAnswer.toString() == correctAnswer.toString()) {
         correctAnswers++;
+      } else {
+        incorrectAnswers.push(index);
       }
     }
   });
 
   return {
     score: correctAnswers,
-    totalQuestions: totalQuestions
+    totalQuestions: totalQuestions,
+    incorrectAnswers: incorrectAnswers,
   };
 }
 
@@ -785,9 +788,6 @@ document.getElementById('next-button').addEventListener('click', function () {
     alert('Please select the required number of options.');
     return;
   }
-
-  const result = gradeQuiz(quizData);
-  console.log(`Score: ${result.score} out of ${result.totalQuestions}`);
 
   switchImage(false);
 
@@ -820,7 +820,79 @@ document.getElementById('previous-button').addEventListener('click', function ()
   }, 250)
 });
 
+function convertScore(correct, outOf) {
+  if (outOf === 0) return { percentage: 0, scale: 0 }; // Prevent division by zero
+  let scale = correct / outOf;
+  return {
+      percentage: +(scale * 100).toFixed(2),  // Rounded to 2 decimal places
+      scale: +scale.toFixed(4)                // Rounded to 4 decimal places
+  };
+}
+
+function startTimer() {
+  const startTime = Date.now(); // Get the start time in milliseconds
+
+  return function getElapsedTime() {
+      const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
+      return Math.floor(elapsedTime); // Return seconds as an integer
+  };
+}
+
+function updateQuizStatistics(newQuizData) {
+  let chapterId = 'chapter_' + chapterNumber;
+  let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+  
+  // Initialize the chapter structure if it doesn't exist
+  if (!storedStats[chapterId]) {
+      storedStats[chapterId] = {
+          quizzes: [],
+          totalScore: 0,
+          totalQuestions: totalQuestions,
+          totalAccuracy: 0,
+          bestScore: 0,
+          worstScore: newQuizData.missedQuestions.length,
+          numQuizzes: 0,
+          totalTimeSpent: 0,
+      };
+  }
+
+  // Reference the current chapter data
+  let chapter = storedStats[chapterId];
+  
+  // Update the aggregate statistics at the chapter level
+  chapter.totalScore += newQuizData.score;
+  chapter.totalAccuracy += newQuizData.accuracy;
+  chapter.numQuizzes += 1;
+  chapter.totalTimeSpent += newQuizData.timeSpent;
+  
+  // Update best and worst scores if applicable
+  chapter.bestScore = Math.max(chapter.bestScore, newQuizData.score);
+  chapter.worstScore = Math.min(chapter.worstScore, newQuizData.score);
+  
+  // Add the new quiz to the list of quizzes
+  chapter.quizzes.push(newQuizData);
+
+  // Save the updated statistics back to localStorage
+  localStorage.setItem('quizStatistics', JSON.stringify(storedStats));
+}
+
+const getElapsedTime = startTimer();
+
 document.getElementById('submit-button').addEventListener('click', function () {
+  const timeSpent = getElapsedTime();
+  const result = gradeQuiz(quizData);
+  const scoreConverted = convertScore(result.score, result.totalQuestions);
+  let newQuiz = {
+    quizId: uid(),
+    score: result.score,
+    accuracy: scoreConverted.scale,
+    missedQuestions: result.incorrectAnswers,
+    dateTaken: new Date().toISOString(),
+    timeSpent: timeSpent
+  };
+
+  updateQuizStatistics(newQuiz);
+
   console.log('Selected Answers:', selectedAnswers);
   sessionStorage.setItem('item', JSON.stringify(selectedAnswers))
   location.href = '/learningwithwick/practice/games/loading/'
