@@ -131,6 +131,20 @@ html, body {
   right: 2.5%;
 
   z-index: 99999;
+
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.image.active {
+  opacity: 1;
+  transform: scale(1);  /* Slight zoom-in for a natural feel */
+}
+
+.image.inactive {
+  opacity: 0;
+  transform: scale(0.98);  /* Slight zoom-in for a natural feel */
 }
 
 #question-text {

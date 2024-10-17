@@ -515,6 +515,16 @@ function updateDisplay(text) {
   adjustQuestionPosition();
 }
 
+function switchImage(inout) {
+  if (inout == true) {
+    document.querySelector('.image').classList.remove('inactive');
+    document.querySelector('.image').classList.add('active');
+  } else {
+    document.querySelector('.image').classList.remove('active');
+    document.querySelector('.image').classList.add('inactive');
+  }
+}
+
 let currentQuestionIndex = 0;
 let selectedAnswers = {};
 const totalQuestions = Object.keys(quizData).length;
@@ -539,6 +549,8 @@ function displayQuestion(quizData, index) {
   } else {
     document.querySelector('.image').style.display = 'none';
   }
+
+  switchImage(true);
 
   if (questionObj.type === 'multiple_choice') {
     const limitSelection = questionObj.data.limit_selection || {};
@@ -705,27 +717,35 @@ document.getElementById('next-button').addEventListener('click', function () {
     alert('Please select the required number of options.');
     return;
   }
-  
-  if (currentQuestionIndex < Object.keys(quizData).length - 1) {
-    currentQuestionIndex++;
-    document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-    updateButtons(currentQuestionIndex, totalQuestions);
-    displayQuestion(quizData, currentQuestionIndex);
-    const questionKey = Object.keys(quizData)[currentQuestionIndex];
-    document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-    updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
-  }
+
+  switchImage(false);
+
+  setTimeout(() => {
+    if (currentQuestionIndex < Object.keys(quizData).length - 1) {
+      currentQuestionIndex++;
+      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
+      updateButtons(currentQuestionIndex, totalQuestions);
+      displayQuestion(quizData, currentQuestionIndex);
+      const questionKey = Object.keys(quizData)[currentQuestionIndex];
+      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
+      updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
+    }
+  }, 250)
 });
 
 document.getElementById('previous-button').addEventListener('click', function () {
-  if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-    updateButtons(currentQuestionIndex, totalQuestions);
-    displayQuestion(quizData, currentQuestionIndex);
-    const questionKey = Object.keys(quizData)[currentQuestionIndex];
-    updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
-  }
+  switchImage(false);
+
+  setTimeout(() => {
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
+      updateButtons(currentQuestionIndex, totalQuestions);
+      displayQuestion(quizData, currentQuestionIndex);
+      const questionKey = Object.keys(quizData)[currentQuestionIndex];
+      updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
+    }
+  }, 250)
 });
 
 document.getElementById('submit-button').addEventListener('click', function () {
