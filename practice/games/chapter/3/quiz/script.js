@@ -869,10 +869,7 @@ function updateQuizStatistics(newQuizData) {
   chapter.bestScore = Math.max(chapter.bestScore, newQuizData.score);
   chapter.worstScore = Math.min(chapter.worstScore, newQuizData.score);
   
-  // Add the new quiz to the list of quizzes
   chapter.quizzes.push(newQuizData);
-
-  // Save the updated statistics back to localStorage
   localStorage.setItem('stats', JSON.stringify(storedStats));
 }
 
