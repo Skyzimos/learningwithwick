@@ -873,7 +873,7 @@ function updateQuizStatistics(newQuizData) {
   chapter.quizzes.push(newQuizData);
 
   // Save the updated statistics back to localStorage
-  localStorage.setItem('quizStatistics', JSON.stringify(storedStats));
+  localStorage.setItem('stats', JSON.stringify(storedStats));
 }
 
 const getElapsedTime = startTimer();
