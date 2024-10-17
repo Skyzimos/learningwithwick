@@ -743,9 +743,9 @@ function gradeQuiz(quizData) {
   let correctAnswers = 0;
   const totalQuestions = Object.keys(quizData).length;
 
-  Object.keys(selectedAnswers).forEach((key, index) => {
+  Object.keys(quizData).forEach((key, index) => {
     let userAnswer = selectedAnswers[index];
-    let questionObj = quizData[index];
+    let questionObj = quizData[key];
     if (!userAnswer || !questionObj) return;
     
     if (questionObj.type == 'multiple_choice') {
