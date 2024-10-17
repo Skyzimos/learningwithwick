@@ -743,36 +743,24 @@ function gradeQuiz(quizData) {
   let correctAnswers = 0;
   const totalQuestions = Object.keys(quizData).length;
 
-  Object.keys(quizData).forEach((questionKey, index) => {
-    const questionObj = quizData[questionKey];
-    const userAnswer = selectedAnswers[index]; // Get user answer for the question
-    if (!userAnswer) return;
-    console.log(userAnswer, selectedAnswers, index, questionKey, questionObj);
+  Object.keys(selectedAnswers).forEach((key, index) => {
+    let userAnswer = selectedAnswers[index];
+    let questionObj = quizData[index];
+    if (!userAnswer || !questionObj) return;
+    
+    if (questionObj.type == 'multiple_choice') {
+      const correctAnswersArray = questionObj.data.answers;
 
-    if (questionObj.type === 'multiple_choice') {
-      const correctAnswersArray = questionObj.data.answers; // Get the correct answers
+      const userAnswersSet = new Set(userAnswer.map((idx) => questionObj.data.questions[idx]));
+      const correctAnswersSet = new Set(correctAnswersArray);
 
-      if (questionObj.data.limit_selection === 0) {
-        // If multiple answers allowed, check if user answers match the correct answers
-        const userAnswersSet = new Set(userAnswer.map((idx) => questionObj.data.questions[idx]));
-        const correctAnswersSet = new Set(correctAnswersArray);
-        
-        if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
-          correctAnswers++;
-        }
-      } else {
-        // Only one correct answer allowed, index match
-        const correctAnswerText = correctAnswersArray[0]; // Only one correct answer
-        const correctAnswerIndex = questionObj.data.questions.indexOf(correctAnswerText);
-
-        if (userAnswer[0] === correctAnswerIndex) {
-          correctAnswers++;
-        }
+      if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
+        correctAnswers++;
       }
     } else if (questionObj.type === 'true_false') {
       const correctAnswer = questionObj.data.answers[0];
 
-      if (0 === correctAnswer) {
+      if (userAnswer.toString() == correctAnswer.toString()) {
         correctAnswers++;
       }
     }
