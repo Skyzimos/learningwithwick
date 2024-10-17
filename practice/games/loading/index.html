@@ -72,7 +72,7 @@
       };
     }
 
-    let chapterStats = calculateChapterStatistics('chapter_' + lcoalStorage.getItem('last-played'));
+    let chapterStats = calculateChapterStatistics('chapter_' + localStorage.getItem('last-played'));
     console.log(chapterStats);
 
     function getBestAndWorstQuizzes(chapterId) {
