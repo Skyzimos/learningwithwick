@@ -594,6 +594,7 @@ function displayQuestion(quizData, index) {
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
 
+      console.log(Object.values(getAnswer(index)), index, i)
       if (Object.values(getAnswer(index))?.includes(i)) {
         checkbox.checked = true;
       }
