@@ -750,16 +750,19 @@ function gradeQuiz(quizData) {
     
     if (questionObj.type == 'multiple_choice') {
       const correctAnswersArray = questionObj.data.answers;
+      console.log(correctAnswersArray);
 
       const userAnswersSet = new Set(userAnswer.map((idx) => questionObj.data.questions[idx]));
       const correctAnswersSet = new Set(correctAnswersArray);
 
+      console.log(userAnswersSet, correctAnswersSet);
       if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
         correctAnswers++;
       }
     } else if (questionObj.type === 'true_false') {
       const correctAnswer = questionObj.data.answers[0];
 
+      console.log(userAnswer, correctAnswer);
       if (userAnswer.toString() == correctAnswer.toString()) {
         correctAnswers++;
       }
