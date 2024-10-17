@@ -580,7 +580,7 @@ function displayQuestion(quizData, index) {
     const minSelection = limitSelection.minimum || 1;
     const requireMax = limitSelection.require_maximum || false;
 
-    let selectedCount = getAnswer(index)?.length || 0;
+    let selectedCount = Object.values(getAnswer(index))?.length || 0;
 
     questionObj.data.questions.forEach((option, i) => {
       const optionElement = document.createElement('div');
@@ -594,7 +594,7 @@ function displayQuestion(quizData, index) {
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
 
-      if (getAnswer(index)?.includes(i)) {
+      if (Object.values(getAnswer(index))?.includes(i)) {
         checkbox.checked = true;
       }
 
