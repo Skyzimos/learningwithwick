@@ -120,6 +120,29 @@
     let improvement = calculatePerformanceImprovement('chapter_' + localStorage.getItem('last-played'));
     console.log(improvement);
 
+    function calculateCommonlyMissedQuestions(chapterId) {
+    let chapterData = getChapterData(chapterId);
+    
+    if (!chapterData) {
+        return [];
+    }
+
+    let missedQuestionsCount = {};
+
+    chapterData.quizzes.forEach(quiz => {
+        quiz.missedQuestions.forEach(questionId => {
+            missedQuestionsCount[questionId] = (missedQuestionsCount[questionId] || 0) + 1;
+        });
+    });
+
+    let mostMissed = Object.entries(missedQuestionsCount).sort((a, b) => b[1] - a[1]);
+    return mostMissed; // Returns sorted array of [questionId, count]
+}
+
+let missedQuestions = calculateCommonlyMissedQuestions('chapter_' + localStorage.getItem('last-played'));
+console.log("Most Commonly Missed Questions in Chapter 1:", missedQuestions);
+
+
     async function main() {
       await delay(3000);
 
