@@ -596,7 +596,7 @@ function displayQuestion(quizData, index) {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.name = `question-${index}`;
+      checkbox.name = i;
       checkbox.value = i;
       checkbox.classList.add(`question-${index}-checkbox`);
       checkbox.dataset.uniqueId = uid();
@@ -707,11 +707,11 @@ function canProceed(quizData, index) {
   const questionObj = quizData[Object.keys(quizData)[index]];
   const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
 
-  selectedAnswers[`question-${index + 1}`] = Array.from(checkboxes)
-    .filter(chk => chk.checked)
-    .map(chk => chk.value);
+  let array = Array.from(checkboxes)
+          .filter(chk => chk.checked == true)
+          .map(chk => chk.value);
 
-  const selectedCount = selectedAnswers[`question-${index + 1}`]?.length || 0;
+  const selectedCount = array?.length || 0;
 
   if (questionObj.type === 'multiple_choice') {
     const limitSelection = questionObj.data.limit_selection;
@@ -723,8 +723,10 @@ function canProceed(quizData, index) {
 
       // Check if the number of selected answers meets the criteria
       if (selectedCount >= min && (selectedCount <= max || !requireMax)) {
+        saveAnswer(index, array);
         return true; // Allowed to proceed if within limits
       } else if (selectedCount === max && requireMax) {
+        saveAnswer(index, array);
         return true; // If exactly at max and require_maximum is true
       } else {
         return false; // Cannot proceed if the selection is outside the limits
