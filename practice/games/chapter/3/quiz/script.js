@@ -550,7 +550,7 @@ function saveAnswer(questionIndex, answer) {
 }
 
 function getAnswer(questionIndex) {
-  return selectedAnswers[questionIndex];
+  return selectedAnswers[questionIndex] || {};
 }
 
 function displayQuestion(quizData, index) {
