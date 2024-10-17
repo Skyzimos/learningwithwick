@@ -766,14 +766,14 @@ function gradeQuiz(quizData) {
         const correctAnswerText = correctAnswersArray[0]; // Only one correct answer
         const correctAnswerIndex = questionObj.data.questions.indexOf(correctAnswerText);
 
-        if (userAnswer.length === 1 && userAnswer[0] === correctAnswerIndex) {
+        if (userAnswer[0] === correctAnswerIndex) {
           correctAnswers++;
         }
       }
     } else if (questionObj.type === 'true_false') {
       const correctAnswer = questionObj.data.answers[0];
 
-      if (userAnswer === correctAnswer) {
+      if (0 === correctAnswer) {
         correctAnswers++;
       }
     }
