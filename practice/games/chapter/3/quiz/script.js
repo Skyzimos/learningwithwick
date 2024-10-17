@@ -544,13 +544,12 @@ function displayQuestion(quizData, index) {
   optionsContainer.className = 'options';
 
   if (questionObj.data.image) {
+    switchImage(true);
     document.querySelector('.image').style.display = 'block';
     document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
   } else {
     document.querySelector('.image').style.display = 'none';
   }
-
-  switchImage(true);
 
   if (questionObj.type === 'multiple_choice') {
     const limitSelection = questionObj.data.limit_selection || {};
