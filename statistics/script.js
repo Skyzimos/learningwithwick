@@ -1,6 +1,6 @@
 // References
-let Box2_BoxImage = document.querySelector('.box:has(.box-2) > box-image');
-let Box2_BoxImageIcon = document.querySelector('.box:has(.box-2) > box-image > i');
+let Box2_BoxImage = document.querySelector('.box:has(.box-2) > .box-image');
+let Box2_BoxImageIcon = document.querySelector('.box:has(.box-2) > .box-image > i');
 
 let Box1_H3 = document.querySelector('.box:has(.box-1) > h3');
 let Box2_H3 = document.querySelector('.box:has(.box-2) > h3');
