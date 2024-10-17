@@ -534,13 +534,7 @@ function saveAnswer(questionIndex, answer) {
 
   if (questionObj.type === 'multiple_choice') {
     if (selectedAnswers[questionIndex]) {
-      if (typeof answer == 'object') {
-        answer.forEach(v => {
-          selectedAnswers[questionIndex].push(v);
-        })
-      } else {
-        selectedAnswers[questionIndex].push(answer)
-      }
+      selectedAnswers[questionIndex] = answer;
     } else {
       if (typeof answer == 'object') {
         selectedAnswers[questionIndex] = answer;
