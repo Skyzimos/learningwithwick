@@ -122,7 +122,9 @@ html, body {
 
 .image {
   width: 17.5vw;
-  aspect-ratio: auto;
+  display: block;
+  max-width: 17.5vw;
+  max-height: 17.5vw;
 	
   position: absolute;
   top: 5%;
