@@ -279,6 +279,10 @@ body {
     border-radius: 10px;
     border: 2px solid #F1F1F1;
 
+    transform: scale(1.15);
+    animation: loading_scale 0.75s forwards;
+    animation-delay: 1100ms;
+
     transition: all 0.15s linear;
 }
 
@@ -423,12 +427,22 @@ h3 {
     border-radius: 10px;
     border: 2px solid #F1F1F1;
 
+    transform: scale(1.15);
+    animation: loading_scale 0.75s forwards;
+    animation-delay: 1100ms;
+
     transition: all 0.15s linear;
 }
 
 .bottom-box:hover {
     transform: scale(1.025);
     box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+}
+
+@keyframes loading_scale {
+    100% {
+        transform: scale(1);
+    }
 }
 
 
