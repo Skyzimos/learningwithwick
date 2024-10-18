@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(() => {
       document.getElementById('loading-overlay').style.display = 'none';
+      
+      let animated = document.querySelectorAll('.animate-on-load');
+      animated.forEach(element => {
+        element.classList.remove('animate-on-load');
+    });
     }, 250)
   }, 1000)
 });
