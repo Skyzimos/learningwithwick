@@ -116,6 +116,21 @@ function convertToRoundedMinutes(seconds) {
     };
 }
 
+function populateMissedQuestions() {
+    let mostMissedQuestions = calculateCommonlyMissedQuestions();
+    const container = document.querySelector('.missed-questions-item-container');
+    const sampleItem = document.querySelector('.missed-questions.sample-item');
+
+    mostMissedQuestions.slice(0, 10).forEach(([questionId, missedCount]) => {
+        let newItem = sampleItem.cloneNode(true);
+        newItem.classList.remove('sample-item');
+        newItem.querySelector('.times-container > h1').textContent = `${missedCount}x`;
+        newItem.querySelector('h2').textContent = `#${questionId}`;
+
+        container.appendChild(newItem);
+    });
+}
+
 let chapterStatistics = calculateChapterStatistics();
 let performanceChanges = calculatePerformanceImprovement();
 
@@ -132,3 +147,4 @@ if (!performanceChanges.accuracyImprovement.includes('-')) {
 Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
 Box2_H3.innerHTML = performanceChanges.accuracyImprovement;
 Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / chapterStatistics.totalQuizzes)).comparisonString;
+populateMissedQuestions();
