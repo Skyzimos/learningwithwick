@@ -6,7 +6,7 @@ let Box1_H3 = document.querySelector('.box:has(.box-1) > h3');
 let Box2_H3 = document.querySelector('.box:has(.box-2) > h3');
 let Box3_H3 = document.querySelector('.box:has(.box-3) > h3');
 
-let lastPlayed = localStorage.getitem('last-played');
+let lastPlayed = localStorage.getItem('last-played');
 let chapterId = 'chapter_' + lastPlayed;
 
 
