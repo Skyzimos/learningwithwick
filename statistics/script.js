@@ -118,9 +118,11 @@ function convertToRoundedMinutes(seconds) {
 
 function populateMissedQuestions() {
     let mostMissedQuestions = calculateCommonlyMissedQuestions();
+    let numberOfMissedQuestions = mostMissedQuestions.length;
     const container = document.querySelector('.missed-questions-item-container');
     const sampleItem = document.querySelector('.missed-questions.sample-item');
 
+    document.querySelector('.bottom-box-1 > h3').innerHTML = `${numberOfMissedQuestions} Total`;
     mostMissedQuestions.slice(0, 10).forEach(([questionId, missedCount]) => {
         let newItem = sampleItem.cloneNode(true);
         newItem.classList.remove('sample-item');
