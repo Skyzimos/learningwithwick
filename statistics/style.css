@@ -431,7 +431,7 @@ h3 {
     box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
 }
 
-.internal-container>.bottom-box:active:not(.retry-container:active):not(.image-container:active) {
+.bottom-box:active:not(.internal-container > .retry-container:active):not(.internal-container > .image-container:active) {
     transform: scale(0.975);
     box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
 
