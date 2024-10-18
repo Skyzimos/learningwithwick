@@ -119,7 +119,7 @@ function convertToRoundedMinutes(seconds) {
 let chapterStatistics = calculateChapterStatistics();
 let performanceChanges = calculatePerformanceImprovement();
 
-if (!performanceChanges.includes('-')) {
+if (!performanceChanges.accuracyImprovement.includes('-')) {
     Box2_BoxImage.style.backgroundColor = '#E1FFD6';
     Box2_BoxImageIcon.style.color = '#67F135';
 } else {
