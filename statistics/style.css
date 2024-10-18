@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+html, body {
+  width: 100%;
+  height: 100%;
+
+  background-color: #FAFAF9;
+}
+
+.main-container {  
+  position: absolute;
+  right: 2.5%;
+  width: 75%;
+  height: 100%;
+  float: right;
+
+  z-index: 999;
+}
+
+.topbar-buttons {
+  position: absolute;
+  top: 9.5%;
+  right: 0;
+  width: 35%;
+  height: 5%;
+  float: right;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  width: 35%;
+  height: 17.5vh;
+
+  opacity: 0;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  z-index: 999;
+}
+
+.title {
+  position: absolute;
+  top: 8.5%;
+  left: 0;
+  float: left;
+
+  margin-left: 50px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 3.5vh;
+  font-weight: 500;
+}
+
+/* Buttons Box */
+
+.topbar-button {
+  transition: all 0.15s linear;
+}
+
+.topbar-button:hover {
+  transform: scale(1.05);
+}
+
+.topbar-button:active {
+  transform: scale(0.95);
+}
+
+.dropdown {
+  height: 100%;
+  width: 35%;
+
+  background: transparent;
+  border-radius: 8px;
+  border: 2px solid #F1F1F1;
+
+  font-family: fredoka;
+  font-size: 1.25vh;
+  text-indent: -20%;
+
+  cursor: pointer;
+
+  & > i {
+    position: relative;
+    top: 30%;
+    right: 25%;
+
+    color: #C1C1C1;
+    font-size: 1.85vh;
+    
+    float: right;
+  }
+}
+
+.dropdown:hover + .dropdown-menu {
+  background-color: red;
+  opacity: 1;
+}
+
+.filters {
+  height: 100%;
+  width: 27.5%;
+
+  background: transparent;
+  border-radius: 8px;
+  border: 2px solid #F1F1F1;
+
+  font-family: fredoka;
+  font-size: 1.25vh;
+  text-indent: 20%;
+
+  cursor: pointer;
+
+  & > i {
+    position: relative;
+    top: 30%;
+    left: 12.5%;
+
+    color: #C1C1C1;
+    font-size: 1.85vh;
+
+    float: left;
+  }
+}
+
+.export {
+  height: 100%;
+  width: 27.5%;
+
+  background: #D6DAFF;
+  border-radius: 8px;
+  border: none;
+
+  color: #6473FF;
+  font-family: fredoka;
+  font-size: 1.25vh;
+  text-indent: 20%;
+
+  cursor: pointer;
+
+  & > i {
+    position: relative;
+    top: 30%;
+    left: 12.5%;
+
+    color: #6473FF;
+    font-size: 1.85vh;
+
+    float: left;
+  }
+}
+
+.dropdown-button {
+  height: 30%;
+  width: 85%;
+
+  background: #FAFAF9;
+  border-radius: 8px;
+  border: 2px solid #F1F1F1;
+
+  font-family: fredoka;
+  font-size: 1.25vh;
+  text-indent: -20%;
+
+  cursor: pointer;
+
+  & > i {
+    position: relative;
+    top: 30%;
+    right: 25%;
+
+    color: #C1C1C1;
+    font-size: 1.85vh;
+
+    float: right;
+  }
+}
+
+/* Top Box */
+
+.top-box-container {
+  width: 100%;
+  height: 15%;
+
+  position: relative;
+  top: 20%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.box {
+  height: 90%;
+  width: 30%;
+  
+  margin-right: 50px;
+  margin-left: 50px;
+
+  border-radius: 10px;
+  border: 2px solid #F1F1F1;
+
+  transition: all 0.15s linear;
+}
+
+.box-image {
+  & > i {
+    transition: all 0.1s linear;
+  }
+}
+
+.box:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+
+  & > .box-image {
+    & > i {
+      font-size: 2.75vh;
+      transform: translate(-50%, -50%) rotate(-5deg);
+    }
+  }
+}
+
+.box:active {
+  transform: scale(0.975);
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+
+  & > .box-image {
+    & > i {
+      font-size: 2.4vh;
+      transform: translate(-50%, -50%) rotate(-5deg);
+    }
+  }
+}
+
+.box-1 {
+  height: 50%;
+  aspect-ratio: 1/1;
+  background-color: #DCF0FF;
+  border-radius: 8px;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+
+  & > i {
+    color: #47AEFF;
+    font-size: 2.5vh;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Up: #E1FFD6 (Light), #67F135 (Dark) | Down: #FFC7C7 (Light), #FE3E3E (Dark) */
+
+.box-2 {
+  height: 50%;
+  aspect-ratio: 1/1;
+  background-color: #FFC7C7;
+  border-radius: 8px;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+
+  & > i {
+    color: #FE3E3E;
+    font-size: 2.5vh;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.box-3 {
+  height: 50%;
+  aspect-ratio: 1/1;
+  background-color: #FFEBBD;
+  border-radius: 8px;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+
+  & > i {
+    color: #F3B934;
+    font-size: 2.5vh;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+h2 {
+  position: relative;
+  left: 37.5%;
+  top: -35%;
+  
+  color: gray;
+
+  font-family: fredoka;
+  font-size: 1.25vh;
+  font-weight: 500;
+}
+
+h3 {  
+  position: relative;
+  left: 37.5%;
+  top: -40%;
+
+  color: black;
+
+  font-family: fredoka;
+  font-size: 3vh;
+  font-weight: 500;
+}
+
+/* Bottom Box */
+
+.bottom-box-container {
+  width: 100%;
+  height: 45%;
+
+  position: relative;
+  top: 22.5%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.bottom-box {
+  height: 90%;
+  width: 42.5%;
+
+  margin-right: 50px;
+  margin-left: 50px;
+
+  border-radius: 10px;
+  border: 2px solid #F1F1F1;
+
+  transition: all 0.15s linear;
+}
+
+.bottom-box:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+}
+
+
+
+
+
+/* Sidebar */
+
+
+.sidebar {
+  background-color: white;
+  width: 20%;
+  height: 100%;
+
+  position: absolute;
+  left: 11.5%;
+  top: 50%;
+
+  transform: translate(-57.5%, -50%);
+  float: left;
+}
+
+.sidebar-buttons-container {
+  width: 100%;
+  height: 75%;
+  position: absolute;
+  top: 15%;
+}
+
+.sidebar-bottom {
+  background-color: #FAFAF9;
+  border-radius: 10px;
+
+  width: 80%;
+  height: 30%;
+
+  position: absolute;
+  top: 94%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.25s linear;
+
+  & > h4 {
+    color: #6473FF;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 0.9vw;
+    text-align: center;
+
+    position: relative;
+    width: 80%;
+    left: 50%;
+    top: 20%;
+
+    transform: translate(-50%, -50%);
+  }
+
+  & > button {
+    background-color: #6473FF;
+    color: white;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 0.9vw;
+
+    position: inherit;
+    width: 80%;
+    height: 3.5vw;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%);
+
+    transition: all 0.25s linear;
+  }
+
+  & > button:hover {
+    box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.6);
+  }
+}
+
+button > i {
+  position: relative;
+  left: -10px;
+}
+
+/* Sidebar Buttons Style */
+.sidebar-logo {
+  position: relative;
+  height: 18vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  & > h1 {
+    font-family: sans-serif;
+    font-size: 2vw;
+  }
+}
+
+.logo {
+  width: 4vw;
+}
+
+.sidebar-button {
+  background: transparent;
+  color: lightgray;
+
+  border: none;
+  padding: 14px 28px;
+  font-size: 2.1vh;
+  font-weight: 500;
+  text-align: center;
+  word-spacing: 20px;
+  cursor: pointer;
+
+  margin: 10px;
+  border-radius: 10px;
+
+  width: 100%;
+  height: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: all 0.25s linear;
+}
+
+.current {
+  transition: all 0.25s linear;
+  color: black;
+
+  & > i {
+    color: #6473FF;
+  }
+}
+
+.sidebar-button:hover .current {
+  color: lightgray;
+
+  & > i {
+    color: lightgray;
+  }
+}
+
+.sidebar-button:hover {
+  color: black;
+  transform: translateX(3px);
+
+  & > i {
+    color: #6473FF;
+  }
+}
