@@ -374,8 +374,12 @@ button>i {
 
 .last-played {
   background-color: white;
-  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.6);
   border-radius: 17px;
+
+  border-radius: 10px;
+  border: 2px solid #F1F1F1;
+
+  transition: all 0.15s linear;
 
   width: 40vw;
   height: 17vw;
@@ -383,6 +387,16 @@ button>i {
   position: inherit;
   left: 24%;
   top: 15%;
+}
+
+.last-played:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+}
+
+.last-played:active {
+  transform: scale(0.975);
+  box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
 }
 
 .quick-games {
