@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Dashboard - Wick Learning</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Wick Learning</title>
   <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
-    <link rel="stylesheet" href="/learningwithwick/style.css">
-    <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/learningwithwick/style.css">
+  <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
 </head>
-    
+
 <body>
-      <div class='loading-overlay' id='loading-overlay'></div>
+  <div class='loading-overlay' id='loading-overlay'></div>
 
-      <div class='main-container'>
+  <div class='main-container'>
 
-        <h4 class='welcome-back-text'>
-          Welcome Back,
-        </h4>
+    <h4 class='welcome-back-text'>
+      Welcome Back,
+    </h4>
 
-        <h1 class='welcome-back-name' id='welcome-back-name'>
-            OnlyTwentyCharacters
-        </h1>
+    <h1 class='welcome-back-name' id='welcome-back-name'>
+      OnlyTwentyCharacters
+    </h1>
 
-        <div class='last-played' id='last-played'>
-          <h1>
-            Recently Played:
-          </h2>
-                
-          <h2>
-            Chapter 1 Quiz
-          </h2>
+    <div class='last-played' id='last-played'>
+      <h1>
+        Recently Played:
+        </h2>
 
-          <button class='last-played-button' id='/learningwithwick/practice/games/chapter/1/quiz/'>
-            <i class='fas fa-play'></i>
-            Play Now
-          </button>
+        <h2>
+          Chapter 1 Quiz
+        </h2>
+
+        <button class='last-played-button' id='/learningwithwick/practice/games/chapter/1/quiz/'>
+          <i class='fas fa-play'></i>
+          Play Now
+        </button>
 
         <i class='fa-solid fa-id-card' id='ico'></i>
-        </div>
+    </div>
 
-      </div>
+  </div>
 
-    <div class='sidebar'>
+  <div class='sidebar'>
 
     <div class='sidebar-logo'>
       <img class='logo' src='/learningwithwick/media/logo.png'>
@@ -86,30 +87,63 @@
     </div>
   </div>
 
-    <script src='/learningwithwick/scripts/loading.js'></script>
-    <script>
-        let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
-        let lastPlayed = localStorage.getItem('last-played');
-        let icon = (lastPlayed !== null) ? dataset[(lastPlayed - 1)] : dataset[0];
-        document.getElementById('ico').className = icon;
-        if (localStorage.getItem('last-played')) {
-            document.querySelector('.last-played > h2').textContent = `Chapter ${lastPlayed} Quiz`;
-            lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
-        } else {
-            document.querySelector('.last-played > h1').textContent = 'We Recommend:';
-            document.querySelector('.last-played > h2').textContent = `Chapter ${1} Quiz`;
-            lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
+  <script>
+    // Dynamically modify, in real time, the paths for GitHub pages.
+
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!window.location.href.includes("github")) {
+        function removeLearningWithWick(element, attribute) {
+          let attrValue = element.getAttribute(attribute);
+          if (attrValue && attrValue.includes("/learningwithwick")) {
+            element.setAttribute(attribute, attrValue.replace("/learningwithwick", ""));
+          }
         }
-        
-        for (let child of document.getElementById('last-played').children) {
-            if (child.className === 'last-played-button') {
-                child.onclick = function() {
-                    setTimeout(() => {
-                        location.href = lastPlayed;
-                    }, 250);
-                }
-            }
+
+        const elements = document.querySelectorAll('[src], [href], [id]');
+
+        elements.forEach(element => {
+          if (element.hasAttribute('src')) {
+            removeLearningWithWick(element, 'src');
+          }
+
+          if (element.hasAttribute('href')) {
+            removeLearningWithWick(element, 'href');
+          }
+
+          if (element.hasAttribute('id')) {
+            removeLearningWithWick(element, 'id');
+          }
+        });
+
+        console.log("Paths modified for GitHub Pages");
+      }
+    });
+  </script>
+  <script src='/learningwithwick/scripts/loading.js'></script>
+  <script>
+    let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
+    let lastPlayed = localStorage.getItem('last-played');
+    let icon = (lastPlayed !== null) ? dataset[(lastPlayed - 1)] : dataset[0];
+    document.getElementById('ico').className = icon;
+    if (localStorage.getItem('last-played')) {
+      document.querySelector('.last-played > h2').textContent = `Chapter ${lastPlayed} Quiz`;
+      lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
+    } else {
+      document.querySelector('.last-played > h1').textContent = 'We Recommend:';
+      document.querySelector('.last-played > h2').textContent = `Chapter ${1} Quiz`;
+      lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
+    }
+
+    for (let child of document.getElementById('last-played').children) {
+      if (child.className === 'last-played-button') {
+        child.onclick = function () {
+          setTimeout(() => {
+            location.href = lastPlayed;
+          }, 250);
         }
-    </script>
+      }
+    }
+  </script>
 </body>
+
 </html>

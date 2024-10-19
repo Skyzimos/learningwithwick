@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
   <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
   <link rel="stylesheet" href="/learningwithwick/practice/games/loading/style.css">
 </head>
+
 <body>
   <div class="loader">
     <div class="loaderMiniContainer">
@@ -15,28 +17,10 @@
         <span class="bar"></span>
         <span class="bar bar2"></span>
       </div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 101 114"
-        class="svgIcon"
-      >
-        <circle
-          stroke-width="7"
-          stroke="black"
-          transform="rotate(36.0692 46.1726 46.1727)"
-          r="29.5497"
-          cy="46.1727"
-          cx="46.1726"
-        ></circle>
-        <line
-          stroke-width="7"
-          stroke="black"
-          y2="111.784"
-          x2="97.7088"
-          y1="67.7837"
-          x1="61.7089"
-        ></line>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 101 114" class="svgIcon">
+        <circle stroke-width="7" stroke="black" transform="rotate(36.0692 46.1726 46.1727)" r="29.5497" cy="46.1727"
+          cx="46.1726"></circle>
+        <line stroke-width="7" stroke="black" y2="111.784" x2="97.7088" y1="67.7837" x1="61.7089"></line>
       </svg>
     </div>
   </div>
@@ -46,14 +30,50 @@
   </svg>
 
   <script>
+    // Dynamically modify, in real time, the paths for GitHub pages.
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    (async () => {
-      await delay(3750);
-      window.location.href = '/learningwithwick/statistics/';
-    })();
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!window.location.href.includes("github")) {
+        function removeLearningWithWick(element, attribute) {
+          let attrValue = element.getAttribute(attribute);
+          if (attrValue && attrValue.includes("/learningwithwick")) {
+            element.setAttribute(attribute, attrValue.replace("/learningwithwick", ""));
+          }
+        }
+
+        const elements = document.querySelectorAll('[src], [href], [id]');
+
+        elements.forEach(element => {
+          if (element.hasAttribute('src')) {
+            removeLearningWithWick(element, 'src');
+          }
+
+          if (element.hasAttribute('href')) {
+            removeLearningWithWick(element, 'href');
+          }
+
+          if (element.hasAttribute('id')) {
+            removeLearningWithWick(element, 'id');
+          }
+        });
+
+        (async () => {
+          await delay(3750);
+          window.location.href = '/statistics/';
+        })();
+
+        console.log("Paths modified for GitHub Pages");
+      }
+
+      (async () => {
+        await delay(3750);
+        window.location.href = '/learningwithwick/statistics/';
+      })();
+    });
   </script>
 </body>
+
 </html>
