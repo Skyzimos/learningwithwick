@@ -1,10 +1,10 @@
 // References
-let Box2_BoxImage = document.querySelector('.box:has(.box-2) > .box-image');
-let Box2_BoxImageIcon = document.querySelector('.box:has(.box-2) > .box-image > i');
+let Box2_BoxImage = document.querySelector('.flex-box:has(.box-2) > .box-image');
+let Box2_BoxImageIcon = document.querySelector('.flex-box:has(.box-2) > .box-image > i');
 
-let Box1_H3 = document.querySelector('.box:has(.box-1) > h3');
-let Box2_H3 = document.querySelector('.box:has(.box-2) > h3');
-let Box3_H3 = document.querySelector('.box:has(.box-3) > h3');
+let Box1_H3 = document.querySelector('.flex-box:has(.box-1) > h3');
+let Box2_H3 = document.querySelector('.flex-box:has(.box-2) > h3');
+let Box3_H3 = document.querySelector('.flex-box:has(.box-3) > h3');
 
 let lastPlayed = localStorage.getItem('last-played');
 let chapterId = 'chapter_' + lastPlayed;
@@ -148,7 +148,11 @@ if (!performanceChanges.accuracyImprovement.includes('-')) {
     Box2_BoxImageIcon.className = 'fa-solid fa-down-long';
 }
 
-Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
-Box2_H3.innerHTML = performanceChanges.accuracyImprovement;
-Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / chapterStatistics.totalQuizzes)).comparisonString;
-populateMissedQuestions();
+try {
+    Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
+        Box2_H3.innerHTML = performanceChanges.accuracyImprovement;
+    Box3_H3.innerHTML = convertToRoundedMinutes((chapterStatistics.totalTimeSpent / chapterStatistics.totalQuizzes)).comparisonString;
+    populateMissedQuestions();
+} catch (error) {
+    console.log('Error calculating statistics:', error);
+}

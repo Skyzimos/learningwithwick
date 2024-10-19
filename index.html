@@ -2,6 +2,67 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function () {
+      // Check if the current URL contains "github"
+      if (!window.location.href.includes("github")) {
+        // Helper function to modify and reload elements with cache busting
+        function reloadElementWithCacheBust(element, attribute) {
+          let attrValue = element.getAttribute(attribute);
+          if (attrValue && attrValue.includes("/learningwithwick")) {
+            // Replace '/learningwithwick' with an empty string
+            let newAttrValue = attrValue.replace("/learningwithwick", "");
+
+            // Add cache-busting parameter to force reload
+            const cacheBustParam = `?cb=${new Date().getTime()}`;
+            const updatedAttrValue = newAttrValue.includes("?")
+              ? newAttrValue + "&" + cacheBustParam
+              : newAttrValue + cacheBustParam;
+
+            element.setAttribute(attribute, updatedAttrValue);
+
+            // For script tags, we need to re-inject them to execute again
+            if (element.tagName.toLowerCase() === "script") {
+              const clone = document.createElement("script");
+              clone.src = updatedAttrValue;
+              clone.async = element.async;
+              clone.defer = element.defer;
+              element.parentNode.replaceChild(clone, element);
+            }
+          }
+        }
+
+        // Modify link and script tags in the head (stylesheets, JS)
+        const headElements = document.querySelectorAll('link[href], script[src]');
+        headElements.forEach(element => {
+          if (element.hasAttribute('href')) {
+            reloadElementWithCacheBust(element, 'href');
+          }
+          if (element.hasAttribute('src')) {
+            reloadElementWithCacheBust(element, 'src');
+          }
+        });
+
+        // After DOM content is loaded, modify other body elements (images, iframes, etc.)
+        document.addEventListener('DOMContentLoaded', function () {
+          const bodyElements = document.querySelectorAll('[src], [href], [id]');
+          bodyElements.forEach(element => {
+            if (element.hasAttribute('src')) {
+              reloadElementWithCacheBust(element, 'src');
+            }
+            if (element.hasAttribute('href')) {
+              reloadElementWithCacheBust(element, 'href');
+            }
+            if (element.hasAttribute('id')) {
+              reloadElementWithCacheBust(element, 'id');
+            }
+          });
+        });
+
+        console.log("Paths modified and resources reloaded with cache-busting for GitHub Pages");
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Wick Learning</title>
@@ -87,38 +148,6 @@
     </div>
   </div>
 
-  <script>
-    // Dynamically modify, in real time, the paths for GitHub pages.
-
-    window.addEventListener('DOMContentLoaded', function () {
-      if (!window.location.href.includes("github")) {
-        function removeLearningWithWick(element, attribute) {
-          let attrValue = element.getAttribute(attribute);
-          if (attrValue && attrValue.includes("/learningwithwick")) {
-            element.setAttribute(attribute, attrValue.replace("/learningwithwick", ""));
-          }
-        }
-
-        const elements = document.querySelectorAll('[src], [href], [id]');
-
-        elements.forEach(element => {
-          if (element.hasAttribute('src')) {
-            removeLearningWithWick(element, 'src');
-          }
-
-          if (element.hasAttribute('href')) {
-            removeLearningWithWick(element, 'href');
-          }
-
-          if (element.hasAttribute('id')) {
-            removeLearningWithWick(element, 'id');
-          }
-        });
-
-        console.log("Paths modified for GitHub Pages");
-      }
-    });
-  </script>
   <script src='/learningwithwick/scripts/loading.js'></script>
   <script>
     let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
