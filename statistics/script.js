@@ -124,7 +124,7 @@ function populateMissedQuestions() {
     const container = document.querySelector('.missed-questions-item-container');
     const sampleItem = document.querySelector('.missed-questions.sample-item');
 
-    document.querySelector('.bottom-flex-box:has(.box-2) > .bottom-box-text > h3').innerHTML = `${numberOfMissedQuestions} Total`;
+    document.querySelector('.bottom-flex-box:has(.box-4) > .bottom-box-text > h3').innerHTML = `${numberOfMissedQuestions} Total`;
     mostMissedQuestions.forEach(([questionId, missedCount]) => {
         let newItem = sampleItem.cloneNode(true);
         newItem.classList.remove('sample-item');
