@@ -1,7 +1,7 @@
 // Dynamically modify, in real time, the paths for GitHub pages.
 
 window.addEventListener('DOMContentLoaded', function () {
-    if (window.location.href.includes("github")) {
+    if (!window.location.href.includes("github")) {
       function removeLearningWithWick(element, attribute) {
         let attrValue = element.getAttribute(attribute);
         if (attrValue && attrValue.includes("/learningwithwick")) {
