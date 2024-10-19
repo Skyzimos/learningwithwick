@@ -432,6 +432,12 @@ h3 {
 .bottom-box:hover {
     transform: scale(1.025);
     box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
+
+    &>.box-image {
+        &>i {
+            transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+        }
+    }
 }
 
 .bottom-box:active:not(.internal-container > .retry-container:active, .internal-container > .image-container:active) {
@@ -440,8 +446,7 @@ h3 {
 
     &>.box-image {
         &>i {
-            font-size: 3.2vh;
-            transform: translate(-50%, -50%) rotate(-5deg);
+            transform: translate(-50%, -50%) scale(0.9) rotate(-5deg);
         }
     }
 }
