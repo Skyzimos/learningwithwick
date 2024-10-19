@@ -627,7 +627,7 @@ body {
 }
 
 .sample-item {
-    display: block;
+    display: none;
 }
 
 .missed-questions {
@@ -657,7 +657,7 @@ body {
 .missed-questions-flex-text>h2 {
     width: min-content;
     height: 100%;
-    padding-left: 5%;
+    padding-left: 10%;
 
     color: #FA8223;
 
