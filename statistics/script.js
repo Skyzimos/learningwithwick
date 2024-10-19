@@ -62,7 +62,9 @@ function calculatePerformanceImprovement() {
 
     if (!chapterData || chapterData.quizzes.length < 2) {
         console.log("Not enough data to calculate improvement.");
-        return null;
+        return {
+            accuracyImprovement: 'Insufficient Data'
+        };
     }
 
     let firstQuiz = chapterData.quizzes[0];
