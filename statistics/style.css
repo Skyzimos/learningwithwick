@@ -446,7 +446,7 @@ h3 {
 
     &>.box-image {
         &>i {
-            transform: translate(-50%, -50%) scale(0.9) rotate(-5deg);
+            transform: translate(-50%, -50%) scale(0.95) rotate(-5deg);
         }
     }
 }
