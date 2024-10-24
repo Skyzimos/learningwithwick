@@ -235,6 +235,8 @@
     </script>
 
     <script>
+      let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+
       document.getElementById('cards').onmousemove = e => {
         for (const card of document.getElementsByClassName('card')) {
           const rect = card.getBoundingClientRect(),
@@ -247,8 +249,6 @@
       }
 
       (async () => {
-        let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
-
         for (var i = 0; i < 9; i++) {
           console.log(i)
           let chapterId = 'chapter_' + i;
