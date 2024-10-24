@@ -274,12 +274,12 @@
       let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
 
       for (var i = 0; i < 9; i++) {
-        let chapterId = 'chapter_' + (chapter - 1);
+        let chapterId = 'chapter_' + (i - 1);
 
         if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
         let card = document.querySelectorAll(`[data-chapter="${i}"]`)[0];
         let overlay = card.querySelector('.card-overlay');
-        
+
         if (overlay) {
           overlay.remove();
         }
