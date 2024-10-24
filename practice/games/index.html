@@ -273,19 +273,19 @@
             console.log(card)
             card.addEventListener('click', () => {
               console.log('clicked')
-              let chapter = card.dataset.chapter;
+              let chapter = Number(card.dataset.chapter);
 
-              if (Number(chapter) == 1) {
+              if (chapter == 1) {
                 setTimeout(() => {
                   location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
                 }, 250);
               } else {
-                let chapterId = 'chapter_' + (Number(chapter) - 1);
+                let chapterId = 'chapter_' + (chapter - 1);
                 if (!storedStats[chapterId]) return;
 
-                let chapter = storedStats[chapterId];
+                let chapterStats = storedStats[chapterId];
 
-                if (chapter.unlocked == true) {
+                if (chapterStats.unlocked == true) {
                   setTimeout(() => {
                     location.href = `/learningwithwick/practice/games/chapter/${chapter}/quiz/`;
                   }, 250);
