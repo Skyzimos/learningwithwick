@@ -319,7 +319,7 @@ let quizData = {
       questions: [
         'The light is about to turn green.',
         'Turning from a one way to another one way.',
-        'It’s clear and safe.',
+        'It\’s clear and safe.',
         'No pedestrians are present.',
       ],
       answers: [
@@ -396,10 +396,7 @@ let quizData = {
   'What color lines indicate traffic traveling in opposite directions?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: {
-        minimum: 1,
-        maximum: 4,
-      },
+      limit_selection: 1,
       questions: [
         'Blue',
         'Red',
@@ -414,10 +411,7 @@ let quizData = {
   'What color lines indicate traffic traveling in the same direction?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: {
-        minimum: 1,
-        maximum: 4,
-      },
+      limit_selection: 1,
       questions: [
         'Yellow',
         'White',
