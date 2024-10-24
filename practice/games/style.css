@@ -92,6 +92,10 @@ html, body {
   display: block;
 }
 
+.inactive {
+  display: none;
+}
+
 .tooltip {
   position: absolute;
   top: calc(-1 * var(--margin));
