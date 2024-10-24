@@ -129,7 +129,7 @@ function populateMissedQuestions() {
         let newItem = sampleItem.cloneNode(true);
         newItem.classList.remove('sample-item');
         newItem.querySelector('.times-container > h1').textContent = `${missedCount}x`;
-        newItem.querySelector('.missed-questions-flex-text > h2').textContent = `#${questionId}`;
+        newItem.querySelector('.missed-questions-flex-text > h2').textContent = `#${questionId + 1}`;
 
         container.appendChild(newItem);
     });
