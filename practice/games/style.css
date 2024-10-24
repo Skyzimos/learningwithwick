@@ -129,7 +129,6 @@ html, body {
 }
 
 .inactive {
-  display: none;
   opacity: 0;
   visibility: hidden;
 }
