@@ -246,6 +246,22 @@
         };
       }
 
+      let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+
+      for (var i = 0; i < 9; i++) {
+        console.log(i)
+        let chapterId = 'chapter_' + i;
+
+        if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
+        console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
+        let card = document.querySelector(`[data-chapter="${i + 1}"]`);
+        let overlay = card.querySelector('.card-overlay');
+
+        if (overlay) {
+          overlay.remove();
+        }
+      }
+
       document.querySelectorAll('.card').forEach(card => {
         card.onclick = () => {
           let chapter = card.dataset.chapter;
@@ -270,20 +286,6 @@
           }
         };
       });
-
-      let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
-
-      for (var i = 0; i < 9; i++) {
-        let chapterId = 'chapter_' + i;
-
-        if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
-        let card = document.querySelector(`[data-chapter="${i + 1}"]`);
-        let overlay = card.querySelector('.card-overlay');
-
-        if (overlay) {
-          overlay.remove();
-        }
-      }
     </script>
 
     <script src='/learningwithwick/scripts/loading.js'></script>
