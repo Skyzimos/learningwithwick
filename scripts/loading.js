@@ -13,6 +13,21 @@ for (let child of document.getElementById('sidebar-buttons-container').children)
   }
 }
 
+for (let child of document.querySelector('.profile-bottom-container').children) {
+  if (child.classList.contains('bottom-button')) {
+    child.onclick = function() {
+      document.getElementById('loading-overlay').classList.remove('fade-out')
+      document.getElementById('loading-overlay').style.opacity = 0;
+      document.getElementById('loading-overlay').style.display = 'block';
+      document.getElementById('loading-overlay').classList.add('fade-in')
+
+      setTimeout(() => {
+        location.href = child.id;
+      }, 250);
+    }
+  }
+}
+
 function _fullscreenEnabled() {
   // FF provides nice flag, maybe others will add support for this later on?
   if (window['fullScreen'] !== undefined) {

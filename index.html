@@ -67,7 +67,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Wick Learning</title>
   <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
-  <link rel="stylesheet" href="/learningwithwick/style.css">
+  <link rel="stylesheet" href="/style.css">
   <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
 </head>
 
@@ -104,7 +104,6 @@
   </div>
 
   <div class='sidebar'>
-
     <div class='sidebar-logo'>
       <img class='logo' src='/learningwithwick/media/logo.png'>
       <h1>Wick</h1>
@@ -149,12 +148,80 @@
   </div>
 
   <div class='profile-sidebar'>
-    <div class='top-container'>
+    <div class='profile-top-container'>
+      <img src='/media/Sheep.jpeg'>
+      <h3>Hey,</h3>
+      <h1>OnlyTwentyCharacters!</h1>
+    </div>
+    <div class='profile-content-container'>
 
+      <div class='box animate-on-load'>
+        <div class='flex-box'>
+          <div class='box-image box-1'>
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <div class='box-text'>
+            <h2>
+              Total Quizzes
+            </h2>
+            <h3>
+              N/A
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class='box animate-on-load'>
+        <div class='flex-box'>
+          <div class='box-image box-2'>
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <div class='box-text'>
+            <h2>
+              Practice Average
+            </h2>
+            <h3>
+              N/A
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class='box animate-on-load'>
+        <div class='flex-box'>
+          <div class='box-image box-3'>
+            <i class="fa-solid fa-bookmark"></i>
+          </div>
+          <div class='box-text'>
+            <h2>
+              Best Chapter
+            </h2>
+            <h3>
+              N/A
+            </h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class='profile-bottom-container'>
+      <div class='bottom-button animate-on-load' id='/learningwithwick/practice/games/'>
+        <i class="fa-regular fa-flag"></i>
+      </div>
+      <div class='bottom-button animate-on-load' id='/learningwithwick/statistics/'>
+        <i class="fa-regular fa-chart-bar"></i>
+      </div>
+      <div class='bottom-button animate-on-load'>
+        <i class='fa-classic fa-calendar'></i>
+      </div>
+      <div class='bottom-button animate-on-load'>
+        <i class="fa-regular fa-pen-to-square"></i>
+      </div>
     </div>
   </div>
 
-  <script src='/learningwithwick/scripts/loading.js'></script>
+  <script src='/scripts/loading.js'></script>
+  <script src='/script.js'></script>
   <script>
     let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
     let lastPlayed = localStorage.getItem('last-played');
