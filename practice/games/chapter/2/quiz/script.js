@@ -82,6 +82,10 @@ let quizData = {
   'Which of the following would help keep your car in good operating condition: (mark each correct answer)': {
     type: 'multiple_choice',
     data: {
+      limit_selection: {
+        minimum: 1,
+        maximum: 6,
+      },
       questions: [
         'Keep a properly tuned engine.',
         'Keep properly inflated tires.',
@@ -97,7 +101,7 @@ let quizData = {
       ]
     }
   },
-  '': {
+  'Tire pressure has been known to change with time and temperature changes.': {
     type: 'true_false',
     data: {
       answers: [
@@ -210,7 +214,10 @@ let quizData = {
   'What is required of your vehicle if your view from the rearview mirror is blocked?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'You must have a rear bumper camera.',
         'You must have a warning signal while in reverse.',

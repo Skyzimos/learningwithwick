@@ -21,7 +21,10 @@ let quizData = {
   'Which of the following can be used as a primary I.D. (Select the 4 correct answers.)': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 4,
+      limit_selection: {
+        minimum: 4,
+        maximum: 7,
+      },
       questions: [
           'Social Security Card',
           'Hospital Birth Certificate',
@@ -87,10 +90,13 @@ let quizData = {
       ]
     }
   },
-  'The most commonly used document for a primary identification is _______.': {
+  'The most commonly used document(s) for a primary identification is _______.': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Official Transcript',
         'School I.D.',
@@ -281,6 +287,7 @@ let quizData = {
   'To qualify for a full class D license, you must be 18 or maintain a good driving record for ______consecutive months.': {
     type: 'multiple_choice',
     data: {
+      limit_selection: 1,
       questions: [
         '18',
         '12',
