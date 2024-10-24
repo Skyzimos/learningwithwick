@@ -22,7 +22,6 @@ function _fullscreenEnabled() {
   // 5px height margin, just in case (needed by e.g. IE)
   var heightMargin = 5;
 
-  // Check for Safari in full screen mode
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   var isApple = /Apple Computer/.test(navigator.vendor);
   if (isSafari && isApple) {
