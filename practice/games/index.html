@@ -256,13 +256,17 @@
           if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
           console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
           let cards = document.querySelectorAll('.main-container > #cards > .card');
+          let tooltips = document.querySelectorAll('.tooltip-container');
           let card = Array.from(cards).filter(c => Number(c.getAttribute('data-chapter')) === (i + 1))[0];
-          console.log(cards, card);
+          let tooltip = Array.from(tooltips).filter(c => Number(c.getAttribute('data-chapter')) === (i + 1))[0];
           let overlay = card.querySelector('.card-overlay');
-          console.log(card, overlay)
 
           if (overlay) {
             overlay.remove();
+          }
+
+          if (tooltip) {
+            tooltip.style.display = 'none';
           }
         }
       })();
