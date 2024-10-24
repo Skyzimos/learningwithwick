@@ -67,12 +67,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Wick Learning</title>
   <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
-  <link rel="stylesheet" href="/learningwithwick/style.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/styles/onboarding.css">
   <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div class='loading-overlay' id='loading-overlay'></div>
+
+  <div class='modal-container'>
+    <div class='modal onboarding-username current_inactive'>
+      <!--Title-->
+      <div class='text-container'>
+        <h1>
+          👋 Hey! Welcome to Wick Learning!
+        </h1>
+        <h2>
+          We're so happy to have you!<br>To begin, please create a username!
+        </h2>
+      </div>
+      
+      <div class='input-container'>
+        <input type='text' id='input' required='' maxlength='20'>
+        <label for='input' class='label'>Enter Username</label>
+        <div class='underline'></div>
+        <button id='submit-username'>
+          Create Username
+        </button>
+      </div>
+    </div>
+  
+    <div class='modal onboarding-pfp '>
+      <div class='text-container'>
+        <h1>
+          📌 Select a Profile Picture!
+        </h1>
+      </div>
+
+      <div class='input-container'>
+
+      </div>
+    </div>
+  </div>
 
   <div class='main-container'>
 
@@ -149,7 +185,7 @@
 
   <div class='profile-sidebar'>
     <div class='profile-top-container'>
-      <img src='/learningwithwick/media/Sheep.jpeg'>
+      <img src='/media/pfps/Triceratops.jpg'>
       <h3>Hey,</h3>
       <h1>OnlyTwentyCharacters!</h1>
     </div>
@@ -220,8 +256,8 @@
     </div>
   </div>
 
-  <script src='/learningwithwick/scripts/loading.js'></script>
-  <script src='/learningwithwick/script.js'></script>
+  <script src='/scripts/loading.js'></script>
+  <script src='/script.js'></script>
   <script>
     let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
     let lPlayed = localStorage.getItem('last-played');
