@@ -266,7 +266,9 @@
       }
 
       document.querySelectorAll('.card').forEach(card => {
+        console.log(card)
         card.onclick = () => {
+          console.log('clicked')
           let chapter = card.dataset.chapter;
 
           if (Number(chapter) == 1) {
