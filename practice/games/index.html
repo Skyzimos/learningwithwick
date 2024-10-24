@@ -269,7 +269,7 @@
         card.onclick = () => {
           let chapter = card.dataset.chapter;
 
-          if (chapter == 1) {
+          if (Number(chapter) == 1) {
             setTimeout(() => {
               location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
             }, 250);
