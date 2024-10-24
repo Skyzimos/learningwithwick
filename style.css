@@ -120,6 +120,13 @@ html, body {
   float: left;
 }
 
+.profile-sidebar {
+  background-color: red;
+  width: 35%;
+  height: 100%;
+  float: right;
+}
+
 .sidebar-buttons-container {
   width: 100%;
   height: 75%;
