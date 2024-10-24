@@ -267,7 +267,7 @@
 
       document.querySelectorAll('.card').forEach(card => {
         console.log(card)
-        card.onclick = () => {
+        card.addEventListener('click', () => {
           console.log('clicked')
           let chapter = card.dataset.chapter;
 
@@ -276,7 +276,7 @@
               location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
             }, 250);
           } else {
-            let chapterId = 'chapter_' + (chapter - 1);
+            let chapterId = 'chapter_' + (Number(chapter) - 1);
             let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
 
             if (!storedStats[chapterId]) return;
@@ -289,7 +289,7 @@
               }, 250);
             }
           }
-        };
+        });
       });
     </script>
 
