@@ -18,14 +18,19 @@ function _fullscreenEnabled() {
   if (window['fullScreen'] !== undefined) {
     return window.fullScreen;
   }
+
   // 5px height margin, just in case (needed by e.g. IE)
   var heightMargin = 5;
-  if ($.browser.webkit && /Apple Computer/.test(navigator.vendor)) {
-    // Safari in full screen mode shows the navigation bar, 
-    // which is 40px  
+
+  // Check for Safari in full screen mode
+  var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  var isApple = /Apple Computer/.test(navigator.vendor);
+  if (isSafari && isApple) {
+    // Safari in full screen mode shows the navigation bar, which is 40px  
     heightMargin = 42;
   }
-  return screen.width == window.innerWidth &&
+
+  return screen.width === window.innerWidth &&
     Math.abs(screen.height - window.innerHeight) < heightMargin;
 }
 

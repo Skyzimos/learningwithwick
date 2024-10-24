@@ -163,7 +163,7 @@
       </div>
 
       <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
-        <button class='sidebar-button' id='/'>
+        <button class='sidebar-button' id='/learningwithwick/'>
           <i class="fa-regular fa-map"></i>
           Home
         </button>
@@ -292,6 +292,7 @@
                 }, 250);
               } else {
                 let chapterId = 'chapter_' + (chapter - 1);
+                console.log(chapterId)
                 if (!storedStats[chapterId]) return;
 
                 let chapterStats = storedStats[chapterId];
