@@ -224,23 +224,23 @@
   <script src='/learningwithwick/script.js'></script>
   <script>
     let dataset = ['fa-solid fa-id-card', 'fa-solid fa-helmet-safety', 'fa-solid fa-traffic-light', 'fa-solid fa-gauge'];
-    let lastPlayed = localStorage.getItem('last-played');
-    let icon = (lastPlayed !== null) ? dataset[(lastPlayed - 1)] : dataset[0];
+    let lPlayed = localStorage.getItem('last-played');
+    let icon = (lPlayed !== null) ? dataset[(lPlayed - 1)] : dataset[0];
     document.getElementById('ico').className = icon;
     if (localStorage.getItem('last-played')) {
-      document.querySelector('.last-played > h2').textContent = `Chapter ${lastPlayed} Quiz`;
-      lastPlayed = `/learningwithwick/practice/games/chapter/${lastPlayed}/quiz/`;
+      document.querySelector('.last-played > h2').textContent = `Chapter ${lPlayed} Quiz`;
+      lPlayed = `/learningwithwick/practice/games/chapter/${lPlayed}/quiz/`;
     } else {
       document.querySelector('.last-played > h1').textContent = 'We Recommend:';
       document.querySelector('.last-played > h2').textContent = `Chapter ${1} Quiz`;
-      lastPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
+      lPlayed = '/learningwithwick/practice/games/chapter/1/quiz/';
     }
 
     for (let child of document.getElementById('last-played').children) {
       if (child.className === 'last-played-button') {
         child.onclick = function () {
           setTimeout(() => {
-            location.href = lastPlayed;
+            location.href = lPlayed;
           }, 250);
         }
       }
