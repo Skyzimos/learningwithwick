@@ -246,51 +246,53 @@
         };
       }
 
-      let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+      (async () => {
+        let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
 
-      for (var i = 0; i < 9; i++) {
-        console.log(i)
-        let chapterId = 'chapter_' + i;
+        for (var i = 0; i < 9; i++) {
+          console.log(i)
+          let chapterId = 'chapter_' + i;
 
-        if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
-        console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
-        let cards = document.querySelectorAll('.main-container > #cards > .card');
-        let card = Array.from(cards).filter(c => Number(c.getAttribute('data-chapter')) === (i + 1))[0];
-        console.log(cards, card);
-        let overlay = card.querySelector('.card-overlay');
-        console.log(card, overlay)
+          if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
+          console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
+          let cards = document.querySelectorAll('.main-container > #cards > .card');
+          let card = Array.from(cards).filter(c => Number(c.getAttribute('data-chapter')) === (i + 1))[0];
+          console.log(cards, card);
+          let overlay = card.querySelector('.card-overlay');
+          console.log(card, overlay)
 
-        if (overlay) {
-          overlay.remove();
-        }
-      }
-
-      document.querySelectorAll('.card').forEach(card => {
-        console.log(card)
-        card.addEventListener('click', () => {
-          console.log('clicked')
-          let chapter = card.dataset.chapter;
-
-          if (Number(chapter) == 1) {
-            setTimeout(() => {
-              location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
-            }, 250);
-          } else {
-            let chapterId = 'chapter_' + (Number(chapter) - 1);
-            let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
-
-            if (!storedStats[chapterId]) return;
-
-            let chapter = storedStats[chapterId];
-
-            if (chapter.unlocked == true) {
-              setTimeout(() => {
-                location.href = `/learningwithwick/practice/games/chapter/${chapter}/quiz/`;
-              }, 250);
-            }
+          if (overlay) {
+            overlay.remove();
           }
+        }
+      })();
+
+      (async () => {
+        document.querySelectorAll('.card').forEach(card => {
+          console.log(card)
+          card.addEventListener('click', () => {
+            console.log('clicked')
+            let chapter = card.dataset.chapter;
+
+            if (Number(chapter) == 1) {
+              setTimeout(() => {
+                location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
+              }, 250);
+            } else {
+              let chapterId = 'chapter_' + (Number(chapter) - 1);
+              if (!storedStats[chapterId]) return;
+
+              let chapter = storedStats[chapterId];
+
+              if (chapter.unlocked == true) {
+                setTimeout(() => {
+                  location.href = `/learningwithwick/practice/games/chapter/${chapter}/quiz/`;
+                }, 250);
+              }
+            }
+          });
         });
-      });
+      })();
     </script>
 
     <script src='/learningwithwick/scripts/loading.js'></script>
