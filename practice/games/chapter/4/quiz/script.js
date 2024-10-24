@@ -23,7 +23,7 @@ let quizData = {
     data: {
       limit_selection: {
         minimum: 1,
-        maximum: 2,
+        maximum: 4,
       },
       questions: [
         'You can always drive the speed limit.',
@@ -62,7 +62,10 @@ let quizData = {
   'What happens to a driver that approaches an intersection at an unlawful speed?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Must be drunk.',
         'Lose your right of way privileges.',
@@ -92,6 +95,7 @@ let quizData = {
   'Additional fines will be charged if you are caught driving _____ mph or more over the posted speed limit.': {
     type: 'multiple_choice',
     data: {
+      limit_selection: 1,
       questions: [
         '10',
         '20',
@@ -106,6 +110,7 @@ let quizData = {
   'Drivers, who have passengers under what age are responsible to make sure they are buckled properly?': {
     type: 'multiple_choice',
     data: {
+      limit_selection: 1,
       questions: [
         '18',
         '17',
@@ -191,7 +196,10 @@ let quizData = {
   'Which of the following statements are true in regard to seatbelts?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'A small child can wear an adult seatbelt.',
         'A pregnant woman should not wear a seat belt.',
@@ -237,7 +245,10 @@ let quizData = {
   'Reduced conflict intersections are designed to:': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 3,
+      },
       questions: [
         'Reduce broadside accidents.',
         'Reduce rear end collisions.',
@@ -287,7 +298,10 @@ let quizData = {
   'When do you use SMOG?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'When you can\'t see.',
         'When you have too much carbon monoxide.',
@@ -363,7 +377,10 @@ let quizData = {
   'Roundabouts are designed to?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Increase the speed of right turns and save time.',
         'Increase traffic flow and provide a safer intersection.',
@@ -378,7 +395,10 @@ let quizData = {
   'Use extra caution when passing:': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'At night.',
         'When visibility is poor.',
@@ -417,7 +437,10 @@ let quizData = {
   'When backing-up, your eyes should be looking out what part of the vehicle?': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'Rearview Mirror',
         'Rear Window',
@@ -455,7 +478,10 @@ let quizData = {
   'It is illegal to park:': {
     type: 'multiple_choice',
     data: {
-      limit_selection: 1,
+      limit_selection: {
+        minimum: 1,
+        maximum: 3,
+      },
       questions: [
         'Within 10 feet of a fire hydrant.',
         'In front of a mailbox.',
