@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //    document.getElementById('loading-overlay').classList.remove('_fullscreen-mode-prompt');
     //    break;
     //  }
-    }
+    //}
   }
 
   setTimeout(() => {
