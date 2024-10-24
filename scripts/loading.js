@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!_fullscreenEnabled()) {
     document.getElementById('loading-overlay').classList.add('_fullscreen-mode-prompt');
 
-    while (true) {
-      if (_fullscreenEnabled()) {
-        document.getElementById('loading-overlay').classList.remove('_fullscreen-mode-prompt');
-        break;
-      }
+    //while (true) {
+    //  if (_fullscreenEnabled()) {
+    //    document.getElementById('loading-overlay').classList.remove('_fullscreen-mode-prompt');
+    //    break;
+    //  }
     }
   }
 
