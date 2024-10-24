@@ -255,7 +255,7 @@
           let chapterId = 'chapter_' + i;
 
           if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
-          highestChapter = i;
+          highestChapter = (i + 1);
           console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
           let cards = document.querySelectorAll('.main-container > #cards > .card');
           let tooltips = document.querySelectorAll('.tooltip-container');
