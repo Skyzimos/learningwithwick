@@ -731,6 +731,9 @@ function canProceed(quizData, index) {
     } else if (typeof limitSelection === 'number') {
       return selectedCount === limitSelection; // Proceed only if selected matches the limit
     }
+  } else if (questionObj.type == 'true_false') {
+    console.log(selectedCount)
+    return selectedCount == 1;
   }
 
   // Default to allowing progression for other question types
