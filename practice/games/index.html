@@ -49,7 +49,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fas fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Chapter 1 Quiz</h3>
                 <h4 class='description'>Permits, Drivers Licenses, & Organ Donation</h4>
@@ -68,7 +68,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fa-classic fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Chapter 2 Quiz</h3>
                 <h4 class='description'>Knowing your Vehicle & Vehicle Safety Features</h4>
@@ -87,7 +87,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fa-classic fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Chapter 3 Quiz</h3>
                 <h4 class='description'>Traffic Signs, Lights, and Lane Markings</h4>
@@ -106,7 +106,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fa-classic fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Chapter 4 Quiz</h3>
                 <h4 class='description'>Speed Laws, Driver Responsibility, and Lane Changes</h4>
@@ -125,7 +125,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fa-classic fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Chapter 5 Quiz</h3>
                 <h4 class='description'>No description available at this time.</h4>
@@ -144,7 +144,7 @@
           </div>
           <div class="card-info-wrapper">
             <div class="card-info">
-              <i class="fa-classic fa-star"></i>
+              <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Next Level</h3>
                 <h4 class='description'>You've aced those quizzes! Time to advance to the harder ones!</h4>
@@ -236,6 +236,7 @@
 
     <script>
       let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+      let highestChapter = 1;
 
       document.getElementById('cards').onmousemove = e => {
         for (const card of document.getElementsByClassName('card')) {
@@ -254,6 +255,7 @@
           let chapterId = 'chapter_' + i;
 
           if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
+          highestChapter = i;
           console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
           let cards = document.querySelectorAll('.main-container > #cards > .card');
           let tooltips = document.querySelectorAll('.tooltip-container');
@@ -273,6 +275,11 @@
 
       (async () => {
         document.addEventListener('DOMContentLoaded', () => {
+          let cards = document.querySelectorAll('.main-container > #cards > .card');
+          let card = Array.from(cards).filter(c => Number(c.getAttribute('data-chapter')) === highestChapter)[0];
+          let star = card.querySelector('.card-info-wrapper > .card-info > #star');
+          star.className = 'fas fa-star';
+
           document.querySelectorAll('.tooltip-container').forEach(card => {
             console.log(card)
             card.addEventListener('click', () => {
