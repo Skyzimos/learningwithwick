@@ -838,12 +838,19 @@ function startTimer() {
   };
 }
 
+function isQuizPassed(correctAnswers, totalQuestions) {
+  let percentageCorrect = (correctAnswers / totalQuestions) * 100;
+  return percentageCorrect >= 80;
+}
+
 function updateQuizStatistics(newQuizData) {
   let chapterId = 'chapter_' + chapterNumber;
   let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
+  let lastHadStats = true;
   
   // Initialize the chapter structure if it doesn't exist
   if (!storedStats[chapterId]) {
+      lastHadStats = false;
       storedStats[chapterId] = {
           quizzes: [],
           totalScore: 0,
@@ -853,11 +860,16 @@ function updateQuizStatistics(newQuizData) {
           worstScore: newQuizData.missedQuestions.length,
           numQuizzes: 0,
           totalTimeSpent: 0,
+          unlocked: false,
       };
   }
 
   // Reference the current chapter data
   let chapter = storedStats[chapterId];
+
+  if (!chapter.unlocked && isQuizPassed(newQuizData.score, Object.keys(quizData).length)) {
+    chapter.unlocked = true;
+  }
   
   // Update the aggregate statistics at the chapter level
   chapter.totalScore += newQuizData.score;

@@ -5,20 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Practice - Wick Learning</title>
-  <link href="/learningwithwick/practice/games/style.css" rel="stylesheet" type="text/css" />
+  <link href="/practice/games/style.css" rel="stylesheet" type="text/css" />
 
-    <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
-    <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
+  <link rel='icon' type='image/x-icon' href='/learningwithwick/media/logo.png'>
+  <script src="https://kit.fontawesome.com/0303383be9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div class='loading-overlay' id='loading-overlay'></div>
-  
+
   <div class='main-container'>
 
-  <h1 class='practice-games-title'>
-    Practice Games
-  </h1>
+    <h1 class='practice-games-title'>
+      Practice Games
+    </h1>
 
     <div class='ttcont'>
       <div class="tooltip-container" data-chapter='1' data-unlocked='true' id='chapter-1-quiz'>
@@ -41,274 +41,248 @@
       </div>
     </div>
 
-  <div id="cards">
-  <div class="card" id='chapter-1-quiz'>
-    <div class="card-content">
-      <div class="card-image">
-        <i class='fa-solid fa-id-card'></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fas fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Chapter 1 Quiz</h3>  
-            <h4 class='description'>Permits, Drivers Licenses, & Organ Donation</h4>
-          </div>    
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card" id='chapter-2-quiz'>
-    <div class='card-overlay'>
-      <i class='fas fa-lock'></i>
-    </div>
-    <div class="card-content">
-      <div class="card-image">
-        <i class='fa-solid fa-helmet-safety'></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fa-classic fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Chapter 2 Quiz</h3>  
-            <h4 class='description'>Knowing your Vehicle & Vehicle Safety Features</h4>
-          </div>    
-        </div>  
-      </div>
-    </div>
-  </div>
-  <div class="card" id='chapter-3-quiz'>
-    <div class='card-overlay'>
-      <i class='fas fa-lock'></i>
-    </div>
-    <div class="card-content">
-      <div class="card-image">
-        <i class="fa-solid fa-traffic-light"></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fa-classic fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Chapter 3 Quiz</h3>  
-            <h4 class='description'>Traffic Signs, Lights, and Lane Markings</h4>
-          </div>    
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card" id='chapter-4-quiz'>
-    <div class='card-overlay'>
-      <i class='fas fa-lock'></i>
-    </div>
-    <div class="card-content">
-      <div class="card-image">
-        <i class="fa-solid fa-gauge"></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fa-classic fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Chapter 4 Quiz</h3>  
-            <h4 class='description'>Speed Laws, Driver Responsibility, and Lane Changes</h4>
-          </div>    
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class='card-overlay'>
-      <i class='fas fa-lock'></i>
-    </div>
-    <div class="card-content">
-      <div class="card-image">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fa-classic fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Chapter 5 Quiz</h3>  
-            <h4 class='description'>No description available at this time.</h4>
-          </div>    
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class='card-overlay'>
-      <i class='fas fa-lock'></i>
-    </div>
-    <div class="card-content">
-      <div class="card-image">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
-      <div class="card-info-wrapper">
-        <div class="card-info">
-          <i class="fa-classic fa-star"></i>
-          <div class="card-info-title">
-            <h3 class='title'>Next Level</h3>  
-            <h4 class='description'>You've aced those quizzes! Time to advance to the harder ones!</h4>
-          </div>    
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </div>
-
-  <div class='sidebar'>
-
-    <div class='profile-data-container'>
-      <div class='container-data-profile'>
-          <div class='profile-icon-container'>
-                 <span class='profile-icon-status' id='profile-icon-status'></span>
-                 <span class='profile-icon-status-outline' id='profile-icon-status-outline'></span>
-                 <img class='profile-icon' id='profile-icon' src='/learningwithwick/media/Sheep.jpeg'>
-             </div>
-
-              <div class='profile-text-container'>
-                  <h1 class='profile-text' id='profile-text'>
-                      Jesse
-                  </h1>
+    <div id="cards">
+      <div class="card" id='chapter-1-quiz'>
+        <div class="card-content">
+          <div class="card-image">
+            <i class='fa-solid fa-id-card'></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fas fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 1 Quiz</h3>
+                <h4 class='description'>Permits, Drivers Licenses, & Organ Donation</h4>
               </div>
-
-              <div class='crown-container'>
-                  <img class='profile-icon-secondary' src='/learningwithwick/media/crown-solid.png'>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" id='chapter-2-quiz'>
+        <div class='card-overlay'>
+          <i class='fas fa-lock'></i>
+        </div>
+        <div class="card-content">
+          <div class="card-image">
+            <i class='fa-solid fa-helmet-safety'></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 2 Quiz</h3>
+                <h4 class='description'>Knowing your Vehicle & Vehicle Safety Features</h4>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" id='chapter-3-quiz'>
+        <div class='card-overlay'>
+          <i class='fas fa-lock'></i>
+        </div>
+        <div class="card-content">
+          <div class="card-image">
+            <i class="fa-solid fa-traffic-light"></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 3 Quiz</h3>
+                <h4 class='description'>Traffic Signs, Lights, and Lane Markings</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" id='chapter-4-quiz'>
+        <div class='card-overlay'>
+          <i class='fas fa-lock'></i>
+        </div>
+        <div class="card-content">
+          <div class="card-image">
+            <i class="fa-solid fa-gauge"></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 4 Quiz</h3>
+                <h4 class='description'>Speed Laws, Driver Responsibility, and Lane Changes</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class='card-overlay'>
+          <i class='fas fa-lock'></i>
+        </div>
+        <div class="card-content">
+          <div class="card-image">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 5 Quiz</h3>
+                <h4 class='description'>No description available at this time.</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class='card-overlay'>
+          <i class='fas fa-lock'></i>
+        </div>
+        <div class="card-content">
+          <div class="card-image">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star"></i>
+              <div class="card-info-title">
+                <h3 class='title'>Next Level</h3>
+                <h4 class='description'>You've aced those quizzes! Time to advance to the harder ones!</h4>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
+    <div class='sidebar'>
 
-      <button class='sidebar-button' id='/learningwithwick/' style='background-color: transparent; color: white;' onclick='location.href="/learningwithwick/"'>
-        <i class='fas fa-compass'></i>
-        Home
-      </button>
+      <div class='sidebar-logo'>
+        <img class='logo' src='/learningwithwick/media/logo.png'>
+        <h1>Wick</h1>
+      </div>
 
-      <button class='sidebar-button' id='/learningwithwick/practice/games' style='color: #2B2577; box-shadow: 0 0 25px 1px rgba(228, 228, 228, .6);' onclick='location.href="/learningwithwick/practice/games/"'>
-        <i class='fas fa-dice-d6'></i>
-        Practice
-      </button>
-
-      <button class='sidebar-button' style='background-color: transparent; color: white;'>
-        <i class='fas fa-chart-simple'></i>
-        Statistics
-      </button>
-
-      <button class='sidebar-button' style='background-color: transparent; color: white;'>
-        <i class='fa-classic fa-calendar'></i>
-        Schedule
-      </button>
-
-      <button class='sidebar-button' style='background-color: transparent; color: white;'>
-        <i class='fas fa-gear'></i>
-        Settings
-      </button>
-
-      <div class='sidebar-bottom'>
-        <h4>
-          Have any problems with Learning with Wick? Contact our customer support!
-        </h4>
-
-        <button id='support-button'>
-          Contact Us
+      <div class='sidebar-buttons-container' id='sidebar-buttons-container'>
+        <button class='sidebar-button' id='/'>
+          <i class="fa-regular fa-map"></i>
+          Home
         </button>
-      </div>
 
+        <button class='sidebar-button current' id='/learningwithwick/practice/games' style='background-color: transparent;'>
+          <i class="fa-regular fa-flag"></i>
+          Practice
+        </button>
+
+        <button class='sidebar-button' id='/learningwithwick/statistics/' style='background-color: transparent;'>
+          <i class="fa-regular fa-chart-bar"></i>
+          Statistics
+        </button>
+
+        <button class='sidebar-button' style='background-color: transparent;'>
+          <i class='fa-classic fa-calendar'></i>
+          Schedule
+        </button>
+
+        <button class='sidebar-button' style='background-color: transparent;'>
+          <i class="fa-regular fa-pen-to-square"></i>
+          Settings
+        </button>
+
+        <div class='sidebar-bottom'>
+          <h4>
+            Have any problems with Learning with Wick? Contact our customer support!
+          </h4>
+
+          <button id='support-button'>
+            Contact Us
+          </button>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <script>
+      // Dynamically modify, in real time, the paths for GitHub pages.
 
-  </div>
-
-  <script>
-    // Dynamically modify, in real time, the paths for GitHub pages.
-
-    window.addEventListener('DOMContentLoaded', function () {
-      if (!window.location.href.includes("github")) {
-        function removeLearningWithWick(element, attribute) {
-          let attrValue = element.getAttribute(attribute);
-          if (attrValue && attrValue.includes("/learningwithwick")) {
-            element.setAttribute(attribute, attrValue.replace("/learningwithwick", ""));
+      window.addEventListener('DOMContentLoaded', function () {
+        if (!window.location.href.includes("github")) {
+          function removeLearningWithWick(element, attribute) {
+            let attrValue = element.getAttribute(attribute);
+            if (attrValue && attrValue.includes("/learningwithwick")) {
+              element.setAttribute(attribute, attrValue.replace("/learningwithwick", ""));
+            }
           }
+
+          const elements = document.querySelectorAll('[src], [href], [id]');
+
+          elements.forEach(element => {
+            if (element.hasAttribute('src')) {
+              removeLearningWithWick(element, 'src');
+            }
+
+            if (element.hasAttribute('href')) {
+              removeLearningWithWick(element, 'href');
+            }
+
+            if (element.hasAttribute('id')) {
+              removeLearningWithWick(element, 'id');
+            }
+          });
+
+          console.log("Paths modified for GitHub Pages");
         }
+      });
+    </script>
 
-        const elements = document.querySelectorAll('[src], [href], [id]');
+    <script>
+      document.getElementById('cards').onmousemove = e => {
+        for (const card of document.getElementsByClassName('card')) {
+          const rect = card.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
 
-        elements.forEach(element => {
-          if (element.hasAttribute('src')) {
-            removeLearningWithWick(element, 'src');
-          }
-
-          if (element.hasAttribute('href')) {
-            removeLearningWithWick(element, 'href');
-          }
-
-          if (element.hasAttribute('id')) {
-            removeLearningWithWick(element, 'id');
-          }
-        });
-
-        console.log("Paths modified for GitHub Pages");
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        };
       }
-    });
-  </script>
 
-  <script>
-    document.getElementById('cards').onmousemove = e => {
-  for(const card of document.getElementsByClassName('card')) {
-    const rect = card.getBoundingClientRect(),
-          x = e.clientX - rect.left,
-          y = e.clientY - rect.top;
-
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  };
-}
-
-    document.getElementById('chapter-1-quiz').onclick = function() {
-      setTimeout(() => {
-        location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
-      }, 250);
-    }
-
-    let counter = 0;
-    document.getElementById('chapter-2-quiz').onclick = function() {
-      counter = counter + 1;
-      if (counter >= 2) {
-         setTimeout(() => {
-        location.href = '/learningwithwick/practice/games/chapter/2/quiz/';
-      }, 250);
+      document.getElementById('chapter-1-quiz').onclick = function () {
+        setTimeout(() => {
+          location.href = '/learningwithwick/practice/games/chapter/1/quiz/';
+        }, 250);
       }
-    }
-    
-    let countertwo = 0;
-    document.getElementById('chapter-3-quiz').onclick = function() {
-      countertwo = countertwo + 1;
-      if (countertwo >= 2) {
-         setTimeout(() => {
-        location.href = '/learningwithwick/practice/games/chapter/3/quiz/';
-      }, 250);
-      }
-    }
 
-    let counterthree = 0;
-    document.getElementById('chapter-4-quiz').onclick = function() {
-      counterthree = counterthree + 1;
-      if (counterthree >= 2) {
-         setTimeout(() => {
-        location.href = '/learningwithwick/practice/games/chapter/4/quiz/';
-      }, 250);
+      let counter = 0;
+      document.getElementById('chapter-2-quiz').onclick = function () {
+        counter = counter + 1;
+        if (counter >= 2) {
+          setTimeout(() => {
+            location.href = '/learningwithwick/practice/games/chapter/2/quiz/';
+          }, 250);
+        }
       }
-    }
-  </script>
 
-  <script src='/js/support.js'></script>
-  <script src='/js/console.js'></script>
-  <script src='/learningwithwick/scripts/loading.js'></script>
-  <script src="/script.js"></script>
-  <script src='/js/profile-service.js'></script>
+      let countertwo = 0;
+      document.getElementById('chapter-3-quiz').onclick = function () {
+        countertwo = countertwo + 1;
+        if (countertwo >= 2) {
+          setTimeout(() => {
+            location.href = '/learningwithwick/practice/games/chapter/3/quiz/';
+          }, 250);
+        }
+      }
+
+      let counterthree = 0;
+      document.getElementById('chapter-4-quiz').onclick = function () {
+        counterthree = counterthree + 1;
+        if (counterthree >= 2) {
+          setTimeout(() => {
+            location.href = '/learningwithwick/practice/games/chapter/4/quiz/';
+          }, 250);
+        }
+      }
+    </script>
+
+    <script src='/scripts/loading.js'></script>
 </body>
 
 </html>
