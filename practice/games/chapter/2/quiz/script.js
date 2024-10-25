@@ -420,40 +420,79 @@ function displayQuestion(quizData, index) {
         checkbox.checked = true;
       }
 
-      optionElement.addEventListener('click', function () {
-        checkbox.checked = !checkbox.checked;
+      (async () => {
+        optionElement.addEventListener('click', function () {
+          checkbox.checked = !checkbox.checked;
 
-        const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
-        let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
+          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
+          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
 
-        if (limit === 1) {
-          // If limit is 1, allow only one option to be selected at a time
-          checkboxes.forEach(chk => {
-            if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
-          });
-          selectedCount = 1;
-        }
+          if (limit === 1) {
+            // If limit is 1, allow only one option to be selected at a time
+            checkboxes.forEach(chk => {
+              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
+            });
+            selectedCount = 1;
+          }
 
-        // Enforce maximum selection limit
-        if (limit && selectedCount > limit) {
-          checkbox.checked = false;
-          alert(`You can only select up to ${limit} options.`);
-          return;
-        }
+          // Enforce maximum selection limit
+          if (limit && selectedCount > limit) {
+            checkbox.checked = false;
+            alert(`You can only select up to ${limit} options.`);
+            return;
+          }
 
-        // Ensure minimum selections are met and alert if necessary
-        if (selectedCount < minSelection) {
-          alert(`You need to select at least ${minSelection} option(s).`);
-          return;
-        }
+          // Ensure minimum selections are met and alert if necessary
+          if (selectedCount < minSelection) {
+            alert(`You need to select at least ${minSelection} option(s).`);
+            return;
+          }
 
-        let array = Array.from(checkboxes)
-          .filter(chk => chk.checked == true)
-          .map(chk => chk.value);
+          let array = Array.from(checkboxes)
+            .filter(chk => chk.checked == true)
+            .map(chk => chk.value);
 
-        console.log(array);
-        saveAnswer(index, array);
-      });
+          console.log(array);
+          saveAnswer(index, array);
+        });
+      })();
+
+      (async () => {
+        checkbox.addEventListener('change', function () {
+          checkbox.checked = !checkbox.checked;
+
+          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
+          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
+
+          if (limit === 1) {
+            // If limit is 1, allow only one option to be selected at a time
+            checkboxes.forEach(chk => {
+              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
+            });
+            selectedCount = 1;
+          }
+
+          // Enforce maximum selection limit
+          if (limit && selectedCount > limit) {
+            checkbox.checked = false;
+            alert(`You can only select up to ${limit} options.`);
+            return;
+          }
+
+          // Ensure minimum selections are met and alert if necessary
+          if (selectedCount < minSelection) {
+            alert(`You need to select at least ${minSelection} option(s).`);
+            return;
+          }
+
+          let array = Array.from(checkboxes)
+            .filter(chk => chk.checked == true)
+            .map(chk => chk.value);
+
+          console.log(array);
+          saveAnswer(index, array);
+        });
+      })();
 
       const label = document.createElement('label');
       label.textContent = option;
@@ -527,7 +566,7 @@ function canProceed(quizData, index) {
   let array = Array.from(checkboxes)
     .filter(chk => chk.checked == true)
     .map(chk => chk.value);
-    
+
   let true_false_array = Array.from(true_false_boxes)
     .filter(chk => chk.checked == true)
     .map(chk => chk.value);

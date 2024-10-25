@@ -29,8 +29,8 @@ let quizData = {
         'Recreational, Command, Prohibition, Interchange',
       ],
       answers: [
-          'Informational, Regulatory, Warning, Construction'
-        ]
+        'Informational, Regulatory, Warning, Construction'
+      ]
     }
   },
   'This sign prohibits U-turns.': {
@@ -466,14 +466,14 @@ let quizData = {
 */
 
 const uid = () => {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
 localStorage.setItem('last-played', chapterNumber);
 
 function shuffleArray(array) {
   let new_arr = [];
-  
+
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
     new_arr[j] = array[i]
@@ -594,40 +594,79 @@ function displayQuestion(quizData, index) {
         checkbox.checked = true;
       }
 
-      optionElement.addEventListener('click', function () {
-        checkbox.checked = !checkbox.checked;
+      (async () => {
+        optionElement.addEventListener('click', function () {
+          checkbox.checked = !checkbox.checked;
 
-        const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
-        let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
+          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
+          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
 
-        if (limit === 1) {
-          // If limit is 1, allow only one option to be selected at a time
-          checkboxes.forEach(chk => {
-            if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
-          });
-          selectedCount = 1;
-        }
+          if (limit === 1) {
+            // If limit is 1, allow only one option to be selected at a time
+            checkboxes.forEach(chk => {
+              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
+            });
+            selectedCount = 1;
+          }
 
-        // Enforce maximum selection limit
-        if (limit && selectedCount > limit) {
-          checkbox.checked = false;
-          alert(`You can only select up to ${limit} options.`);
-          return;
-        }
+          // Enforce maximum selection limit
+          if (limit && selectedCount > limit) {
+            checkbox.checked = false;
+            alert(`You can only select up to ${limit} options.`);
+            return;
+          }
 
-        // Ensure minimum selections are met and alert if necessary
-        if (selectedCount < minSelection) {
-          alert(`You need to select at least ${minSelection} option(s).`);
-          return;
-        }
+          // Ensure minimum selections are met and alert if necessary
+          if (selectedCount < minSelection) {
+            alert(`You need to select at least ${minSelection} option(s).`);
+            return;
+          }
 
-        let array = Array.from(checkboxes)
-          .filter(chk => chk.checked == true)
-          .map(chk => chk.value);
+          let array = Array.from(checkboxes)
+            .filter(chk => chk.checked == true)
+            .map(chk => chk.value);
 
           console.log(array);
           saveAnswer(index, array);
-      });
+        });
+      })();
+
+      (async () => {
+        checkbox.addEventListener('change', function () {
+          checkbox.checked = !checkbox.checked;
+
+          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
+          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
+
+          if (limit === 1) {
+            // If limit is 1, allow only one option to be selected at a time
+            checkboxes.forEach(chk => {
+              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
+            });
+            selectedCount = 1;
+          }
+
+          // Enforce maximum selection limit
+          if (limit && selectedCount > limit) {
+            checkbox.checked = false;
+            alert(`You can only select up to ${limit} options.`);
+            return;
+          }
+
+          // Ensure minimum selections are met and alert if necessary
+          if (selectedCount < minSelection) {
+            alert(`You need to select at least ${minSelection} option(s).`);
+            return;
+          }
+
+          let array = Array.from(checkboxes)
+            .filter(chk => chk.checked == true)
+            .map(chk => chk.value);
+
+          console.log(array);
+          saveAnswer(index, array);
+        });
+      })();
 
       const label = document.createElement('label');
       label.textContent = option;
@@ -701,7 +740,7 @@ function canProceed(quizData, index) {
   let array = Array.from(checkboxes)
     .filter(chk => chk.checked == true)
     .map(chk => chk.value);
-    
+
   let true_false_array = Array.from(true_false_boxes)
     .filter(chk => chk.checked == true)
     .map(chk => chk.value);
@@ -749,7 +788,7 @@ function gradeQuiz(quizData) {
     let userAnswer = selectedAnswers[index];
     let questionObj = quizData[key];
     if (!userAnswer || !questionObj) return;
-    
+
     if (questionObj.type == 'multiple_choice') {
       const correctAnswersArray = questionObj.data.answers;
       console.log(correctAnswersArray);
@@ -827,8 +866,8 @@ function convertScore(correct, outOf) {
   if (outOf === 0) return { percentage: 0, scale: 0 }; // Prevent division by zero
   let scale = correct / outOf;
   return {
-      percentage: +(scale * 100).toFixed(2),  // Rounded to 2 decimal places
-      scale: +scale.toFixed(4)                // Rounded to 4 decimal places
+    percentage: +(scale * 100).toFixed(2),  // Rounded to 2 decimal places
+    scale: +scale.toFixed(4)                // Rounded to 4 decimal places
   };
 }
 
@@ -836,8 +875,8 @@ function startTimer() {
   const startTime = Date.now(); // Get the start time in milliseconds
 
   return function getElapsedTime() {
-      const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
-      return Math.floor(elapsedTime); // Return seconds as an integer
+    const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
+    return Math.floor(elapsedTime); // Return seconds as an integer
   };
 }
 
@@ -850,21 +889,21 @@ function updateQuizStatistics(newQuizData) {
   let chapterId = 'chapter_' + chapterNumber;
   let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
   let lastHadStats = true;
-  
+
   // Initialize the chapter structure if it doesn't exist
   if (!storedStats[chapterId]) {
-      lastHadStats = false;
-      storedStats[chapterId] = {
-          quizzes: [],
-          totalScore: 0,
-          totalQuestions: totalQuestions,
-          totalAccuracy: 0,
-          bestScore: 0,
-          worstScore: newQuizData.missedQuestions.length,
-          numQuizzes: 0,
-          totalTimeSpent: 0,
-          unlocked: false,
-      };
+    lastHadStats = false;
+    storedStats[chapterId] = {
+      quizzes: [],
+      totalScore: 0,
+      totalQuestions: totalQuestions,
+      totalAccuracy: 0,
+      bestScore: 0,
+      worstScore: newQuizData.missedQuestions.length,
+      numQuizzes: 0,
+      totalTimeSpent: 0,
+      unlocked: false,
+    };
   }
 
   // Reference the current chapter data
@@ -873,17 +912,17 @@ function updateQuizStatistics(newQuizData) {
   if (!chapter.unlocked && isQuizPassed(newQuizData.score, Object.keys(quizData).length)) {
     chapter.unlocked = true;
   }
-  
+
   // Update the aggregate statistics at the chapter level
   chapter.totalScore += newQuizData.score;
   chapter.totalAccuracy += newQuizData.accuracy;
   chapter.numQuizzes += 1;
   chapter.totalTimeSpent += newQuizData.timeSpent;
-  
+
   // Update best and worst scores if applicable
   chapter.bestScore = Math.max(chapter.bestScore, newQuizData.score);
   chapter.worstScore = Math.min(chapter.worstScore, newQuizData.score);
-  
+
   chapter.quizzes.push(newQuizData);
   localStorage.setItem('stats', JSON.stringify(storedStats));
 }
