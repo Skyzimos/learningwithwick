@@ -32,7 +32,7 @@ function calculateChapterStatistics() {
     return {
         averageScore: averageScore.toFixed(2),
         averageAccuracy: averageAccuracy.toFixed(2),
-        practiceAverage: practiceAverage,
+        practiceAverage: practiceAverage.toFixed(2),
         bestScore: chapterData.bestScore,
         worstScore: chapterData.worstScore,
         totalQuizzes: chapterData.numQuizzes,
