@@ -686,6 +686,7 @@ function displayQuestion(quizData, index) {
       radio.type = 'radio';
       radio.name = `question-${index}`;
       radio.value = option;
+      radio.classList.add(`question-${index}-radio`);
 
       if (getAnswer(index) === (i + 1)) {
         radio.checked = true;
@@ -770,7 +771,6 @@ function canProceed(quizData, index) {
       return selectedCount === limitSelection; // Proceed only if selected matches the limit
     }
   } else if (questionObj.type == 'true_false') {
-    console.log(true_false_Selected)
     return true_false_Selected == 1;
   }
 
