@@ -140,7 +140,7 @@ let performanceChanges = calculatePerformanceImprovement();
 
 try {
     Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
-    Box2_H3.innerHTML = (chapterStatistics.totalScore / chapterStatistics.totalQuizzes) + '%';
+    Box2_H3.innerHTML = (chapterStatistics.averageScore) + '%';
     Box3_H3.innerHTML = 'Chapter ' + lastPlayed;
 } catch (error) {
     console.log('Error calculating statistics:', error);
