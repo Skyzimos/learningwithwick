@@ -409,11 +409,20 @@ function displayQuestion(quizData, index) {
       optionElement.style.cursor = 'pointer';
 
       const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.name = i;
-      checkbox.value = i;
-      checkbox.classList.add(`question-${index}-checkbox`);
-      checkbox.dataset.uniqueId = uid();
+
+      if (limit === 1) {
+        checkbox.type = 'radio';
+        checkbox.name = i;
+        checkbox.value = i;
+        checkbox.classList.add(`question-${index}-checkbox`);
+        checkbox.dataset.uniqueId = uid();
+      } else {
+        checkbox.type = 'checkbox';
+        checkbox.name = i;
+        checkbox.value = i;
+        checkbox.classList.add(`question-${index}-checkbox`);
+        checkbox.dataset.uniqueId = uid();
+      }
 
       // Turn i into a string, because that's the format it's saved as.
       if (Object.values(getAnswer(index))?.includes(i.toString())) {
@@ -439,12 +448,6 @@ function displayQuestion(quizData, index) {
           if (limit && selectedCount > limit) {
             checkbox.checked = false;
             alert(`You can only select up to ${limit} options.`);
-            return;
-          }
-
-          // Ensure minimum selections are met and alert if necessary
-          if (selectedCount < minSelection) {
-            alert(`You need to select at least ${minSelection} option(s).`);
             return;
           }
 
@@ -476,12 +479,6 @@ function displayQuestion(quizData, index) {
           if (limit && selectedCount > limit) {
             checkbox.checked = false;
             alert(`You can only select up to ${limit} options.`);
-            return;
-          }
-
-          // Ensure minimum selections are met and alert if necessary
-          if (selectedCount < minSelection) {
-            alert(`You need to select at least ${minSelection} option(s).`);
             return;
           }
 
