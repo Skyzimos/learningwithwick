@@ -731,7 +731,7 @@ function canProceed(quizData, index) {
   }
 
   // Default to allowing progression for other question types
-  return true;
+  return false;
 }
 
 function gradeQuiz(quizData) {
