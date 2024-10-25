@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   try {
-    if (localStorage.getItem('onboarding-completion') == 2) {
+    if (Number(localStorage.getItem('onboarding-completion')) == 2) {
       document.querySelector('.modal-container').style.display = 'none';
     } else {
       let only_half_completed = localStorage.getItem('onboarding-completion') == 1 ? true : false;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   } catch (error) {
-
+    console.log(error);
   }
 
   setTimeout(() => {
