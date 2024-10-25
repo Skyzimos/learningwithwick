@@ -27,10 +27,12 @@ function calculateChapterStatistics() {
 
     let averageScore = chapterData.totalScore / chapterData.numQuizzes;
     let averageAccuracy = chapterData.totalAccuracy / chapterData.numQuizzes;
+    let practiceAverage = (chapterData.totalScore / chapterData.totalQuestions) * 100;
 
     return {
         averageScore: averageScore.toFixed(2),
         averageAccuracy: averageAccuracy.toFixed(2),
+        practiceAverage: practiceAverage,
         bestScore: chapterData.bestScore,
         worstScore: chapterData.worstScore,
         totalQuizzes: chapterData.numQuizzes,
@@ -140,7 +142,7 @@ let performanceChanges = calculatePerformanceImprovement();
 
 try {
     Box1_H3.innerHTML = chapterStatistics.totalQuizzes;
-    Box2_H3.innerHTML = (chapterStatistics.averageScore) + '%';
+    Box2_H3.innerHTML = chapterStatistics.practiceAverage + '%';
     Box3_H3.innerHTML = 'Chapter ' + lastPlayed;
 } catch (error) {
     console.log('Error calculating statistics:', error);
