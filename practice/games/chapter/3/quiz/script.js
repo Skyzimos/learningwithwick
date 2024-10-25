@@ -695,12 +695,18 @@ function updateButtons(index, totalQuestions) {
 function canProceed(quizData, index) {
   const questionObj = quizData[Object.keys(quizData)[index]];
   const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
+  const true_false_boxes = document.querySelectorAll(`.question-${index}-radio`);
 
   let array = Array.from(checkboxes)
-          .filter(chk => chk.checked == true)
-          .map(chk => chk.value);
+    .filter(chk => chk.checked == true)
+    .map(chk => chk.value);
+    
+  let true_false_array = Array.from(true_false_boxes)
+    .filter(chk => chk.checked == true)
+    .map(chk => chk.value);
 
   const selectedCount = array?.length || 0;
+  const true_false_Selected = true_false_array?.length || 0;
 
   if (questionObj.type === 'multiple_choice') {
     const limitSelection = questionObj.data.limit_selection;
@@ -721,13 +727,13 @@ function canProceed(quizData, index) {
         return false; // Cannot proceed if the selection is outside the limits
       }
 
-    // If limit_selection is a number (shortcut for max selection)
+      // If limit_selection is a number (shortcut for max selection)
     } else if (typeof limitSelection === 'number') {
       return selectedCount === limitSelection; // Proceed only if selected matches the limit
     }
   } else if (questionObj.type == 'true_false') {
-    console.log(selectedCount)
-    return selectedCount == 1;
+    console.log(true_false_Selected)
+    return true_false_Selected == 1;
   }
 
   // Default to allowing progression for other question types
