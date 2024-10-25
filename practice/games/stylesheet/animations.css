@@ -81,7 +81,7 @@ input[type="radio"]::before {
   width: 12px;
   height: 12px;
   border-radius: 2px;
-  background-color: #07f;
+  background-color: #5849FF;
   transform: translate(-50%, -50%) scale(0);
   transition: all 0.3s ease;
 }
@@ -130,7 +130,7 @@ input[type="radio"]:checked::after {
 /* Hover state */
 input[type="checkbox"]:hover,
 input[type="radio"]:hover {
-  border-color: #07f;
+  border-color: #5849FF;
   background-color: rgba(0, 119, 255, 0.06);
 }
 
@@ -138,9 +138,9 @@ input[type="radio"]:hover {
   border-radius: 50px;
 }
 
-.option > input[type="checkbox"]:hover,
-.option > input[type="radio"]:hover {
-  background-color: #A6D0FF;
+.option:hover > input[type="checkbox"],
+.option:hover > input[type="radio"] {
+  background-color: #C4BEFF;
 }
 
 /* Optional responsive styles */
