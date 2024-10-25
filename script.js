@@ -27,7 +27,7 @@ function calculateChapterStatistics() {
 
     let averageScore = chapterData.totalScore / chapterData.numQuizzes;
     let averageAccuracy = chapterData.totalAccuracy / chapterData.numQuizzes;
-    let practiceAverage = (chapterData.totalScore / chapterData.totalQuestions) * 100;
+    let practiceAverage = (chapterData.totalScore / (chapterData.totalQuestions * chapterData.numQuizzes)) * 100;
 
     return {
         averageScore: averageScore.toFixed(2),
