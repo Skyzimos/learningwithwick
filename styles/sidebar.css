@@ -7,10 +7,10 @@
     height: 100%;
 
     position: absolute;
-    left: 11.5%;
+    left: 0;
     top: 50%;
 
-    transform: translate(-57.5%, -50%);
+    transform: translateY(-50%);
     float: left;
 }
 
