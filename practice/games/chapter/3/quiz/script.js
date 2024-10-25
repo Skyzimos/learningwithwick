@@ -316,6 +316,10 @@ let quizData = {
   'A left turn on a red light is allowed when:': {
     type: 'multiple_choice',
     data: {
+      limit_selection: {
+        minimum: 1,
+        maximum: 4,
+      },
       questions: [
         'The light is about to turn green.',
         'Turning from a one way to another one way.',
