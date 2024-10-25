@@ -279,10 +279,11 @@ html, body {
   width: 20%;
   height: 100%;
 
-  position: inherit;
-  left: 0;
-  top: 0;
+  position: relative;
+  left: 11.5%;
+  top: 50%;
 
+  transform: translate(-57.5%, -50%);
   float: left;
 }
 
