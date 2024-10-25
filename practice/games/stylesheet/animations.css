@@ -138,8 +138,9 @@ input[type="radio"]:hover {
   border-radius: 50px;
 }
 
-.single-option {
-  border-radius: 50px;
+.option > input[type="checkbox"]:hover,
+.option > input[type="radio"]:hover {
+  background-color: #A6D0FF;
 }
 
 /* Optional responsive styles */
