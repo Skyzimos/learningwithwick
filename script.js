@@ -145,3 +145,116 @@ try {
 } catch (error) {
     console.log('Error calculating statistics:', error);
 }
+
+try {
+    let submit_username = document.querySelector('#submit-username');
+    let submit_pfp = document.querySelector('#quit-modal');
+    let pfp_container = document.querySelector('.profile-picture');
+    let username = document.querySelector('#input');
+
+    submit_username.addEventListener('click', function () {
+        if (username.value.trim() === '' || username.value.trim().length < 3) {
+            alert('Please enter a valid username with at least 3 characters.');
+            return;
+        }
+
+        localStorage.setItem('username', username.value);
+        localStorage.setItem('onboarding-completion', 1);
+        document.getElementById('loading-overlay').classList.remove('fade-out')
+        document.getElementById('loading-overlay').style.opacity = 0;
+        document.getElementById('loading-overlay').style.display = 'block';
+        document.getElementById('loading-overlay').classList.add('fade-in')
+
+        setTimeout(() => {
+            document.querySelector('.onboarding-username').classList.add('current_inactive');
+            document.querySelector('.onboarding-pfp').classList.remove('current_inactive');
+            document.getElementById('loading-overlay').classList.add('fade-out');
+
+            setTimeout(() => {
+                document.getElementById('loading-overlay').style.display = 'none';
+
+                let animated = document.querySelectorAll('.animate-on-load');
+                animated.forEach(element => {
+                    element.classList.remove('animate-on-load');
+                });
+            }, 250)
+        }, 1000)
+    });
+
+    const images = document.querySelectorAll('.pfps img');
+    images.forEach((img) => {
+        img.addEventListener('click', () => {
+            images.forEach(i => {
+                i.removeAttribute('data-clicked');
+                i.classList.remove('active');
+            });
+
+            img.setAttribute('data-clicked', 'true');
+            img.classList.add('active');
+        });
+    });
+
+    submit_pfp.addEventListener('click', function () {
+        const clickedImage = document.querySelector('.input-container.pfps img[data-clicked="true"]');
+        if (!clickedImage) return;
+
+        let clickedImageId = clickedImage.id;
+        clickedImageId = clickedImageId.replace('pfp_', '');
+        clickedImageId = clickedImageId.replace('?', '');
+        clickedImageId = clickedImageId.replace(/cb=\d+/, '');
+        localStorage.setItem('pfp', clickedImageId);
+        localStorage.setItem('onboarding-completion', 2);
+        document.getElementById('loading-overlay').classList.remove('fade-out')
+        document.getElementById('loading-overlay').style.opacity = 0;
+        document.getElementById('loading-overlay').style.display = 'block';
+        document.getElementById('loading-overlay').classList.add('fade-in');
+
+        setTimeout(() => {
+            document.querySelector('.modal-container').style.display = 'none';
+            document.querySelector('.profile-picture').src = localStorage.getItem('pfp');
+            document.querySelectorAll('.data-username').forEach(element => {
+                element.textContent = localStorage.getItem('username') + '!';
+            });
+            document.getElementById('loading-overlay').classList.add('fade-out');
+
+            setTimeout(() => {
+                document.getElementById('loading-overlay').style.display = 'none';
+
+                let animated = document.querySelectorAll('.animate-on-load');
+                animated.forEach(element => {
+                    element.classList.remove('animate-on-load');
+                });
+            }, 250)
+        }, 1000)
+    });
+
+    pfp_container.addEventListener('click', function () {
+        document.getElementById('loading-overlay').classList.remove('fade-out')
+        document.getElementById('loading-overlay').style.opacity = 0;
+        document.getElementById('loading-overlay').style.display = 'block';
+        document.getElementById('loading-overlay').classList.add('fade-in');
+
+        setTimeout(() => {
+            document.querySelector('.modal-container').style.display = 'flex';
+            document.querySelector('.onboarding-username').classList.add('current_inactive');
+            document.querySelector('.onboarding-pfp').classList.remove('current_inactive');
+            document.getElementById('loading-overlay').classList.add('fade-out');
+
+            setTimeout(() => {
+                document.getElementById('loading-overlay').style.display = 'none';
+
+                let animated = document.querySelectorAll('.animate-on-load');
+                animated.forEach(element => {
+                    element.classList.remove('animate-on-load');
+                });
+            }, 250)
+        }, 1000)
+    });
+
+    document.querySelector('.profile-picture').src = localStorage.getItem('pfp');
+    document.querySelectorAll('.data-username').forEach(element => {
+        element.textContent = localStorage.getItem('username') + '!';
+    });
+} catch (error) {
+    console.log('Error handling username submission:', error);
+}

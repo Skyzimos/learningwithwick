@@ -64,6 +64,21 @@ document.addEventListener('DOMContentLoaded', function() {
     //}
   }
 
+  try {
+    if (localStorage.getItem('onboarding-completion') == 2) {
+      document.querySelector('.modal-container').style.display = 'none';
+    } else {
+      let only_half_completed = localStorage.getItem('onboarding-completion') == 1 ? true : false;
+  
+      if (only_half_completed) {
+        document.querySelector('.onboarding-username').classList.add('current_inactive');
+        document.querySelector('.onboarding-pfp').classList.remove('current_inactive');
+      }
+    }
+  } catch (error) {
+
+  }
+
   setTimeout(() => {
     document.getElementById('loading-overlay').classList.add('fade-out');
 

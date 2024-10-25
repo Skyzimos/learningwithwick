@@ -76,7 +76,7 @@
   <div class='loading-overlay' id='loading-overlay'></div>
 
   <div class='modal-container'>
-    <div class='modal onboarding-username current_inactive'>
+    <div class='modal onboarding-username'>
       <!--Title-->
       <div class='text-container'>
         <h1>
@@ -97,16 +97,30 @@
       </div>
     </div>
   
-    <div class='modal onboarding-pfp '>
+    <div class='modal onboarding-pfp current_inactive'>
       <div class='text-container'>
         <h1>
           📌 Select a Profile Picture!
         </h1>
+        <h2>
+          Choose the one you love most!<br>You always have the option to change it later!
+        </h2>
       </div>
 
-      <div class='input-container'>
-
+      <div class='input-container pfps'>
+        <img src='/media/pfps/Corgi.jpg' id='pfp_/learningwithwick/media/pfps/Corgi.jpg'>
+        <img src='/media/pfps/CupidsTeddy.jpg' id='pfp_/learningwithwick/media/pfps/CupidsTeddy.jpg'>
+        <img src='/media/pfps/Giraffe.jpg' id='pfp_/learningwithwick/media/pfps/Giraffe.jpg'>
+        <img src='/media/pfps/Dragon.jpg' id='pfp_/learningwithwick/media/pfps/Dragon.jpg'>
+        <img src='/media/pfps/Ladybug.jpg' id='pfp_/learningwithwick/media/pfps/Ladybug.jpg'>
+        <img src='/media/pfps/Owl.jpg' id='pfp_/learningwithwick/media/pfps/Owl.jpg'>
+        <img src='/media/pfps/Triceratops.jpg' id='pfp_/learningwithwick/media/pfps/Triceratops.jpg'>
+        <img src='/media/pfps/Bee.jpg' id='pfp_/learningwithwick/media/pfps/Bee.jpg'>
       </div>
+
+      <button id='quit-modal'>
+        Let's Go!
+      </button>
     </div>
   </div>
 
@@ -116,8 +130,8 @@
       Welcome Back,
     </h4>
 
-    <h1 class='welcome-back-name' id='welcome-back-name'>
-      OnlyTwentyCharacters
+    <h1 class='welcome-back-name data-username' id='welcome-back-name'>
+      OnlyTwentyCharacters!
     </h1>
 
     <div class='last-played' id='last-played'>
@@ -185,9 +199,9 @@
 
   <div class='profile-sidebar'>
     <div class='profile-top-container'>
-      <img src='/media/pfps/Triceratops.jpg'>
+      <img src='/media/pfps/Triceratops.jpg' class='profile-picture'>
       <h3>Hey,</h3>
-      <h1>OnlyTwentyCharacters!</h1>
+      <h1 class='data-username'>OnlyTwentyCharacters!</h1>
     </div>
     <div class='profile-content-container'>
 
