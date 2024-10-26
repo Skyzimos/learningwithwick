@@ -20,6 +20,10 @@ body {
   margin-top: 10px;
 }
 
+.option {
+  cursor: pointer;
+}
+
 /* Alert Styling */
 .alert {
   color: red;

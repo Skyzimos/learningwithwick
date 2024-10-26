@@ -461,497 +461,550 @@ let quizData = {
   }
 }
 
+
 /*
 
-  Do not touch anything below. It is the core script
-  that creates/manages the quiz. Only edit values
-  and data above.
+  Edit the following code with caution, as it serves
+  as the core functionality for creating and managing
+  the quiz. Make only necessary changes and avoid altering
+  critical logic to ensure smooth operation.
+
+
+  I'm going to leave this in here so I can remember how I set everything up later on;
+  The constants are editable, and any changes to them will afect any value referencing them.
+  Since the massive rewrite (Oct. 25, 2024), any and all data is referenced using the DataManager
+  class. This means all the Question Indices are held there, and automatically synced to every
+  function.
 
 */
 
-const uid = () => {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
-}
 
-localStorage.setItem('last-played', chapterNumber);
 
-function shuffleArray(array) {
-  let new_arr = [];
+// Constants
 
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
-    new_arr[j] = array[i]
-    // [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+const QUESTION_TYPE_MULTIPLE_CHOICE = 'multiple_choice';
+const QUESTION_TYPE_TRUE_FALSE = 'true_false';
+
+const DEFAULT_MINIMUM_SELECTION = 1;
+const DEFAILT_REQUIRE_MAXIMUM_SELECTION = false;
+
+const TOTAL_QUESTIONS = Object.keys(quizData).length;
+
+const ALERT_SELECT_REQUIRED = 'Please select the required number of options.';
+
+const ELEMENT_ID_NEXT_BUTTON = 'next-button';
+const ELEMENT_ID_PREVIOUS_BUTTON = 'previous-button';
+const ELEMENT_ID_SUBMIT_BUTTON = 'submit-button';
+
+const ELEMENT_CLASS_QUESTION = 'question';
+const ELEMENT_CLASS_OPTION = 'option';
+const ELEMENT_CLASS_OPTIONS_CONTAINER = 'options';
+const ELEMENT_CLASS_QUESTION_TEXT = 'question-text';
+const ELEMENT_CLASS_IMAGE = 'image';
+const ELEMENT_CLASS_STATUS = 'status';
+
+const ELEMENT_CLASS_QUESTIONS_CONTAINER = 'questions-container';
+
+const CONTAINER_MAX_HEIGHT = 40;
+
+
+// Functions
+
+class Maid {
+  // A reference for any random helper functions.
+
+  generateUniqueIdentifier() {
+    return Date.now()
+      .toString(36) + Math.random()
+      .toString(36)
+      .substr(2);
   }
 
-  console.log(array)
-  return array;
-}
-
-function adjustQuestionPosition() {
-  const questionText = document.getElementById('question-text');
-  const containerMaxHeight = 40; // Adjust this to your max height value
-
-  // Measure the actual height of the text
-  const textHeight = questionText.scrollHeight;
-
-  // If the text height exceeds the container's max height, adjust the position
-  if (textHeight > containerMaxHeight) {
-    // Example: Move the text up by decreasing margin-top (adjust this logic as needed)
-    questionText.style.marginTop = `${containerMaxHeight - textHeight}px`;
-    console.log(`${containerMaxHeight - textHeight}px`)
-  } else {
-    // Reset margin if text fits
-    questionText.style.marginTop = '0px';
-  }
-}
-
-function updateDisplay(text) {
-  const questionText = document.getElementById('question-text');
-  questionText.textContent = text;
-
-  adjustQuestionPosition();
-}
-
-function switchImage(inout) {
-  if (inout == true) {
-    document.querySelector('.image').classList.remove('inactive');
-    document.querySelector('.image').classList.add('active');
-  } else {
-    document.querySelector('.image').classList.remove('active');
-    document.querySelector('.image').classList.add('inactive');
+  startTimer() {
+    const START_TIME = Date.now();
+  
+    return function() {
+      const ELAPSED_TIME = (Date.now() - START_TIME) / 1000;
+      return Math.floor(ELAPSED_TIME);
+    };
   }
 }
 
-let currentQuestionIndex = 0;
-const selectedAnswers = {};
-const totalQuestions = Object.keys(quizData).length;
+const _Maid = new Maid();
 
-function saveAnswer(questionIndex, answer) {
-  const questionObj = quizData[Object.keys(quizData)[questionIndex]];
+class DataManager {
+  // A reference for any data manipulation functions.
 
-  if (questionObj.type === 'multiple_choice') {
-    if (selectedAnswers[questionIndex]) {
-      selectedAnswers[questionIndex] = answer;
-    } else {
-      if (typeof answer == 'object') {
-        selectedAnswers[questionIndex] = answer;
+  constructor() {
+    this.CURRENT_QUESTION_INDEX = 0;
+    this.SELECTED_ANSWERS = {};
+  }
+
+  // Data Saving Functions
+
+  saveAnswer(ANSWER) {
+    const QUESTION_OBJECT = quizData[Object.keys(quizData)[this.CURRENT_QUESTION_INDEX]];
+
+    if (QUESTION_OBJECT.type == QUESTION_TYPE_MULTIPLE_CHOICE) {
+      if (this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX]) {
+        this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX] = ANSWER;
       } else {
-        selectedAnswers[questionIndex] = [answer]
+        if (typeof ANSWER == 'object') {
+          this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX] = ANSWER;
+        } else {
+          this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX] = [ANSWER];
+        }
+      }
+    } else if (QUESTION_OBJECT.type == QUESTION_TYPE_TRUE_FALSE) {
+      this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX] = ANSWER;
+    }
+  }
+
+  saveChapter() {
+    localStorage.setItem('last-played', chapterNumber);
+  }
+
+
+  // Data Validation Functions
+
+  getAnswer() {
+    return this.SELECTED_ANSWERS[this.CURRENT_QUESTION_INDEX] || {};
+  }
+
+  getQuestionKey(DIRECTION) {
+    return Object.keys(quizData)[this.CURRENT_QUESTION_INDEX];
+  }
+
+  question() {
+    return this.CURRENT_QUESTION_INDEX + 1;
+  }
+
+  canProceedToNextQuestion() {
+    const QUESTION_OBJECT = quizData[Object.keys(quizData)[this.CURRENT_QUESTION_INDEX]];
+    const CHECKBOXES = document.querySelectorAll(`.question-${this.CURRENT_QUESTION_INDEX}-checkbox`);
+    const RADIOS = document.querySelectorAll(`.question-${this.CURRENT_QUESTION_INDEX}-radio`);
+
+    let CHECKBOX_ARRAY = Array.from(CHECKBOXES)
+      .filter(CHK => CHK.checked == true)
+      .map(CHK => CHK.value);
+
+    let RADIO_ARRAY = Array.from(RADIOS)
+      .filter(CHK => CHK.checked == true)
+      .map(CHK => CHK.value);
+
+    const CHECKBOX_SELECTED_COUNT = CHECKBOX_ARRAY?.length || 0;
+    const RADIO_SELECTED_COUNT = RADIO_ARRAY?.length || 0;
+
+    if (QUESTION_OBJECT.type == QUESTION_TYPE_MULTIPLE_CHOICE) {
+      const LIMIT_SELECTION = QUESTION_OBJECT.data.limit_selection;
+
+      if (typeof LIMIT_SELECTION == 'object') {
+        const MINIMUM_SELECTION = LIMIT_SELECTION.minimum || DEFAULT_MINIMUM_SELECTION;
+        const MAXIMUM_SELECTION = LIMIT_SELECTION.maximum || QUESTION_OBJECT.data.questions.length;
+        const REQUIRE_MAXIMUM = LIMIT_SELECTION.require_maximum || DEFAILT_REQUIRE_MAXIMUM_SELECTION;
+
+        if (CHECKBOX_SELECTED_COUNT >= MINIMUM_SELECTION && (CHECKBOX_SELECTED_COUNT <= MAXIMUM_SELECTION || !REQUIRE_MAXIMUM)) {
+          this.saveAnswer(CHECKBOX_ARRAY);
+          return true;
+        } else if (CHECKBOX_SELECTED_COUNT == MAXIMUM_SELECTION && REQUIRE_MAXIMUM) {
+          this.saveAnswer(CHECKBOX_ARRAY);
+          return true;
+        } else {
+          return false;
+        }
+      } else if (typeof LIMIT_SELECTION == 'number') {
+        return CHECKBOX_SELECTED_COUNT == LIMIT_SELECTION;
+      }
+    } else if (QUESTION_OBJECT.type == QUESTION_TYPE_TRUE_FALSE) {
+      return RADIO_SELECTED_COUNT == 1;
+    }
+
+    // Default to prevent user from continuing, in case of spoofing values.
+    return false;
+  }
+}
+
+const _DataManager = new DataManager();
+
+class Interface {
+  // A reference for any DOM manipulation functions.
+
+  adjustQuestionPosition() {
+    const QUESTION_TEXT = document.querySelector(`#${ELEMENT_CLASS_QUESTION_TEXT}`);
+    const TEXT_HEIGHT = QUESTION_TEXT.scrollHeight;
+  
+    if (TEXT_HEIGHT > CONTAINER_MAX_HEIGHT) {
+      QUESTION_TEXT.style.marginTop = `${CONTAINER_MAX_HEIGHT - TEXT_HEIGHT}px`;
+    } else {
+      QUESTION_TEXT.style.marginTop = '0px';
+    }
+  }
+
+  updateQuestionDisplay() {
+    const QUESTION_TEXT = document.querySelector(`#${ELEMENT_CLASS_QUESTION_TEXT}`);
+    QUESTION_TEXT.textContent = `${_DataManager.question()}. ${_DataManager.getQuestionKey()}`;
+    this.adjustQuestionPosition();
+  }
+
+  updateStatusDisplay() {
+    const STATUS_ELEMENT = document.querySelector(`.${ELEMENT_CLASS_STATUS}`);
+    STATUS_ELEMENT.textContent = `${_DataManager.question()}/${TOTAL_QUESTIONS}`;
+  }
+
+  switchImage(IN_OR_OUT) {
+    const IMAGE_ELEMENT = document.querySelector(`.${ELEMENT_CLASS_IMAGE}`);
+    IMAGE_ELEMENT.classList.toggle('active', IN_OR_OUT);
+    IMAGE_ELEMENT.classList.toggle('inactive', !IN_OR_OUT);  
+  }
+
+  updateButtons() {
+    const PREVIOUS_BUTTON = document.querySelector(`#${ELEMENT_ID_PREVIOUS_BUTTON}`);
+    const NEXT_BUTTON = document.querySelector(`#${ELEMENT_ID_NEXT_BUTTON}`);
+    const SUBMIT_BUTTON = document.querySelector(`#${ELEMENT_ID_SUBMIT_BUTTON}`);
+
+    _DataManager.CURRENT_QUESTION_INDEX == 0 ? PREVIOUS_BUTTON.style.display = 'none' : PREVIOUS_BUTTON.style.display = 'inline-block';
+    _DataManager.CURRENT_QUESTION_INDEX == TOTAL_QUESTIONS - 1 ? NEXT_BUTTON.style.display = 'none' : NEXT_BUTTON.style.display = 'inline-block';
+    _DataManager.CURRENT_QUESTION_INDEX == TOTAL_QUESTIONS - 1 ? SUBMIT_BUTTON.style.display = 'inline-block' : SUBMIT_BUTTON.style.display = 'none';
+  }
+
+  createElement(DATA) {
+    const ELEMENT_ID = _Maid.generateUniqueIdentifier();
+
+    const NEW_ELEMENT = document.createElement(DATA.tag_name);
+    NEW_ELEMENT.dataset.uniqueId = ELEMENT_ID;
+
+    for (let KEY in DATA) {
+      if (DATA.hasOwnProperty(KEY)) {
+          NEW_ELEMENT[KEY] = DATA[KEY];
       }
     }
-  } else if (questionObj.type === 'true_false') {
-    selectedAnswers[questionIndex] = answer;
+
+    return NEW_ELEMENT;
   }
 
-  console.log(selectedAnswers)
-}
+  displayQuestion() {
+    const INDEX = _DataManager.CURRENT_QUESTION_INDEX;
+    const QUESTIONS_CONTAINER = document.querySelector(`#${ELEMENT_CLASS_QUESTIONS_CONTAINER}`);
+    QUESTIONS_CONTAINER.innerHTML = '';
 
-function getAnswer(questionIndex) {
-  return selectedAnswers[questionIndex] || {};
-}
+    const QUESTION_KEY = Object.keys(quizData)[INDEX];
+    const QUESTION_OBJECT = quizData[QUESTION_KEY];
 
-function displayQuestion(quizData, index) {
-  const questionsContainer = document.getElementById('questions-container');
-  questionsContainer.innerHTML = '';
-
-  const questionKey = Object.keys(quizData)[index];
-  const questionObj = quizData[questionKey];
-
-  const questionElement = document.createElement('div');
-  questionElement.className = 'question';
-
-  const optionsContainer = document.createElement('div');
-  optionsContainer.className = 'options';
-
-  if (questionObj.data.image) {
-    document.querySelector('.image').style.display = 'block';
-    document.querySelector('.image').src = '/learningwithwick' + questionObj.data.image;
-    switchImage(true);
-  } else {
-    document.querySelector('.image').style.display = 'none';
-  }
-
-  if (questionObj.type === 'multiple_choice') {
-    const limitSelection = questionObj.data.limit_selection || {};
-    const limit = typeof limitSelection === 'number' ? limitSelection : limitSelection.maximum || null;
-    const minSelection = limitSelection.minimum || 1;
-    const requireMax = limitSelection.require_maximum || false;
-
-    // Object.values is the only way to use functions of the table, and the arrray within.
-    let selectedCount = Object.values(getAnswer(index))?.length || 0;
-
-    questionObj.data.questions.forEach((option, i) => {
-      const optionElement = document.createElement('div');
-      optionElement.className = 'option';
-      optionElement.style.cursor = 'pointer';
-
-      const checkbox = document.createElement('input');
-
-      if (limit === 1) {
-        checkbox.type = 'radio';
-        checkbox.name = i;
-        checkbox.value = i;
-        checkbox.classList.add(`question-${index}-checkbox`);
-        checkbox.dataset.uniqueId = uid();
-      } else {
-        checkbox.type = 'checkbox';
-        checkbox.name = i;
-        checkbox.value = i;
-        checkbox.classList.add(`question-${index}-checkbox`);
-        checkbox.dataset.uniqueId = uid();
-      }
-
-      // Turn i into a string, because that's the format it's saved as.
-      if (Object.values(getAnswer(index))?.includes(i.toString())) {
-        checkbox.checked = true;
-      }
-
-      (async () => {
-        optionElement.addEventListener('click', function () {
-          checkbox.checked = !checkbox.checked;
-
-          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
-          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
-
-          if (limit === 1) {
-            // If limit is 1, allow only one option to be selected at a time
-            checkboxes.forEach(chk => {
-              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
-            });
-            selectedCount = 1;
-          }
-
-          // Enforce maximum selection limit
-          if (limit && selectedCount > limit) {
-            checkbox.checked = false;
-            alert(`You can only select up to ${limit} options.`);
-            return;
-          }
-
-          let array = Array.from(checkboxes)
-            .filter(chk => chk.checked == true)
-            .map(chk => chk.value);
-
-          console.log(array);
-          saveAnswer(index, array);
-        });
-      })();
-
-      (async () => {
-        checkbox.addEventListener('change', function () {
-          checkbox.checked = !checkbox.checked;
-
-          const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
-          let selectedCount = Array.from(checkboxes).filter(chk => chk.checked).length;
-
-          if (limit === 1) {
-            // If limit is 1, allow only one option to be selected at a time
-            checkboxes.forEach(chk => {
-              if (chk.dataset.uniqueId !== checkbox.dataset.uniqueId) chk.checked = false;
-            });
-            selectedCount = 1;
-          }
-
-          // Enforce maximum selection limit
-          if (limit && selectedCount > limit) {
-            checkbox.checked = false;
-            alert(`You can only select up to ${limit} options.`);
-            return;
-          }
-
-          let array = Array.from(checkboxes)
-            .filter(chk => chk.checked == true)
-            .map(chk => chk.value);
-
-          console.log(array);
-          saveAnswer(index, array);
-        });
-      })();
-
-      const label = document.createElement('label');
-      label.textContent = option;
-
-      optionElement.appendChild(checkbox);
-      optionElement.appendChild(label);
-      optionsContainer.appendChild(optionElement);
+    const QUESTION_ELEMENT = this.createElement({
+      tag_name: 'div',
+      className: ELEMENT_CLASS_QUESTION,
     });
 
-    questionElement.appendChild(optionsContainer);
-  } else if (questionObj.type === 'true_false') {
-    ['True', 'False'].forEach((option, i) => {
-      const optionElement = document.createElement('div');
-      optionElement.className = 'option';
-      optionElement.style.cursor = 'pointer';
+    const OPTIONS_CONTAINER = this.createElement({
+      tag_name: 'div',
+      className: ELEMENT_CLASS_OPTIONS_CONTAINER,
+    });
 
-      const radio = document.createElement('input');
-      radio.type = 'radio';
-      radio.name = `question-${index}`;
-      radio.value = option;
-      radio.classList.add(`question-${index}-radio`);
+    QUESTION_OBJECT.data.image ? this.switchImage(true) : document.querySelector(`.${ELEMENT_CLASS_IMAGE}`).style.display = 'none';
 
-      if (getAnswer(index) === (i + 1)) {
-        radio.checked = true;
-      }
+    if (QUESTION_OBJECT.type === QUESTION_TYPE_MULTIPLE_CHOICE) {
+      const LIMIT_SELECTION = QUESTION_OBJECT.data.limit_selection || {};
+      const LIMIT = typeof LIMIT_SELECTION == 'number' ? LIMIT_SELECTION : LIMIT_SELECTION.maximum || null;
+      const MINIMUM_SELECTION = LIMIT_SELECTION.minimum || DEFAULT_MINIMUM_SELECTION;
+      const REQUIRE_MAX = LIMIT_SELECTION.require_maximum || DEFAILT_REQUIRE_MAXIMUM_SELECTION;
 
-      optionElement.addEventListener('click', function () {
-        radio.checked = true;
-        saveAnswer(index, (i + 1));
+      let SELECTED_COUNT = Object.values(_DataManager.getAnswer())?.length || 0;
+
+      QUESTION_OBJECT.data.questions.forEach((OPTION, I) => {
+        const OPTION_ELEMENT = this.createElement({
+          tag_name: 'div',
+          className: ELEMENT_CLASS_OPTION,
+        });
+
+        const CHECKBOX = this.createElement({
+          tag_name: 'input',
+          type: LIMIT == 1 ? 'radio' : 'checkbox',
+          name: I,
+          value: I,
+          className: `question-${INDEX}-checkbox`,
+        });
+
+        if (Object.values(_DataManager.getAnswer())?.includes(I.toString())) {
+          CHECKBOX.checked = true;
+        };
+
+        (async () => {
+          OPTION_ELEMENT.addEventListener('click', () => {
+            CHECKBOX.checked = !CHECKBOX.checked;
+  
+            const CHECKBOXES = document.querySelectorAll(`.question-${INDEX}-checkbox`);
+            let NEW_SELECTED_COUNT = Array.from(CHECKBOXES).filter(CHECK => CHECK.checked).length;
+  
+            if (LIMIT == 1) {
+              CHECKBOXES.forEach(CHK => {
+                if (CHK.dataset.uniqueId !== CHECKBOX.dataset.uniqueId) CHK.checked = false;
+              });
+
+              NEW_SELECTED_COUNT = 1;
+            }
+  
+            // Enforce maximum selection limit
+            if (LIMIT && NEW_SELECTED_COUNT > LIMIT) {
+              CHECKBOX.checked = false;
+
+              alert(`You can only select up to ${LIMIT} options.`);
+              return;
+            }
+  
+            let ARRAY = Array.from(CHECKBOXES)
+              .filter(CHK => CHK.checked == true)
+              .map(CHK => CHK.value);
+  
+            _DataManager.saveAnswer(ARRAY);
+            SELECTED_COUNT = NEW_SELECTED_COUNT;
+          });
+        })();
+  
+        (async () => {
+          CHECKBOX.addEventListener('change', () => {
+            CHECKBOX.checked = !CHECKBOX.checked;
+  
+            const CHECKBOXES = document.querySelectorAll(`.question-${INDEX}-checkbox`);
+            let NEW_SELECTED_COUNT = Array.from(CHECKBOXES).filter(CHK => CHK.checked).length;
+  
+            if (LIMIT == 1) {
+              CHECKBOXES.forEach(CHK => {
+                if (CHK.dataset.uniqueId !== CHECKBOX.dataset.uniqueId) CHK.checked = false;
+              });
+
+              NEW_SELECTED_COUNT = 1;
+            }
+  
+            if (LIMIT && NEW_SELECTED_COUNT > LIMIT) {
+              CHECKBOX.checked = false;
+              alert(`You can only select up to ${LIMIT} options.`);
+
+              return;
+            }
+  
+            let ARRAY = Array.from(CHECKBOXES)
+              .filter(CHK => CHK.checked == true)
+              .map(CHK => CHK.value);
+  
+            _DataManager.saveAnswer(ARRAY);
+            SELECTED_COUNT = NEW_SELECTED_COUNT;
+          });
+        })();
+
+        const LABEL = this.createElement({
+          tag_name: 'label',
+          textContent: OPTION,
+        });
+
+        OPTION_ELEMENT.appendChild(CHECKBOX);
+        OPTION_ELEMENT.appendChild(LABEL);
+        OPTIONS_CONTAINER.appendChild(OPTION_ELEMENT);
       });
 
-      const label = document.createElement('label');
-      label.textContent = option;
+      QUESTION_ELEMENT.appendChild(OPTIONS_CONTAINER);
+    } else if (QUESTION_OBJECT.type === QUESTION_TYPE_TRUE_FALSE) {
+      ['True', 'False'].forEach((OPTION, I) => {
+        const OPTION_ELEMENT = this.createElement({
+          tag_name: 'div',
+          className: ELEMENT_CLASS_OPTION,
+        });
 
-      optionElement.appendChild(radio);
-      optionElement.appendChild(label);
-      optionsContainer.appendChild(optionElement);
+        const RADIO = this.createElement({
+          tag_name: 'input',
+          type: 'radio',
+          name: `question-${INDEX}`,
+          value: OPTION,
+          className: `question-${INDEX}-radio`,
+        });
+
+        if (_DataManager.getAnswer() == (I + 1)) {
+          RADIO.checked = true;
+        };
+
+        OPTION_ELEMENT.addEventListener('click', () => {
+          RADIO.checked = true;
+          _DataManager.saveAnswer((I + 1));
+        });
+
+        const LABEL = this.createElement({
+          tag_name: 'label',
+          textContent: OPTION,
+        });
+
+        OPTION_ELEMENT.appendChild(RADIO);
+        OPTION_ELEMENT.appendChild(LABEL);
+        OPTIONS_CONTAINER.appendChild(OPTION_ELEMENT);
+      });
+
+      QUESTION_ELEMENT.appendChild(OPTIONS_CONTAINER);
+    };
+
+    QUESTIONS_CONTAINER.appendChild(QUESTION_ELEMENT);
+  }
+}
+
+const _Interface = new Interface();
+
+class Grading {
+  // A reference for any grading manipulation functions.
+
+  // Data Grading Functions
+  calculateWeightedGrade() {
+    let CORRECT_ANSWERS = 0;
+    let INCORRECT_ANSWERS = [];
+    
+    Object.keys(quizData).forEach((KEY, INDEX) => {
+      let USER_ANSWER = _DataManager.SELECTED_ANSWERS[INDEX];
+      let QUESTION_OBJECT = quizData[KEY];
+      if (!USER_ANSWER || !QUESTION_OBJECT) return;
+
+      if (QUESTION_OBJECT.type == QUESTION_TYPE_MULTIPLE_CHOICE) {
+        const CORRECT_ANSWERS_ARRAY = QUESTION_OBJECT.data.answers;
+        const USER_ANSWER_SET = new Set(USER_ANSWER.map((IDX) => QUESTION_OBJECT.data.questions[IDX]));
+        const CORRECT_ANSWERS_SET = new Set(CORRECT_ANSWERS_ARRAY);
+
+        if (USER_ANSWER_SET.size == CORRECT_ANSWERS_SET.size && [...USER_ANSWER_SET].every(ANSWER => CORRECT_ANSWERS_SET.has(ANSWER))) {
+          CORRECT_ANSWERS++;
+        } else {
+          INCORRECT_ANSWERS.push(INDEX);
+        }
+      } else if (QUESTION_OBJECT.type == QUESTION_TYPE_TRUE_FALSE) {
+        const CORRECT_ANSWER = QUESTION_OBJECT.data.answers[0];
+
+        if (USER_ANSWER.toString() == CORRECT_ANSWER.toString()) {
+          CORRECT_ANSWERS++;
+        } else {
+          INCORRECT_ANSWERS.push(INDEX);
+        };
+      };
     });
 
-    questionElement.appendChild(optionsContainer);
-  }
-
-  questionsContainer.appendChild(questionElement);
-}
-
-function updateButtons(index, totalQuestions) {
-  const prevButton = document.getElementById('previous-button');
-  const nextButton = document.getElementById('next-button');
-  const submitButton = document.getElementById('submit-button');
-
-  if (index === 0) {
-    prevButton.style.display = 'none';
-  } else {
-    prevButton.style.display = 'inline-block';
-  }
-
-  if (index === totalQuestions - 1) {
-    nextButton.style.display = 'none';
-    submitButton.style.display = 'inline-block';
-  } else {
-    nextButton.style.display = 'inline-block';
-    submitButton.style.display = 'none';
-  }
-}
-
-function canProceed(quizData, index) {
-  const questionObj = quizData[Object.keys(quizData)[index]];
-  const checkboxes = document.querySelectorAll(`.question-${index}-checkbox`);
-  const true_false_boxes = document.querySelectorAll(`.question-${index}-radio`);
-
-  let array = Array.from(checkboxes)
-    .filter(chk => chk.checked == true)
-    .map(chk => chk.value);
-
-  let true_false_array = Array.from(true_false_boxes)
-    .filter(chk => chk.checked == true)
-    .map(chk => chk.value);
-
-  const selectedCount = array?.length || 0;
-  const true_false_Selected = true_false_array?.length || 0;
-
-  if (questionObj.type === 'multiple_choice') {
-    const limitSelection = questionObj.data.limit_selection;
-
-    if (typeof limitSelection === 'object') {
-      const min = limitSelection.minimum || 1;
-      const max = limitSelection.maximum || questionObj.data.questions.length;
-      const requireMax = limitSelection.require_maximum || false; // Require maximum selections, default is false
-
-      // Check if the number of selected answers meets the criteria
-      if (selectedCount >= min && (selectedCount <= max || !requireMax)) {
-        saveAnswer(index, array);
-        return true; // Allowed to proceed if within limits
-      } else if (selectedCount === max && requireMax) {
-        saveAnswer(index, array);
-        return true; // If exactly at max and require_maximum is true
-      } else {
-        return false; // Cannot proceed if the selection is outside the limits
-      }
-
-      // If limit_selection is a number (shortcut for max selection)
-    } else if (typeof limitSelection === 'number') {
-      return selectedCount === limitSelection; // Proceed only if selected matches the limit
-    }
-  } else if (questionObj.type == 'true_false') {
-    return true_false_Selected == 1;
-  }
-
-  // Default to allowing progression for other question types
-  return false;
-}
-
-function gradeQuiz(quizData) {
-  let correctAnswers = 0;
-  let incorrectAnswers = [];
-  const totalQuestions = Object.keys(quizData).length;
-
-  Object.keys(quizData).forEach((key, index) => {
-    let userAnswer = selectedAnswers[index];
-    let questionObj = quizData[key];
-    if (!userAnswer || !questionObj) return;
-
-    if (questionObj.type == 'multiple_choice') {
-      const correctAnswersArray = questionObj.data.answers;
-      console.log(correctAnswersArray);
-
-      const userAnswersSet = new Set(userAnswer.map((idx) => questionObj.data.questions[idx]));
-      const correctAnswersSet = new Set(correctAnswersArray);
-
-      console.log(userAnswersSet, correctAnswersSet);
-      if (userAnswersSet.size === correctAnswersSet.size && [...userAnswersSet].every(answer => correctAnswersSet.has(answer))) {
-        correctAnswers++;
-      } else {
-        incorrectAnswers.push(index);
-      }
-    } else if (questionObj.type === 'true_false') {
-      const correctAnswer = questionObj.data.answers[0];
-
-      console.log(userAnswer, correctAnswer);
-      if (userAnswer.toString() == correctAnswer.toString()) {
-        correctAnswers++;
-      } else {
-        incorrectAnswers.push(index);
-      }
-    }
-  });
-
-  return {
-    score: correctAnswers,
-    totalQuestions: totalQuestions,
-    incorrectAnswers: incorrectAnswers,
-  };
-}
-
-let debounce = false;
-
-document.getElementById('next-button').addEventListener('click', function () {
-  if (debounce) return;
-  debounce = true;
-  if (!canProceed(quizData, currentQuestionIndex)) {
-    alert('Please select the required number of options.');
-    return;
-  }
-
-  switchImage(false);
-
-  setTimeout(() => {
-    if (currentQuestionIndex < Object.keys(quizData).length - 1) {
-      currentQuestionIndex++;
-      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-      updateButtons(currentQuestionIndex, totalQuestions);
-      displayQuestion(quizData, currentQuestionIndex);
-      const questionKey = Object.keys(quizData)[currentQuestionIndex];
-      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-      updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
-      debounce = false;
-    }
-  }, 250)
-});
-
-document.getElementById('previous-button').addEventListener('click', function () {
-  switchImage(false);
-
-  setTimeout(() => {
-    if (currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
-      updateButtons(currentQuestionIndex, totalQuestions);
-      displayQuestion(quizData, currentQuestionIndex);
-      const questionKey = Object.keys(quizData)[currentQuestionIndex];
-      updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
-    }
-  }, 250)
-});
-
-function convertScore(correct, outOf) {
-  if (outOf === 0) return { percentage: 0, scale: 0 }; // Prevent division by zero
-  let scale = correct / outOf;
-  return {
-    percentage: +(scale * 100).toFixed(2),  // Rounded to 2 decimal places
-    scale: +scale.toFixed(4)                // Rounded to 4 decimal places
-  };
-}
-
-function startTimer() {
-  const startTime = Date.now(); // Get the start time in milliseconds
-
-  return function getElapsedTime() {
-    const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
-    return Math.floor(elapsedTime); // Return seconds as an integer
-  };
-}
-
-function isQuizPassed(correctAnswers, totalQuestions) {
-  let percentageCorrect = (correctAnswers / totalQuestions) * 100;
-  return percentageCorrect >= 80;
-}
-
-function updateQuizStatistics(newQuizData) {
-  let chapterId = 'chapter_' + chapterNumber;
-  let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
-  let lastHadStats = true;
-
-  // Initialize the chapter structure if it doesn't exist
-  if (!storedStats[chapterId]) {
-    lastHadStats = false;
-    storedStats[chapterId] = {
-      quizzes: [],
-      totalScore: 0,
-      totalQuestions: totalQuestions,
-      totalAccuracy: 0,
-      bestScore: 0,
-      worstScore: newQuizData.missedQuestions.length,
-      numQuizzes: 0,
-      totalTimeSpent: 0,
-      unlocked: false,
+    return {
+      score: CORRECT_ANSWERS,
+      totalQuestions: TOTAL_QUESTIONS,
+      incorrectAnswers: INCORRECT_ANSWERS,
     };
   }
 
-  // Reference the current chapter data
-  let chapter = storedStats[chapterId];
+  // Grading Maid Functions
+  convertScoreToPercentageAndScale(CORRECT, OUT_OF) {
+    if (OUT_OF == 0) return { percentage: 0, scale: 0 };
+    let SCALE = CORRECT / OUT_OF;
 
-  if (!chapter.unlocked && isQuizPassed(newQuizData.score, Object.keys(quizData).length)) {
-    chapter.unlocked = true;
+    return {
+      percentage: + (SCALE * 100).toFixed(2),
+      scale: + SCALE.toFixed(4),
+    }
   }
 
-  // Update the aggregate statistics at the chapter level
-  chapter.totalScore += newQuizData.score;
-  chapter.totalAccuracy += newQuizData.accuracy;
-  chapter.numQuizzes += 1;
-  chapter.totalTimeSpent += newQuizData.timeSpent;
+  isQuizPassed(CORRECT_ANSWERS) {
+    let PERCENTAGE_CORRECT = (CORRECT_ANSWERS / TOTAL_QUESTIONS) * 100;
+    return PERCENTAGE_CORRECT >= 80;
+  }
 
-  // Update best and worst scores if applicable
-  chapter.bestScore = Math.max(chapter.bestScore, newQuizData.score);
-  chapter.worstScore = Math.min(chapter.worstScore, newQuizData.score);
+  updateQuizStatistics(NEW_QUIZ_DATA) {
+    let CHAPTER_ID = `chapter_${chapterNumber}`;
+    let STORED_STATS = JSON.parse(localStorage.getItem('stats')) || {};
+    let LAST_HAD_STATS = true;
+  
+    if (!STORED_STATS[CHAPTER_ID]) {
+      LAST_HAD_STATS = false;
 
-  chapter.quizzes.push(newQuizData);
-  localStorage.setItem('stats', JSON.stringify(storedStats));
+      STORED_STATS[CHAPTER_ID] = {
+        quizzes: [],
+        totalScore: 0,
+        totalQuestions: TOTAL_QUESTIONS,
+        totalAccuracy: 0,
+        bestScore: 0,
+        worstScore: NEW_QUIZ_DATA.missedQuestions.length,
+        numQuizzes: 0,
+        totalTimeSpent: 0,
+        unlocked: false,
+      };
+    };
+  
+    let CHAPTER = STORED_STATS[CHAPTER_ID];
+  
+    if (!CHAPTER.unlocked && this.isQuizPassed(NEW_QUIZ_DATA.score)) {
+      CHAPTER.unlocked = true;
+    }
+  
+    CHAPTER.totalScore += NEW_QUIZ_DATA.score;
+    CHAPTER.totalAccuracy += NEW_QUIZ_DATA.accuracy;
+    CHAPTER.numQuizzes += 1;
+    CHAPTER.totalTimeSpent += NEW_QUIZ_DATA.timeSpent;
+  
+    // Update best and worst scores if applicable
+    CHAPTER.bestScore = Math.max(CHAPTER.bestScore, NEW_QUIZ_DATA.score);
+    CHAPTER.worstScore = Math.min(CHAPTER.worstScore, NEW_QUIZ_DATA.score);
+  
+    CHAPTER.quizzes.push(NEW_QUIZ_DATA);
+    localStorage.setItem('stats', JSON.stringify(STORED_STATS));
+  }
 }
 
-const getElapsedTime = startTimer();
+// Initialize the Interface
 
-document.getElementById('submit-button').addEventListener('click', function () {
-  const timeSpent = getElapsedTime();
-  const result = gradeQuiz(quizData);
-  const scoreConverted = convertScore(result.score, result.totalQuestions);
-  let newQuiz = {
-    quizId: uid(),
-    score: result.score,
-    accuracy: scoreConverted.scale,
-    missedQuestions: result.incorrectAnswers,
-    dateTaken: new Date().toISOString(),
-    timeSpent: timeSpent
+const _Grading = new Grading();
+const _GetElapsedTime = _Maid.startTimer();
+let _Debounce = false;
+
+document.querySelector(`#${ELEMENT_ID_NEXT_BUTTON}`).addEventListener('click', () => {
+  if (_Debounce) return;
+  _Debounce = true;
+
+  if (!_DataManager.canProceedToNextQuestion()) {
+    alert('Please select the required number of options.');
+    _Debounce = false;
+    return;
   };
 
-  updateQuizStatistics(newQuiz);
+  _Interface.switchImage(false);
 
-  console.log('Selected Answers:', selectedAnswers);
-  sessionStorage.setItem('item', JSON.stringify(selectedAnswers))
-  location.href = '/learningwithwick/practice/games/loading/'
+  setTimeout(() => {
+    if (_DataManager.CURRENT_QUESTION_INDEX < (TOTAL_QUESTIONS - 1)) {
+      _DataManager.CURRENT_QUESTION_INDEX++;
+      _Interface.updateButtons();
+      _Interface.displayQuestion();
+      _Interface.updateQuestionDisplay();
+      _Interface.updateStatusDisplay();
+      _Debounce = false;
+    }
+  }, 250)
 });
 
-displayQuestion(quizData, currentQuestionIndex);
-updateButtons(currentQuestionIndex, totalQuestions);
-const questionKey = Object.keys(quizData)[currentQuestionIndex];
-updateDisplay(`${currentQuestionIndex + 1}. ${questionKey}`)
-document.querySelector('.status').textContent = `${currentQuestionIndex + 1}/${Object.keys(quizData).length}`
+document.querySelector(`#${ELEMENT_ID_PREVIOUS_BUTTON}`).addEventListener('click', () => {
+  _Interface.switchImage(false);
+
+  setTimeout(() => {
+    if (_DataManager.CURRENT_QUESTION_INDEX > 0) {
+      _DataManager.CURRENT_QUESTION_INDEX--;
+      _Interface.updateButtons();
+      _Interface.displayQuestion();
+      _Interface.updateQuestionDisplay();
+      _Interface.updateStatusDisplay();
+    }
+  }, 250)
+});
+
+document.querySelector(`#${ELEMENT_ID_SUBMIT_BUTTON}`).addEventListener('click', () => {
+  const TIME_SPENT = _GetElapsedTime();
+  const RESULT = _Grading.calculateWeightedGrade();
+  const SCORE_CONVERTED = _Grading.convertScoreToPercentageAndScale(RESULT.score, RESULT.totalQuestions);
+
+  _Grading.updateQuizStatistics({
+    quizId: _Maid.generateUniqueIdentifier(),
+    score: RESULT.score,
+    accuracy: SCORE_CONVERTED.scale,
+    missedQuestions: RESULT.incorrectAnswers,
+    dateTaken: new Date().toISOString(),
+    timeSpent: TIME_SPENT,
+  });
+
+  location.href = '/learningwithwick/practice/games/loading/';
+});
+
+_Interface.displayQuestion();
+_Interface.updateButtons();
+_Interface.updateQuestionDisplay();
+_Interface.updateStatusDisplay();
