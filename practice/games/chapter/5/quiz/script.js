@@ -711,7 +711,9 @@ class Interface {
       className: ELEMENT_CLASS_OPTIONS_CONTAINER,
     });
 
-    QUESTION_OBJECT.data.image ? this.switchImage(true) : document.querySelector(`.${ELEMENT_CLASS_IMAGE}`).style.display = 'none';
+    typeof QUESTION_OBJECT.data.image == 'string' ? this.switchImage(true) : document.querySelector(`.${ELEMENT_CLASS_IMAGE}`).style.display = 'none';
+    typeof QUESTION_OBJECT.data.image == 'string' ? document.querySelector(`.${ELEMENT_CLASS_IMAGE}`).src = '/learningwithwick' + questionObj.data.image : false;
+    typeof QUESTION_OBJECT.data.image == 'string' ? document.querySelector(`.${ELEMENT_CLASS_IMAGE}`).style.display = 'block' : false;
 
     if (QUESTION_OBJECT.type === QUESTION_TYPE_MULTIPLE_CHOICE) {
       const LIMIT_SELECTION = QUESTION_OBJECT.data.limit_selection || {};
