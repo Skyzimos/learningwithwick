@@ -1038,6 +1038,7 @@ document.querySelector(`#${ELEMENT_ID_SUBMIT_BUTTON}`).addEventListener('click',
   location.href = '/learningwithwick/practice/games/loading/';
 });
 
+_DataManager.saveChapter();
 _Interface.displayQuestion();
 _Interface.updateButtons();
 _Interface.updateQuestionDisplay();
