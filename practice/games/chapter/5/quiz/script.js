@@ -480,12 +480,19 @@ let quizData = {
   the quiz. Make only necessary changes and avoid altering
   critical logic to ensure smooth operation.
 
+  For later reference:
 
-  I'm going to leave this in here so I can remember how I set everything up later on;
-  The constants are editable, and any changes to them will afect any value referencing them.
-  Since the massive rewrite (Oct. 25, 2024), any and all data is referenced using the DataManager
-  class. This means all the Question Indices are held there, and automatically synced to every
-  function.
+  Constants: All constants are editable, with any changes automatically updating all references throughout the code.
+  DataManager Class: Since the major rewrite on Oct. 25, 2024, all data is managed through the DataManager class. This includes tracking all question indices and ensuring they sync seamlessly across every function.
+  Hydrate Method in _Interface: The hydrate method is a favorite due to its simplicity and its huge impact on readability and maintainability. It organizes each event into four parts:
+    
+    - type: The type of element.
+    - object: The targeted element’s name or query identifier.
+    - event: The specific event triggering the function.
+    - callback: The function that runs when the event is fired.
+
+  It also manages threading, so you never have to worry about execution haulting because your code is yielding.
+  Even though this structure adds some code length, it increases organization and makes the data structure easier to follow.
 
 */
 
@@ -549,6 +556,7 @@ class DataManager {
   constructor() {
     this.CURRENT_QUESTION_INDEX = 0;
     this.SELECTED_ANSWERS = {};
+    this._Debounces = {};
   }
 
   // Data Saving Functions
@@ -575,6 +583,10 @@ class DataManager {
     localStorage.setItem('last-played', chapterNumber);
   }
 
+  setDebounce(DATA) {
+    this._Debounces[DATA.object] = DATA.state;
+  }
+
 
   // Data Validation Functions
 
@@ -587,7 +599,18 @@ class DataManager {
   }
 
   question() {
+    // Returns the current question index + 1.
     return this.CURRENT_QUESTION_INDEX + 1;
+  }
+
+  questionIndex() {
+    // Returns the EXACT current question index.
+    return this.CURRENT_QUESTION_INDEX;
+  }
+
+  getDebounce(OBJECT) {
+    if (!this._Debounces[OBJECT]) this._Debounces[OBJECT] = false;
+    return this._Debounces[OBJECT];
   }
 
   canProceedToNextQuestion() {
@@ -640,6 +663,25 @@ const _DataManager = new DataManager();
 class Interface {
   // A reference for any DOM manipulation functions.
 
+  // UI Event Functions
+
+  hydrate(DATA) {
+    const TYPES = {
+      id: '#',
+      class: '.',
+    }
+
+    const TAG = TYPES[DATA.type.toLowerCase()];
+    const ELEMENT = typeof DATA.object == 'string' ? document.querySelector(`${TAG}${DATA.object}`) : DATA.object;
+    
+    (async () => {
+      ELEMENT.addEventListener(DATA.event, DATA.callback);
+    })();
+  }
+
+  
+  // UI Updating Functions
+
   adjustQuestionPosition() {
     const QUESTION_TEXT = document.querySelector(`#${ELEMENT_CLASS_QUESTION_TEXT}`);
     const TEXT_HEIGHT = QUESTION_TEXT.scrollHeight;
@@ -677,6 +719,9 @@ class Interface {
     _DataManager.CURRENT_QUESTION_INDEX == TOTAL_QUESTIONS - 1 ? NEXT_BUTTON.style.display = 'none' : NEXT_BUTTON.style.display = 'inline-block';
     _DataManager.CURRENT_QUESTION_INDEX == TOTAL_QUESTIONS - 1 ? SUBMIT_BUTTON.style.display = 'inline-block' : SUBMIT_BUTTON.style.display = 'none';
   }
+
+
+  // UI Creation Functions
 
   createElement(DATA) {
     const ELEMENT_ID = _Maid.generateUniqueIdentifier();
@@ -741,11 +786,14 @@ class Interface {
           CHECKBOX.checked = true;
         };
 
-        (async () => {
-          OPTION_ELEMENT.addEventListener('click', () => {
+        this.hydrate({
+          type: 'CLASS',
+          object: OPTION_ELEMENT,
+          event: 'click',
+          callback: () => {
             CHECKBOX.checked = !CHECKBOX.checked;
-  
-            const CHECKBOXES = document.querySelectorAll(`.question-${INDEX}-checkbox`);
+
+            const CHECKBOXES = document.querySelectorAll(`.question-${_DataManager.questionIndex()}-checkbox`);
             let NEW_SELECTED_COUNT = Array.from(CHECKBOXES).filter(CHECK => CHECK.checked).length;
   
             if (LIMIT == 1) {
@@ -770,14 +818,17 @@ class Interface {
   
             _DataManager.saveAnswer(ARRAY);
             SELECTED_COUNT = NEW_SELECTED_COUNT;
-          });
-        })();
+          }
+        })
   
-        (async () => {
-          CHECKBOX.addEventListener('change', () => {
+        this.hydrate({
+          type: 'CLASS',
+          object: CHECKBOX,
+          event: 'change',
+          callback: () => {
             CHECKBOX.checked = !CHECKBOX.checked;
-  
-            const CHECKBOXES = document.querySelectorAll(`.question-${INDEX}-checkbox`);
+
+            const CHECKBOXES = document.querySelectorAll(`.question-${_DataManager.questionIndex}-checkbox`);
             let NEW_SELECTED_COUNT = Array.from(CHECKBOXES).filter(CHK => CHK.checked).length;
   
             if (LIMIT == 1) {
@@ -801,8 +852,8 @@ class Interface {
   
             _DataManager.saveAnswer(ARRAY);
             SELECTED_COUNT = NEW_SELECTED_COUNT;
-          });
-        })();
+          }
+        })
 
         const LABEL = this.createElement({
           tag_name: 'label',
@@ -834,9 +885,24 @@ class Interface {
           RADIO.checked = true;
         };
 
-        OPTION_ELEMENT.addEventListener('click', () => {
-          RADIO.checked = true;
-          _DataManager.saveAnswer((I + 1));
+        this.hydrate({
+          type: 'CLASS',
+          object: OPTION_ELEMENT,
+          event: 'click',
+          callback: () => {
+            RADIO.checked = true;
+            _DataManager.saveAnswer(((RADIO.value == 'True' ? 1 : 2)));
+          }
+        });
+
+        this.hydrate({
+          type: 'CLASS',
+          object: RADIO,
+          event: 'click',
+          callback: () => {
+            RADIO.checked = true;
+            _DataManager.saveAnswer(((RADIO.value == 'True' ? 1 : 2)));
+          }
         });
 
         const LABEL = this.createElement({
@@ -962,60 +1028,109 @@ const _Grading = new Grading();
 const _GetElapsedTime = _Maid.startTimer();
 let _Debounce = false;
 
-document.querySelector(`#${ELEMENT_ID_NEXT_BUTTON}`).addEventListener('click', () => {
-  if (_Debounce) return;
-  _Debounce = true;
+_Interface.hydrate({
+  type: 'ID',
+  object: ELEMENT_ID_NEXT_BUTTON,
+  event: 'click',
+  callback: () => {
+    if (_DataManager.getDebounce(ELEMENT_ID_NEXT_BUTTON)) return;
+    _DataManager.setDebounce({
+      object: ELEMENT_ID_NEXT_BUTTON,
+      state: true,
+    });
+  
+    if (!_DataManager.canProceedToNextQuestion()) {
+      alert('Please select the required number of options.');
 
-  if (!_DataManager.canProceedToNextQuestion()) {
-    alert('Please select the required number of options.');
-    _Debounce = false;
-    return;
-  };
+      _DataManager.setDebounce({
+        object: ELEMENT_ID_NEXT_BUTTON,
+        state: false,
+      });
 
-  _Interface.switchImage(false);
+      return;
+    };
+  
+    _Interface.switchImage(false);
+  
+    setTimeout(() => {
+      if (_DataManager.CURRENT_QUESTION_INDEX < (TOTAL_QUESTIONS - 1)) {
+        _DataManager.CURRENT_QUESTION_INDEX++;
+        _Interface.updateButtons();
+        _Interface.displayQuestion();
+        _Interface.updateQuestionDisplay();
+        _Interface.updateStatusDisplay();
 
-  setTimeout(() => {
-    if (_DataManager.CURRENT_QUESTION_INDEX < (TOTAL_QUESTIONS - 1)) {
-      _DataManager.CURRENT_QUESTION_INDEX++;
-      _Interface.updateButtons();
-      _Interface.displayQuestion();
-      _Interface.updateQuestionDisplay();
-      _Interface.updateStatusDisplay();
-      _Debounce = false;
-    }
-  }, 250)
+        _DataManager.setDebounce({
+          object: ELEMENT_ID_NEXT_BUTTON,
+          state: false,
+        });
+      }
+    }, 250)
+  },
 });
 
-document.querySelector(`#${ELEMENT_ID_PREVIOUS_BUTTON}`).addEventListener('click', () => {
-  _Interface.switchImage(false);
+_Interface.hydrate({
+  type: 'ID',
+  object: ELEMENT_ID_PREVIOUS_BUTTON,
+  event: 'click',
+  callback: () => {
+    if (_DataManager.getDebounce(ELEMENT_ID_PREVIOUS_BUTTON)) return;
+    _DataManager.setDebounce({
+      object: ELEMENT_ID_PREVIOUS_BUTTON,
+      state: true,
+    });
 
-  setTimeout(() => {
-    if (_DataManager.CURRENT_QUESTION_INDEX > 0) {
-      _DataManager.CURRENT_QUESTION_INDEX--;
-      _Interface.updateButtons();
-      _Interface.displayQuestion();
-      _Interface.updateQuestionDisplay();
-      _Interface.updateStatusDisplay();
-    }
-  }, 250)
-});
+    _Interface.switchImage(false);
 
-document.querySelector(`#${ELEMENT_ID_SUBMIT_BUTTON}`).addEventListener('click', () => {
-  const TIME_SPENT = _GetElapsedTime();
-  const RESULT = _Grading.calculateWeightedGrade();
-  const SCORE_CONVERTED = _Grading.convertScoreToPercentageAndScale(RESULT.score, RESULT.totalQuestions);
+    setTimeout(() => {
+      if (_DataManager.CURRENT_QUESTION_INDEX > 0) {
+        _DataManager.CURRENT_QUESTION_INDEX--;
+        _Interface.updateButtons();
+        _Interface.displayQuestion();
+        _Interface.updateQuestionDisplay();
+        _Interface.updateStatusDisplay();
 
-  _Grading.updateQuizStatistics({
-    quizId: _Maid.generateUniqueIdentifier(),
-    score: RESULT.score,
-    accuracy: SCORE_CONVERTED.scale,
-    missedQuestions: RESULT.incorrectAnswers,
-    dateTaken: new Date().toISOString(),
-    timeSpent: TIME_SPENT,
-  });
+        _DataManager.setDebounce({
+          object: ELEMENT_ID_PREVIOUS_BUTTON,
+          state: false,
+        });
+      }
+    }, 250)
+  }
+})
 
-  location.href = '/learningwithwick/practice/games/loading/';
-});
+_Interface.hydrate({
+  type: 'ID',
+  object: ELEMENT_ID_SUBMIT_BUTTON,
+  event: 'click',
+  callback: () => {
+    if (_DataManager.getDebounce(ELEMENT_ID_SUBMIT_BUTTON)) return;
+    _DataManager.setDebounce({
+      object: ELEMENT_ID_SUBMIT_BUTTON,
+      state: true,
+    });
+
+    const TIME_SPENT = _GetElapsedTime();
+    const RESULT = _Grading.calculateWeightedGrade();
+    const SCORE_CONVERTED = _Grading.convertScoreToPercentageAndScale(RESULT.score, RESULT.totalQuestions);
+  
+    _Grading.updateQuizStatistics({
+      quizId: _Maid.generateUniqueIdentifier(),
+      score: RESULT.score,
+      accuracy: SCORE_CONVERTED.scale,
+      missedQuestions: RESULT.incorrectAnswers,
+      dateTaken: new Date().toISOString(),
+      timeSpent: TIME_SPENT,
+    });
+  
+    _DataManager.setDebounce({
+      object: ELEMENT_ID_SUBMIT_BUTTON,
+      state: false,
+    });
+
+    location.href = '/learningwithwick/practice/games/loading/';
+  }
+})
 
 _DataManager.saveChapter();
 _Interface.displayQuestion();
