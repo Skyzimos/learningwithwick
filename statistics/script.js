@@ -6,6 +6,8 @@ let Box1_H3 = document.querySelector('.flex-box:has(.box-1) > .box-text > h3');
 let Box2_H3 = document.querySelector('.flex-box:has(.box-2) > .box-text > h3');
 let Box3_H3 = document.querySelector('.flex-box:has(.box-3) > .box-text > h3');
 
+let MissedQuestions_InfoButton = document.querySelectorAll('.image-container');
+
 let lastPlayed = localStorage.getItem('last-played');
 let chapterId = 'chapter_' + lastPlayed;
 
@@ -156,3 +158,7 @@ try {
 } catch (error) {
     console.log('Error calculating statistics:', error);
 }
+
+MissedQuestions_InfoButton.forEach(button => {
+    console.log('clicked')
+})
