@@ -254,8 +254,12 @@
         for (var i = 0; i < 9; i++) {
           console.log(i)
           let chapterId = 'chapter_' + i;
+          let forceUnlock = false;
+          if (i == 6) {
+            forceUnlock = true;
+          }
 
-          if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false) continue;
+          if (!storedStats[chapterId] || storedStats[chapterId].unlocked == false && forceUnlock == false) continue;
           highestChapter = (i + 1);
           console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
           let cards = document.querySelectorAll('.main-container > #cards > .card');
