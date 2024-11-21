@@ -643,6 +643,8 @@ _Interface.hydrate({
     },
 });
 
+/*
+
 _Interface.hydrate({
     type: 'ID',
     object: ELEMENT_ID_PREVIOUS_BUTTON,
@@ -672,6 +674,8 @@ _Interface.hydrate({
         }, 250)
     }
 })
+
+*/
 
 _Interface.hydrate({
     type: 'ID',
