@@ -236,6 +236,10 @@ html, body {
   transition: all 0.25s linear;
 }
 
+.no-show {
+  display: none;
+}
+
 .buttons-container > #submit-button {
   background-color: limegreen;
 }
