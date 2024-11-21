@@ -255,7 +255,7 @@
           console.log(i)
           let chapterId = 'chapter_' + i;
           let forceUnlock = false;
-          if (i == 6) {
+          if (i == 5) {
             forceUnlock = true;
           }
 
@@ -264,7 +264,7 @@
               continue;
             }
           };
-          
+
           highestChapter = (i + 1);
           console.log(chapterId, 'is unlocked; unlocking chapter ' + (i + 1))
           let cards = document.querySelectorAll('.main-container > #cards > .card');
