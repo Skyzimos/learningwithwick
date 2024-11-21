@@ -97,6 +97,10 @@ html, body {
   top: 6%;
 
   font-size: 1.5vw;
+
+  &>span {
+    color: #5849FF;
+  }
 }
 
 .status {
@@ -236,7 +240,7 @@ html, body {
   transition: all 0.25s linear;
 }
 
-.no-show {
+#no-show {
   display: none;
 }
 
