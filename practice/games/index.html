@@ -303,11 +303,11 @@
               } else {
                 let chapterId = 'chapter_' + (chapter - 1);
                 console.log(chapterId)
-                if (!storedStats[chapterId]) return;
+                if (!storedStats[chapterId] && chapter !== 6) return;
 
                 let chapterStats = storedStats[chapterId];
 
-                if (chapterStats.unlocked == true) {
+                if (chapterStats.unlocked == true || chapter == 6) {
                   setTimeout(() => {
                     location.href = `/learningwithwick/practice/games/chapter/${chapter}/quiz/`;
                   }, 250);
