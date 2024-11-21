@@ -295,6 +295,7 @@
             card.addEventListener('click', () => {
               console.log('clicked')
               let chapter = Number(card.dataset.chapter);
+              let forcedUnlock = chapter == 6;
 
               if (chapter == 1) {
                 setTimeout(() => {
@@ -303,11 +304,11 @@
               } else {
                 let chapterId = 'chapter_' + (chapter - 1);
                 console.log(chapterId)
-                if (!storedStats[chapterId] && chapter !== 6) return;
+                if (!storedStats[chapterId] && !forcedUnlock) return;
 
-                let chapterStats = storedStats[chapterId];
+                let chapterStats = storedStats[chapterId] || { unlocked: forcedUnlock };
 
-                if (chapterStats.unlocked == true || chapter == 6) {
+                if (chapterStats.unlocked == true) {
                   setTimeout(() => {
                     location.href = `/learningwithwick/practice/games/chapter/${chapter}/quiz/`;
                   }, 250);
