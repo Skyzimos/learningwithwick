@@ -160,5 +160,7 @@ try {
 }
 
 MissedQuestions_InfoButton.forEach(button => {
-    console.log('clicked')
+    button.addEventListener('click', () => {
+        console.log('clicked')
+    });
 })
