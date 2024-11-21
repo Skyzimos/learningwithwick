@@ -5,11 +5,17 @@ let Box2_BoxImageIcon = document.querySelector('.flex-box:has(.box-2) > .box-ima
 let Box1_H3 = document.querySelector('.flex-box:has(.box-1) > .box-text > h3');
 let Box2_H3 = document.querySelector('.flex-box:has(.box-2) > .box-text > h3');
 let Box3_H3 = document.querySelector('.flex-box:has(.box-3) > .box-text > h3');
+let MissedQuestions_Modal = document.querySelector('.missed-answer-modal');
 
-let MissedQuestions_InfoButton = document.querySelectorAll('.image-container');
-
+localStorage.setItem('stats', `{"chapter_1":{"quizzes":[{"quizId":"m2mp6sy8uibwkhjphqp","score":22,"accuracy":0.9565,"missedQuestions":[15],"dateTaken":"2024-10-24T02:42:18.512Z","timeSpent":175},{"quizId":"m3rf6eh9wq3lfbm86qa","score":22,"accuracy":0.9565,"missedQuestions":[22],"dateTaken":"2024-11-21T14:40:36.813Z","timeSpent":466}],"totalScore":44,"totalQuestions":23,"totalAccuracy":1.913,"bestScore":22,"worstScore":1,"numQuizzes":2,"totalTimeSpent":641,"unlocked":true},"chapter_2":{"quizzes":[{"quizId":"m2o4qi9cg4luqz7xyrm","score":21,"accuracy":0.913,"missedQuestions":[16,20],"dateTaken":"2024-10-25T02:45:18.192Z","timeSpent":235},{"quizId":"m2o4y3gaglb7rxxhfz","score":21,"accuracy":0.913,"missedQuestions":[16,20],"dateTaken":"2024-10-25T02:51:12.250Z","timeSpent":95}],"totalScore":42,"totalQuestions":23,"totalAccuracy":1.826,"bestScore":21,"worstScore":2,"numQuizzes":2,"totalTimeSpent":330,"unlocked":true}}`)
+localStorage.setItem('last-played', 1)
 let lastPlayed = localStorage.getItem('last-played');
 let chapterId = 'chapter_' + lastPlayed;
+let shared_data
+
+document.addEventListener('__share_data', (__shared_data) => {
+    shared_data = __shared_data.detail._shared_data;
+})
 
 
 // Functions
@@ -132,10 +138,31 @@ function populateMissedQuestions() {
         newItem.classList.remove('sample-item');
         newItem.querySelector('.times-container > h1').textContent = `${missedCount}x`;
         newItem.querySelector('.missed-questions-flex-text > h2').textContent = `#${Number(questionId) + 1}`;
+        newItem.dataset.questionId = `${Number(questionId)}`;
 
         container.appendChild(newItem);
     });
+
+    let MissedQuestions_InfoButton = document.querySelectorAll('.image-container');
+    let Title = document.querySelector('.mam-title');
+    let Answer = document.querySelector('.mam-answer');
+
+    MissedQuestions_InfoButton.forEach(button => {
+        button.addEventListener('click', () => {
+            let questionId = button.parentElement.parentElement.dataset.questionId;
+            Title.innerHTML = `${Number(questionId) + 1}. ${Object.keys(shared_data['Chapter' + lastPlayed])[questionId]}`;
+            Answer.innerHTML = `Correct Answer: ${
+                Object.values(shared_data['Chapter' + lastPlayed])[questionId].data.answers.map(answer => answer === 1 ? 'True' : answer === 2 ? 'False' : answer)
+                .join(', ')
+            }`;
+            MissedQuestions_Modal.style.display = 'block';
+        });
+    })
 }
+
+document.querySelector('.okay-button').addEventListener('click', () => {
+    MissedQuestions_Modal.style.display = 'none';
+})
 
 let chapterStatistics = calculateChapterStatistics();
 let performanceChanges = calculatePerformanceImprovement();
@@ -158,9 +185,3 @@ try {
 } catch (error) {
     console.log('Error calculating statistics:', error);
 }
-
-MissedQuestions_InfoButton.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('clicked')
-    });
-})
