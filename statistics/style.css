@@ -770,15 +770,22 @@ body {
 
     background: white;
     border-radius: 15px;
+    border: 2px solid #F1F1F1;
 
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    transition: all 0.15s linear;
 
     display: none;
 
     z-index: 999999;
+}
+
+.missed-answer-modal:hover {
+    transform: translate(-50%, -50%) scale(1.025);
+    box-shadow: 0 0 25px 1px rgba(200, 200, 200, 0.3);
 }
 
 .mam-title-flexbox {
@@ -821,6 +828,10 @@ body {
         font-weight: 600;
         margin-left: 2.5%;
     }
+}
+
+.mam-button-flexbox>button:hover .missed-answer-modal {
+    transform: translate(-50%, -50%) scale(0.985);
 }
 
 .mam-description-flexbox {
@@ -929,7 +940,55 @@ body {
     }
 }
 
-.okay-button {}
+.modal-inactive {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: bounceIn 0.5s ease;
+}
+
+/* Bouncy animations */
+@keyframes bounceIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes bounceOut {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+    }
+}
+
+.modal-closing {
+    animation: bounceOut 0.5s ease;
+    animation-fill-mode: forwards;
+}
 
 .internal-container>.retry-container:hover {
     transform: scale(1.1);
