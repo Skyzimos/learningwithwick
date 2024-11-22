@@ -703,6 +703,8 @@ _Interface.hydrate({
             timeSpent: TIME_SPENT,
         });
 
+        sessionStorage.setItem('chapter6_data', JSON.stringify(quizData));
+
         _DataManager.setDebounce({
             object: ELEMENT_ID_SUBMIT_BUTTON,
             state: false,

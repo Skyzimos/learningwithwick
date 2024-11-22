@@ -150,11 +150,20 @@ function populateMissedQuestions() {
     MissedQuestions_InfoButton.forEach(button => {
         button.addEventListener('click', () => {
             let questionId = button.parentElement.parentElement.dataset.questionId;
-            Title.innerHTML = `${Number(questionId) + 1}. ${Object.keys(shared_data['Chapter' + lastPlayed])[questionId]}`;
-            Answer.innerHTML = `Correct Answer: ${
-                Object.values(shared_data['Chapter' + lastPlayed])[questionId].data.answers.map(answer => answer === 1 ? 'True' : answer === 2 ? 'False' : answer)
-                .join(', ')
-            }`;
+
+            if (lastPlayed == 6) {
+                let data = JSON.parse(sessionStorage.getItem('chapter6_data'));
+                Title.innerHTML = `${Number(questionId) + 1}. ${Object.keys(data)[questionId]}`;
+                Answer.innerHTML = `Correct Answer: ${Object.values(data)[questionId].data.answers.map(answer => answer === 1 ? 'True' : answer === 2 ? 'False' : answer)
+                        .join(', ')
+                    }`;
+            } else {
+                Title.innerHTML = `${Number(questionId) + 1}. ${Object.keys(shared_data['Chapter' + lastPlayed])[questionId]}`;
+                Answer.innerHTML = `Correct Answer: ${Object.values(shared_data['Chapter' + lastPlayed])[questionId].data.answers.map(answer => answer === 1 ? 'True' : answer === 2 ? 'False' : answer)
+                    .join(', ')
+                    }`;
+            }
+
             MissedQuestions_Modal.style.display = 'block';
         });
     })
