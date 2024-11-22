@@ -105,7 +105,7 @@ class Maid {
     }
     
     getRandomChapterQuestionFromIndex(SHARED_DATA, CHAPTER_NUMBER, INDEX) {
-        return Object.keys(SHARED_DATA['Chapter' + CHAPTER_NUMBER])[INDEX - 1];
+        return Object.keys(SHARED_DATA['Chapter' + CHAPTER_NUMBER])[INDEX - 1 < 0 ? 0 : INDEX - 1];
     }
 
     getCurrentChapter() {
@@ -318,7 +318,7 @@ class Interface {
         const QUESTION_KEY = Object.keys(quizData)[INDEX];
         const QUESTION_OBJECT = quizData[QUESTION_KEY];
 
-        console.log(QUESTION_KEY, QUESTION_OBJECT)
+        console.log(QUESTION_KEY, QUESTION_OBJECT, INDEX, quizData)
 
         const QUESTION_ELEMENT = this.createElement({
             tag_name: 'div',

@@ -153,6 +153,7 @@ function populateMissedQuestions() {
 
             if (lastPlayed == 6) {
                 let data = JSON.parse(sessionStorage.getItem('chapter6_data'));
+                console.log(data)
                 Title.innerHTML = `${Number(questionId) + 1}. ${Object.keys(data)[questionId]}`;
                 Answer.innerHTML = `Correct Answer: ${Object.values(data)[questionId].data.answers.map(answer => answer === 1 ? 'True' : answer === 2 ? 'False' : answer)
                         .join(', ')
