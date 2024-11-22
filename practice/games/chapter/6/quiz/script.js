@@ -318,6 +318,8 @@ class Interface {
         const QUESTION_KEY = Object.keys(quizData)[INDEX];
         const QUESTION_OBJECT = quizData[QUESTION_KEY];
 
+        console.log(QUESTION_KEY, QUESTION_OBJECT)
+
         const QUESTION_ELEMENT = this.createElement({
             tag_name: 'div',
             className: ELEMENT_CLASS_QUESTION,
