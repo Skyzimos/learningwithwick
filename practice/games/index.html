@@ -43,7 +43,7 @@
     </div>
 
     <div id="cards">
-      <div class="card" data-chapter='1'>
+      <div class="card example" data-chapter='1'>
         <div class="card-content">
           <div class="card-image">
             <i class='fa-solid fa-id-card'></i>
@@ -59,7 +59,24 @@
           </div>
         </div>
       </div>
-      <div class="card" data-chapter='2'>
+
+      <div class="card prev" data-chapter='1'>
+        <div class="card-content">
+          <div class="card-image">
+            <i class='fa-solid fa-id-card'></i>
+          </div>
+          <div class="card-info-wrapper">
+            <div class="card-info">
+              <i class="fa-classic fa-star" id='star'></i>
+              <div class="card-info-title">
+                <h3 class='title'>Chapter 1 Quiz</h3>
+                <h4 class='description'>Permits, Drivers Licenses, & Organ Donation</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card prev" data-chapter='2'>
         <div class='card-overlay'>
           <i class='fas fa-lock'></i>
         </div>
@@ -78,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="card" data-chapter='3'>
+      <div class="card prev" data-chapter='3'>
         <div class='card-overlay'>
           <i class='fas fa-lock'></i>
         </div>
@@ -97,7 +114,7 @@
           </div>
         </div>
       </div>
-      <div class="card" data-chapter='4'>
+      <div class="card prev" data-chapter='4'>
         <div class='card-overlay'>
           <i class='fas fa-lock'></i>
         </div>
@@ -116,7 +133,7 @@
           </div>
         </div>
       </div>
-      <div class="card" data-chapter='5'>
+      <div class="card prev" data-chapter='5'>
         <div class='card-overlay'>
           <i class='fas fa-lock'></i>
         </div>
@@ -136,7 +153,7 @@
           </div>
         </div>
       </div>
-      <div class="card" data-chapter='6'>
+      <div class="card prev" data-chapter='6'>
         <div class='card-overlay'>
           <i class='fas fa-lock'></i>
         </div>
@@ -149,7 +166,8 @@
               <i class="fa-classic fa-star" id='star'></i>
               <div class="card-info-title">
                 <h3 class='title'>Permit Test</h3> <!--Next Level LEGACY-->
-                <h4 class='description'>Great job on making it! Now, try this practice quiz.</h4> <!--You've aced those quizzes! Time to advance to the harder ones! LEGACY-->
+                <h4 class='description'>Great job on making it! Now, try this practice quiz.</h4>
+                <!--You've aced those quizzes! Time to advance to the harder ones! LEGACY-->
               </div>
             </div>
           </div>
@@ -236,6 +254,24 @@
     </script>
 
     <script>
+      document.addEventListener('__share_data', (__shared_data) => {
+        let SHARED_DATA = __shared_data.detail._games_data;
+
+        for (i = 1; i < SHARED_DATA.length; i++) {
+          let NAME = SHARED_DATA.name;
+          let GAME_ID = SHARED_DATA.game_id;
+          let DESCRIPTION = SHARED_DATA.description;
+          let ICON = SHARED_DATA.icon;
+
+          let SAMPLE_ITEM = document.querySelector('.example');
+          let CLONE = SAMPLE_ITEM.cloneNode(true);
+          
+          CLONE.querySelector('.card-info-wrapper > .card-info > .card-info-title > .title').innerHTML = NAME;
+          CLONE.querySelector('.card-info-wrapper > .card-info > .card-info-title > .description').innerHTML = DESCRIPTION;
+          CLONE.querySelector('.card-content > .card-image > i').className = ICON;
+        }
+      })
+
       let storedStats = JSON.parse(localStorage.getItem('stats')) || {};
       let highestChapter = 1;
 
@@ -321,6 +357,7 @@
     </script>
 
     <script src='/learningwithwick/scripts/loading.js'></script>
+    <script src='/learningwithwick/scripts/data.js'></script>
 </body>
 
 </html>

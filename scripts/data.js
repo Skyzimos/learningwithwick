@@ -1,6 +1,21 @@
 const event = new CustomEvent('__share_data', {
     detail: {
         _production: true,
+        _games_data: [
+            {
+                // Setup Info
+                game_id: '1',
+                type: 'English',
+                name: 'English 10',
+
+                // Read-Only Info
+                description: 'Nouns, Verbs, and Adjectives',
+                icon: 'fa-solid fa-book-open',
+                tags: [''],
+                developer: 'Jesse Martin',
+                release_date: new Date('2024-12-04'),
+            },
+        ],
         _shared_data: {
             'Chapter1': {
                 'Which of the following can be used as a primary I.D. (Select the 4 correct answers.)': {

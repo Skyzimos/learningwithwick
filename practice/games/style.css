@@ -232,6 +232,14 @@ html, body {
   transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg) scale(0.95);
 }
 
+.prev {
+  display: none;
+}
+
+.example {
+  display: block;
+}
+
 .card::before,
 .card::after {
   border-radius: inherit;
